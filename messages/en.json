@@ -1,0 +1,14 @@
+{
+  "locale": { "language": "Language", "en": "English", "fr": "Français", "ko": "한국어" },
+  "common": {
+    "nav": {
+      "resources": "Resources",
+      "contributors": "Contributors",
+      "miilestones": "Milestones"
+    }
+  },
+  "home": {
+    "title": "Hall of Fame"
+  },
+  "footer": {}
+}

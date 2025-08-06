@@ -1,0 +1,14 @@
+{
+  "locale": { "language": "Langue", "en": "English", "fr": "Français", "ko": "한국어" },
+  "common": {
+    "nav": {
+      "resources": "Ressources",
+      "contributors": "Contributeurs",
+      "milestones": "Jalons"
+    }
+  },
+  "home": {
+    "title": "Temple de la renommée"
+  },
+  "footer": {}
+}

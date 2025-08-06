@@ -1,0 +1,14 @@
+{
+  "locale": { "language": "언어", "en": "English", "fr": "Français", "ko": "한국어" },
+  "common": {
+    "nav": {
+      "resources": "리소스",
+      "contributors": "기여자",
+      "milestones": "마일스톤"
+    }
+  },
+  "home": {
+    "title": "명예의 전당"
+  },
+  "footer": {}
+}
