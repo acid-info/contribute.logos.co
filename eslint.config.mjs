@@ -1,14 +1,18 @@
-import typescriptEslint from '@typescript-eslint/eslint-plugin'
-import tsParser from '@typescript-eslint/parser'
-import path from 'node:path'
-import { fileURLToPath } from 'node:url'
-import js from '@eslint/js'
-import { FlatCompat } from '@eslint/eslintrc'
-
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-})
-
-export default []
+export default [
+  {
+    root: true,
+    extends: ['next/core-web-vitals', 'prettier', 'plugin:tailwindcss/recommended'],
+    plugins: ['tailwindcss', 'unused-imports'],
+    rules: {
+      '@next/next/no-html-link-for-pages': 'off',
+      '@next/next/no-img-element': 'off',
+      'tailwindcss/no-custom-classname': 'off',
+      'tailwindcss/classnames-order': 'off',
+    },
+    settings: {
+      tailwindcss: { callees: ['cn', 'cva'], config: 'tailwind.config.cjs' },
+      next: { rootDir: ['app/*/'] },
+    },
+    overrides: [{ files: ['*.ts', '*.tsx'], parser: '@typescript-eslint/parser' }],
+  },
+]
