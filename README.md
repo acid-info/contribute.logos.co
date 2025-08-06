@@ -1,6 +1,33 @@
-# Logos Next.js + TailwindCSS Template
+# Logos Contribute
 
-A starter template built with **Next.js** and **TailwindCSS**.
+**Logos Contribute** is a contribution hub that recognizes open source contributors and helps new developers make their first contributions. By showcasing contributor activity and offering curated resources, it aims to strengthen the Logos ecosystem and accelerate organic community growth.
+
+## Purpose
+
+- Highlight and celebrate open source contributors within the Logos ecosystem.
+- Provide clear pathways for new developers to make their first meaningful contributions.
+
+## Benefits for the Open Source Community
+
+- **Stronger community bonds**: Recognizing contributors helps retain and motivate developers to stay engaged in the ecosystem.
+- **Social proof**: Public acknowledgment enhances Logos' reputation in the open source community.
+- **Lower barriers to entry**: Curated resources and contribution ideas make it easier for new developers to get started.
+
+## Key features
+
+* **Contributor Directory**
+  * Displays Github usernames, profile links, number of contributions, latest contribution, and link to full contribution history.
+
+* **Contributor Profiles**
+  * Individual pages with contribution details and a list of all contributions.
+
+* **Search Functionality**
+  * Search by Github username or repository name.
+
+* **Contribution Guidelines**
+  * Provide clear instructions and best practices for open source contributions.
+  * All content is maintained on Github in markdown format.
+  * Suggestions can be submitted and reviewed through Github Issues.
 
 ## Getting Started
 
