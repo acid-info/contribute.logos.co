@@ -1,11 +1,11 @@
-import { Doc } from 'content-collections'
+import { Resource } from 'content-collections'
 
 import { resourcesConfig } from '@/config/resources'
 import { cn } from '@/lib/utils'
 import { Link } from '@/i18n/navigation'
 
 interface DocsPagerProps {
-  doc: Doc
+  doc: Resource
   locale: string
 }
 
@@ -58,7 +58,7 @@ export function flatten(links: any[]): any[] {
     .filter((link) => !link?.disabled)
 }
 
-export function getPagerForDoc(doc: Doc, locale: string) {
+export function getPagerForDoc(doc: Resource, locale: string) {
   const flattenedLinks = [null, ...flatten(resourcesConfig.sidebarNav), null]
 
   const normalizedSlug = doc.slug.replace(/\/index$/, '')
