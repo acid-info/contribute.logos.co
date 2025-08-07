@@ -2,7 +2,7 @@ import 'css/tailwind.css'
 
 import Header from '@/components/site-headaer'
 import Footer from '@/components/site-footer'
-import { themeInitScript } from '@/utils/theme'
+import { themeInitScript } from '@/lib/theme'
 
 import { LsdThemeStyles } from '@acid-info/lsd-react/theme'
 import '@acid-info/lsd-react/css'

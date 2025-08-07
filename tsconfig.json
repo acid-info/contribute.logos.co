@@ -19,9 +19,10 @@
     "paths": {
       "@/*": ["./*"],
       "@/components/*": ["components/*"],
-      "@/data/*": ["data/*"],
+      "@/data/*": ["config/*"],
       "@/layouts/*": ["layouts/*"],
-      "@/css/*": ["css/*"]
+      "@/css/*": ["css/*"],
+      "content-collections": ["./.content-collections/generated"]
     },
     "plugins": [
       {

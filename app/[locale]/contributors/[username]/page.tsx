@@ -1,4 +1,4 @@
-import { createDefaultMetadata } from '@/utils/metadata'
+import { createDefaultMetadata } from '@/lib/metadata'
 import { ROUTES } from '@/constants/routes'
 import { MOCK_CONTRIBUTORS } from '@/constants/mockData'
 import { notFound } from 'next/navigation'

@@ -1,4 +1,4 @@
-import siteConfig from '@/data/siteConfig'
+import siteConfig from '@/config/site'
 import { Metadata } from 'next'
 
 type DefaultMetadataProps = {

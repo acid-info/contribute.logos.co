@@ -5,7 +5,7 @@ export async function GET(request: Request) {
   const title = searchParams.get('title')
   const description = searchParams.get('description')
 
-  const siteConfig = await import('@/data/siteConfig')
+  const siteConfig = await import('@/config/site')
   const { name } = siteConfig.default
 
   return new ImageResponse(

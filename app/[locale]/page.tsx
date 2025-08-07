@@ -1,6 +1,5 @@
 import { ROUTES } from '@/constants/routes'
-import { createDefaultMetadata } from '@/utils/metadata'
-import { useTranslations } from 'next-intl'
+import { createDefaultMetadata } from '@/lib/metadata'
 import HomeContainer from '@/containers/home/home-container'
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {

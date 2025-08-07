@@ -1,5 +1,7 @@
 const createNextIntlPlugin = require('next-intl/plugin')
 
+const { withContentCollections } = require('@content-collections/next')
+
 const withNextIntl = createNextIntlPlugin()
 
 // You might need to insert additional domains in script-src if you are using external services
@@ -45,35 +47,37 @@ const unoptimized = process.env.UNOPTIMIZED ? true : undefined
  * @type {import('next/dist/next-server/server/config').NextConfig}
  **/
 module.exports = () => {
-  return withNextIntl({
-    // for static builds
-    // output: 'export',
-    output,
-    basePath,
-    reactStrictMode: true,
-    trailingSlash: false,
-    pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
-    eslint: {
-      dirs: ['app', 'components', 'layouts', 'scripts'],
-    },
-    images: {
-      unoptimized,
-    },
-    async headers() {
-      return [
-        {
-          source: '/(.*)',
-          headers: securityHeaders,
-        },
-      ]
-    },
-    webpack: (config, options) => {
-      config.module.rules.push({
-        test: /\.svg$/,
-        use: ['@svgr/webpack'],
-      })
+  return withContentCollections(
+    withNextIntl({
+      // for static builds
+      // output: 'export',
+      output,
+      basePath,
+      reactStrictMode: true,
+      trailingSlash: false,
+      pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
+      eslint: {
+        dirs: ['app', 'components', 'layouts', 'scripts'],
+      },
+      images: {
+        unoptimized,
+      },
+      async headers() {
+        return [
+          {
+            source: '/(.*)',
+            headers: securityHeaders,
+          },
+        ]
+      },
+      webpack: (config, options) => {
+        config.module.rules.push({
+          test: /\.svg$/,
+          use: ['@svgr/webpack'],
+        })
 
-      return config
-    },
-  })
+        return config
+      },
+    })
+  )
 }

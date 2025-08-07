@@ -1,7 +1,7 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-import { Button, Typography } from '@acid-info/lsd-react'
+import { Typography } from '@acid-info/lsd-react'
 import { Link } from '@/i18n/navigation'
 import LocaleSwitcher from '@/components/locale/locale-switcher'
 import ThemeToggle from './theme-toggle'
@@ -21,10 +21,10 @@ const Header = () => {
 
           <nav className="hidden items-center space-x-6 md:flex">
             <Link href={ROUTES.home}>
-              <Button variant="outlined">{t('nav.directory')}</Button>
+              <Typography variant="outlined">{t('nav.directory')}</Typography>
             </Link>
             <Link href={ROUTES.resources}>
-              <Button variant="outlined">{t('nav.resources')}</Button>
+              <Typography variant="outlined">{t('nav.resources')}</Typography>
             </Link>
           </nav>
         </div>
