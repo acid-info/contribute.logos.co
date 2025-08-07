@@ -7,7 +7,6 @@ import { themeInitScript } from '@/utils/theme'
 import { LsdThemeStyles } from '@acid-info/lsd-react/theme'
 import '@acid-info/lsd-react/css'
 import { NextIntlClientProvider } from 'next-intl'
-import LocaleSwitcher from '@/components/locale/locale-switcher'
 
 export default async function RootLayout({
   children,
@@ -37,7 +36,6 @@ export default async function RootLayout({
         <body>
           <Header />
           <main>{children}</main>
-          <LocaleSwitcher />
           <Footer />
         </body>
       </html>

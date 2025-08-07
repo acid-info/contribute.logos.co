@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: PageProps) {
       title: 'Contributor Not Found',
       description: 'The requested contributor could not be found',
       locale,
-      path: `/contributors/${username}`,
+      path: `${ROUTES.contributors}/${username}`,
     })
   }
 
@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: PageProps) {
     title: `${contributor.username} - Contributor Profile`,
     description: `${contributor.username} has made ${contributor.contributions} contributions to the Logos ecosystem`,
     locale,
-    path: `/contributors/${username}`,
+    path: `${ROUTES.contributors}/${username}`,
   })
 
   return metadata

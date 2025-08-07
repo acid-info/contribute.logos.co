@@ -1,4 +1,3 @@
-import ThemeToggle from '@/components/theme-toggle'
 import { ROUTES } from '@/constants/routes'
 import { createDefaultMetadata } from '@/utils/metadata'
 import { useTranslations } from 'next-intl'

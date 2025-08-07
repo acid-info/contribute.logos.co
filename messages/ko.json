@@ -2,6 +2,7 @@
   "locale": { "language": "언어", "en": "English", "fr": "Français", "ko": "한국어" },
   "common": {
     "nav": {
+      "directory": "디렉토리",
       "resources": "리소스",
       "contributors": "기여자",
       "milestones": "마일스톤"
@@ -50,6 +51,7 @@
     "issue": "이슈",
     "pullRequest": "풀 리퀘스트",
     "review": "리뷰",
+    "translation": "번역",
     "contribution": "기여",
     "view": "보기"
   },

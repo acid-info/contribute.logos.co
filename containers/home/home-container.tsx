@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl'
 import { Button, Typography } from '@acid-info/lsd-react'
 import { Link } from '@/i18n/navigation'
 import { Contributor, MOCK_CONTRIBUTORS } from '@/constants/mockData'
+import { ROUTES } from '@/constants/routes'
 
 export default function HomeContainer() {
   const t = useTranslations('home')
@@ -141,7 +142,7 @@ export default function HomeContainer() {
                       <a href={contributor.profileUrl} target="_blank" rel="noopener noreferrer">
                         <Button variant="outlined">{t('contributors.viewGithubProfile')}</Button>
                       </a>
-                      <Link href={`/contributors/${contributor.username}`}>
+                      <Link href={`${ROUTES.contributors}/${contributor.username}`}>
                         <Button>{t('contributors.viewDetails')}</Button>
                       </Link>
                     </div>
@@ -223,8 +224,9 @@ export default function HomeContainer() {
               {t('cta.description')}
             </Typography>
             <div className="flex justify-center space-x-4">
-              <Button>{t('cta.getStarted')}</Button>
-              <Button variant="outlined">{t('cta.viewGuidelines')}</Button>
+              <Link href={ROUTES.resources}>
+                <Button variant="outlined">{t('cta.viewGuidelines')}</Button>
+              </Link>
             </div>
           </div>
         </div>

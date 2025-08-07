@@ -26,8 +26,8 @@ export default function LocaleSwitcherSelect({ children, defaultValue }: Props) 
     <div className="relative inline-block w-24">
       <select
         className={clsx(
-          'text-foreground w-full appearance-none border border-black px-3 py-1 text-sm dark:border-white',
-          'cursor-pointer',
+          'border-primary w-full appearance-none border px-3 py-2 text-sm',
+          'cursor-pointer bg-transparent',
           isPending && 'transition-opacity [&:disabled]:opacity-30'
         )}
         defaultValue={defaultValue}

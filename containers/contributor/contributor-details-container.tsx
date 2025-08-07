@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl'
 import { Button, Typography } from '@acid-info/lsd-react'
 import { Link } from '@/i18n/navigation'
 import { Contributor } from '@/constants/mockData'
+import { ROUTES } from '@/constants/routes'
 import { faker } from '@faker-js/faker'
 
 interface ContributorDetailsContainerProps {
@@ -65,6 +66,8 @@ export default function ContributorDetailsContainer({
         return 'Pull Request'
       case 'review':
         return 'Review'
+      case 'translation':
+        return 'Translation'
       default:
         return 'Contribution'
     }
@@ -74,7 +77,7 @@ export default function ContributorDetailsContainer({
     <div className="min-h-screen">
       <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="mb-8">
-          <Link href="/">
+          <Link href={ROUTES.home}>
             <Button variant="outlined">{t('backToContributors')}</Button>
           </Link>
         </div>

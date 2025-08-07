@@ -1,4 +1,5 @@
 export const ROUTES = {
   home: '/',
-  test: '/test',
+  contributors: '/contributors',
+  resources: '/resources',
 }
