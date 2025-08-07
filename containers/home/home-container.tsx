@@ -48,7 +48,7 @@ export default function HomeContainer() {
   return (
     <div className="min-h-screen">
       <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 xl:px-0">
-        <div className="mb-8 flex flex-col gap-3 text-center">
+        <div className="mb-12 flex flex-col gap-3 text-center">
           <Typography variant="h1" className="mb-4 !text-3xl lg:!text-4xl">
             {t('title')}
           </Typography>
@@ -57,7 +57,7 @@ export default function HomeContainer() {
           </Typography>
         </div>
 
-        <div className="mb-6">
+        <div className="mb-12">
           <div className="mx-auto max-w-md">
             <div className="relative">
               <input

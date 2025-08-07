@@ -12,7 +12,7 @@ const Header = () => {
   const pathname = usePathname()
 
   return (
-    <header className="border-primary border-b px-4 py-4 sm:px-6 lg:px-8">
+    <header className="border-primary border-b px-4 py-3 sm:px-6 lg:px-8">
       <div className="mx-auto flex max-w-7xl items-center justify-between">
         <div className="flex items-center space-x-8">
           <Link href={ROUTES.home} className="flex items-center space-x-2">
