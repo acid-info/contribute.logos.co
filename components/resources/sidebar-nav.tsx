@@ -7,7 +7,6 @@ import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import { useTranslations } from 'next-intl'
 import { Link } from '@/i18n/navigation'
-import LocaleSwitcher from '../locale/locale-switcher'
 
 export interface DocsSidebarNavProps {
   items: SidebarNavItem[]
@@ -32,9 +31,6 @@ export function DocsSidebarNav({ items }: DocsSidebarNavProps) {
           {item?.items?.length && <DocsSidebarNavItems items={item.items} pathname={pathname} />}
         </div>
       ))}
-      <div className="mt-2 flex justify-center">
-        <LocaleSwitcher />
-      </div>
     </div>
   ) : null
 }
