@@ -2,13 +2,15 @@ import ThemeToggle from '@/components/theme-toggle'
 import { ROUTES } from '@/constants/routes'
 import { createDefaultMetadata } from '@/utils/metadata'
 import { useTranslations } from 'next-intl'
+import HomeContainer from '@/containers/home/home-container'
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
 
   const metadata = await createDefaultMetadata({
-    title: 'Home',
-    description: 'Home Description',
+    title: 'Logos Contribute - Open Source Contribution Hub',
+    description:
+      'Celebrating open source contributors and helping new developers make their first contributions',
     locale,
     path: ROUTES.home,
   })
@@ -17,18 +19,5 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 
 export default function Page() {
-  const t = useTranslations('home')
-  return (
-    <div className="divide-y divide-gray-200 dark:divide-gray-700">
-      <div className="space-y-2 pt-6 pb-8 md:space-y-5">
-        <h1 className="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14 dark:text-gray-100">
-          {t('title')}
-        </h1>
-        <br />
-        <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">Description</p>
-        <br />
-        <ThemeToggle />
-      </div>
-    </div>
-  )
+  return <HomeContainer />
 }

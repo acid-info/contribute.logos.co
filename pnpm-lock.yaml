@@ -11,6 +11,9 @@ importers:
       '@acid-info/lsd-react':
         specifier: ^0.2.0-beta.4
         version: 0.2.0-topic-refactor-lsd-1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@faker-js/faker':
+        specifier: ^9.9.0
+        version: 9.9.0
       '@next/bundle-analyzer':
         specifier: ^15.3.1
         version: 15.3.2
@@ -857,6 +860,10 @@ packages:
   '@eslint/plugin-kit@0.2.8':
     resolution: {integrity: sha512-ZAoA40rNMPwSm+AeHpCq8STiNAwzWLJuP8Xv4CHIc9wv/PSuExjMrmjfYNj682vW0OOiZ1HKxzvjQr9XZIisQA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@faker-js/faker@9.9.0':
+    resolution: {integrity: sha512-OEl393iCOoo/z8bMezRlJu+GlRGlsKbUAN7jKB6LhnKoqKve5DXRpalbItIIcwnCjs1k/FOPjFzcA6Qn+H+YbA==}
+    engines: {node: '>=18.0.0', npm: '>=9.0.0'}
 
   '@formatjs/ecma402-abstract@2.3.4':
     resolution: {integrity: sha512-qrycXDeaORzIqNhBOx0btnhpD1c+/qFIHAN9znofuMJX6QBwtbrmlpWfD4oiUUD2vJUOIYFA/gYtg2KAMGG7sA==}
@@ -4373,6 +4380,8 @@ snapshots:
     dependencies:
       '@eslint/core': 0.13.0
       levn: 0.4.1
+
+  '@faker-js/faker@9.9.0': {}
 
   '@formatjs/ecma402-abstract@2.3.4':
     dependencies:

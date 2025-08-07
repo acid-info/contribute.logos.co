@@ -8,7 +8,50 @@
     }
   },
   "home": {
-    "title": "명예의 전당"
+    "title": "Logos Contribute",
+    "subtitle": "오픈소스 기여자를 축하하고 새로운 개발자들이 첫 기여를 할 수 있도록 돕습니다",
+    "search": {
+      "placeholder": "사용자명 또는 저장소로 검색..."
+    },
+    "stats": {
+      "activeContributors": "활성 기여자",
+      "totalContributions": "총 기여 수",
+      "repositories": "저장소"
+    },
+    "contributors": {
+      "title": "기여자 디렉토리",
+      "contributions": "기여",
+      "latest": "최근",
+      "viewGithubProfile": "GitHub 프로필 보기",
+      "viewDetails": "상세 보기",
+      "noResults": "검색과 일치하는 기여자를 찾을 수 없습니다.",
+      "pagination": {
+        "showing": "{total}명의 기여자 중 {start}-{end}명 표시",
+        "previous": "이전",
+        "next": "다음"
+      }
+    },
+    "cta": {
+      "title": "첫 기여를 준비하셨나요?",
+      "description": "우리 커뮤니티에 참여하여 오픈소스 개발의 미래를 함께 만들어보세요.",
+      "getStarted": "시작하기",
+      "viewGuidelines": "가이드라인 보기"
+    }
+  },
+  "contributor": {
+    "backToContributors": "← 기여자 목록으로 돌아가기",
+    "contributionsToEcosystem": "Logos 생태계에 대한 기여",
+    "totalContributions": "총 기여 수",
+    "latestRepository": "최근 저장소",
+    "latestContribution": "최근 기여",
+    "viewGithubProfile": "GitHub 프로필 보기",
+    "contributionHistory": "기여 기록",
+    "commit": "커밋",
+    "issue": "이슈",
+    "pullRequest": "풀 리퀘스트",
+    "review": "리뷰",
+    "contribution": "기여",
+    "view": "보기"
   },
   "footer": {}
 }

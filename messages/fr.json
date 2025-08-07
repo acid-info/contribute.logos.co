@@ -8,7 +8,50 @@
     }
   },
   "home": {
-    "title": "Temple de la renommée"
+    "title": "Logos Contribute",
+    "subtitle": "Célébrer les contributeurs open source et aider les nouveaux développeurs à faire leurs premières contributions",
+    "search": {
+      "placeholder": "Rechercher par nom d'utilisateur ou dépôt..."
+    },
+    "stats": {
+      "activeContributors": "Contributeurs actifs",
+      "totalContributions": "Contributions totales",
+      "repositories": "Dépôts"
+    },
+    "contributors": {
+      "title": "Répertoire des contributeurs",
+      "contributions": "contributions",
+      "latest": "Dernière",
+      "viewGithubProfile": "Voir le profil GitHub",
+      "viewDetails": "Voir les détails",
+      "noResults": "Aucun contributeur trouvé correspondant à votre recherche.",
+      "pagination": {
+        "showing": "Affichage de {start}-{end} sur {total} contributeurs",
+        "previous": "Précédent",
+        "next": "Suivant"
+      }
+    },
+    "cta": {
+      "title": "Prêt à faire votre première contribution ?",
+      "description": "Rejoignez notre communauté et aidez à construire l'avenir du développement open source.",
+      "getStarted": "Commencer",
+      "viewGuidelines": "Voir les directives"
+    }
+  },
+  "contributor": {
+    "backToContributors": "← Retour aux contributeurs",
+    "contributionsToEcosystem": "contributions à l'écosystème Logos",
+    "totalContributions": "Contributions totales",
+    "latestRepository": "Dernier dépôt",
+    "latestContribution": "Dernière contribution",
+    "viewGithubProfile": "Voir le profil GitHub",
+    "contributionHistory": "Historique des contributions",
+    "commit": "Commit",
+    "issue": "Problème",
+    "pullRequest": "Pull Request",
+    "review": "Avis",
+    "contribution": "Contribution",
+    "view": "Voir"
   },
   "footer": {}
 }

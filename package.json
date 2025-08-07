@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@acid-info/lsd-react": "^0.2.0-beta.4",
+    "@faker-js/faker": "^9.9.0",
     "@next/bundle-analyzer": "^15.3.1",
     "@tailwindcss/postcss": "^4.0.5",
     "clsx": "^2.1.1",
