@@ -75,7 +75,7 @@ export default function ContributorDetailsContainer({
 
   return (
     <div className="min-h-screen">
-      <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 xl:px-0">
         <div className="mb-8">
           <Link href={ROUTES.home}>
             <Button variant="outlined">{t('backToContributors')}</Button>

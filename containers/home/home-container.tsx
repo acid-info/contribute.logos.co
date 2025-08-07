@@ -47,7 +47,7 @@ export default function HomeContainer() {
 
   return (
     <div className="min-h-screen">
-      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 xl:px-0">
         <div className="mb-12 flex flex-col gap-3 text-center">
           <Typography variant="h1" className="mb-4">
             {t('title')}
