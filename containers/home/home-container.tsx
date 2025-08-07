@@ -47,17 +47,17 @@ export default function HomeContainer() {
 
   return (
     <div className="min-h-screen">
-      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 xl:px-0">
-        <div className="mb-12 flex flex-col gap-3 text-center">
-          <Typography variant="h1" className="mb-4">
+      <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 xl:px-0">
+        <div className="mb-8 flex flex-col gap-3 text-center">
+          <Typography variant="h1" className="mb-4 !text-3xl lg:!text-4xl">
             {t('title')}
           </Typography>
-          <Typography variant="subtitle1" className="mb-8">
+          <Typography variant="subtitle1" className="mb-6 text-base sm:text-lg">
             {t('subtitle')}
           </Typography>
         </div>
 
-        <div className="mb-8">
+        <div className="mb-6">
           <div className="mx-auto max-w-md">
             <div className="relative">
               <input
@@ -65,11 +65,11 @@ export default function HomeContainer() {
                 placeholder={t('search.placeholder')}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="border-primary w-full border px-4 py-3 pl-10"
+                className="border-primary w-full border px-3 py-2 pl-10 text-sm sm:text-base"
               />
               <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                 <svg
-                  className="h-5 w-5 text-gray-400"
+                  className="h-4 w-4 text-gray-400 sm:h-5 sm:w-5"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -86,95 +86,110 @@ export default function HomeContainer() {
           </div>
         </div>
 
-        <div className="mb-8 grid grid-cols-1 gap-6 md:grid-cols-3">
-          <div className="border-primary border p-6">
-            <Typography variant="h2">{contributors.length}</Typography>
-            <Typography variant="body2">{t('stats.activeContributors')}</Typography>
+        <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="border-primary border p-4 sm:p-6">
+            <Typography variant="h2" className="text-2xl sm:text-3xl">
+              {contributors.length}
+            </Typography>
+            <Typography variant="body2" className="text-sm sm:text-base">
+              {t('stats.activeContributors')}
+            </Typography>
           </div>
-          <div className="border-primary border p-6">
-            <Typography variant="h2">
+          <div className="border-primary border p-4 sm:p-6">
+            <Typography variant="h2" className="text-2xl sm:text-3xl">
               {contributors.reduce((sum, c) => sum + c.contributions, 0)}
             </Typography>
-            <Typography variant="body2">{t('stats.totalContributions')}</Typography>
+            <Typography variant="body2" className="text-sm sm:text-base">
+              {t('stats.totalContributions')}
+            </Typography>
           </div>
-          <div className="border-primary border p-6">
-            <Typography variant="h2">
+          <div className="border-primary border p-4 sm:col-span-2 sm:p-6 lg:col-span-1">
+            <Typography variant="h2" className="text-2xl sm:text-3xl">
               {new Set(contributors.map((c) => c.latestRepo)).size}
             </Typography>
-            <Typography variant="body2">{t('stats.repositories')}</Typography>
+            <Typography variant="body2" className="text-sm sm:text-base">
+              {t('stats.repositories')}
+            </Typography>
           </div>
         </div>
 
         <div className="border-primary border">
-          <div className="border-primary border-b px-6 py-4">
-            <Typography variant="h3">{t('contributors.title')}</Typography>
+          <div className="border-primary border-b px-4 py-4 sm:px-6">
+            <Typography variant="h3" className="!text-lg sm:!text-xl">
+              {t('contributors.title')}
+            </Typography>
           </div>
           <div className="divide-primary divide-y">
             {currentContributors.length > 0 ? (
               currentContributors.map((contributor) => (
-                <div key={contributor.id} className="p-6">
-                  <div className="flex items-center space-x-4">
+                <div key={contributor.id} className="p-4 sm:p-6">
+                  <div className="flex flex-col space-y-3 sm:flex-row sm:items-center sm:space-y-0 sm:space-x-4">
                     <img
                       src={contributor.avatarUrl}
                       alt={`${contributor.username} avatar`}
-                      className="h-12 w-12 rounded-full"
+                      className="h-10 w-10 rounded-full sm:h-12 sm:w-12"
                     />
                     <div className="min-w-0 flex-1">
-                      <div className="flex items-center space-x-2">
+                      <div className="flex flex-col space-y-1 sm:flex-row sm:items-center sm:space-y-0 sm:space-x-3">
                         <a
                           href={contributor.profileUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-lg font-medium hover:underline"
+                          className="text-base font-medium hover:underline sm:text-lg"
                         >
                           {contributor.username}
                         </a>
-                        <span className="border-primary inline-flex items-center border px-2.5 py-0.5 text-xs font-medium">
+                        <span className="inline-flex items-center text-xs font-medium">
                           {contributor.contributions} {t('contributors.contributions')}
                         </span>
                       </div>
-                      <div className="mt-1 text-sm">
+                      <div className="mt-1 text-xs sm:text-sm">
                         {t('contributors.latest')}: {contributor.latestRepo} •{' '}
                         {formatDate(contributor.latestContribution)}
                       </div>
                     </div>
-                    <div className="flex space-x-2">
+                    <div className="flex flex-col space-y-2 sm:flex-row sm:space-y-0 sm:space-x-2">
                       <a href={contributor.profileUrl} target="_blank" rel="noopener noreferrer">
-                        <Button variant="outlined">{t('contributors.viewGithubProfile')}</Button>
+                        <Button variant="outlined" size="small" className="w-full sm:w-auto">
+                          {t('contributors.viewGithubProfile')}
+                        </Button>
                       </a>
                       <Link href={`${ROUTES.contributors}/${contributor.username}`}>
-                        <Button>{t('contributors.viewDetails')}</Button>
+                        <Button size="small" className="w-full sm:w-auto">
+                          {t('contributors.viewDetails')}
+                        </Button>
                       </Link>
                     </div>
                   </div>
                 </div>
               ))
             ) : (
-              <div className="p-6 text-center">
+              <div className="p-4 text-center sm:p-6">
                 <Typography variant="body2">{t('contributors.noResults')}</Typography>
               </div>
             )}
           </div>
 
           {totalPages > 1 && (
-            <div className="border-primary border-t px-6 py-4">
-              <div className="flex items-center justify-between">
-                <Typography variant="body2">
+            <div className="border-primary border-t px-4 py-4 sm:px-6">
+              <div className="flex flex-col items-center gap-3 space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
+                <Typography variant="body2" className="text-center sm:text-left">
                   {t('contributors.pagination.showing', {
                     start: startIndex + 1,
                     end: Math.min(endIndex, filteredContributors.length),
                     total: filteredContributors.length,
                   })}
                 </Typography>
-                <div className="flex space-x-2">
+                <div className="flex flex-row space-y-2 space-x-2 sm:space-y-0">
                   <Button
                     variant="outlined"
                     disabled={currentPage === 1}
                     onClick={() => handlePageChange(currentPage - 1)}
+                    className="!h-10"
                   >
                     {t('contributors.pagination.previous')}
                   </Button>
-                  <div className="flex space-x-1">
+                  <div className="flex justify-center space-x-1">
                     {Array.from({ length: totalPages }, (_, index) => {
                       const page = index + 1
                       const isCurrentPage = page === currentPage
@@ -187,7 +202,7 @@ export default function HomeContainer() {
                             key={page}
                             variant={isCurrentPage ? 'filled' : 'outlined'}
                             onClick={() => handlePageChange(page)}
-                            className="h-10 w-10"
+                            className="!h-10 !w-10 !p-0"
                           >
                             {page}
                           </Button>
@@ -206,6 +221,7 @@ export default function HomeContainer() {
                     variant="outlined"
                     disabled={currentPage === totalPages}
                     onClick={() => handlePageChange(currentPage + 1)}
+                    className="!h-10"
                   >
                     {t('contributors.pagination.next')}
                   </Button>
@@ -215,17 +231,19 @@ export default function HomeContainer() {
           )}
         </div>
 
-        <div className="mt-12 text-center">
-          <div className="border-primary flex flex-col gap-4 border p-8">
-            <Typography variant="h3" className="mb-4">
+        <div className="mt-8 text-center sm:mt-12">
+          <div className="border-primary flex flex-col gap-4 border p-4 sm:p-8">
+            <Typography variant="h3" className="mb-4 text-lg sm:text-xl">
               {t('cta.title')}
             </Typography>
-            <Typography variant="body1" className="mb-6">
+            <Typography variant="body1" className="mb-6 text-sm sm:text-base">
               {t('cta.description')}
             </Typography>
-            <div className="flex justify-center space-x-4">
+            <div className="flex justify-center">
               <Link href={ROUTES.resources}>
-                <Button variant="outlined">{t('cta.viewGuidelines')}</Button>
+                <Button variant="outlined" size="small" className="w-full sm:w-auto">
+                  {t('cta.viewGuidelines')}
+                </Button>
               </Link>
             </div>
           </div>
