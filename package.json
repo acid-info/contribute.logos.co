@@ -9,7 +9,8 @@
     "serve": "next start",
     "analyze": "next build",
     "lint": "next lint --fix --dir pages --dir app --dir components --dir lib --dir layouts --dir scripts",
-    "prepare": "husky"
+    "prepare": "husky",
+    "test": "vitest run"
   },
   "dependencies": {
     "@acid-info/lsd-react": "^0.2.0-beta.4",
@@ -19,9 +20,11 @@
     "@tailwindcss/postcss": "^4.0.5",
     "clsx": "^2.1.1",
     "esbuild": "0.25.2",
+    "lru-cache": "^11.1.0",
     "mdast-util-toc": "^7.1.0",
     "next": "^15.3.1",
     "next-intl": "^4.3.4",
+    "p-limit": "^6.2.0",
     "postcss": "^8.4.24",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -45,6 +48,7 @@
     "@types/react": "^19.0.8",
     "@typescript-eslint/eslint-plugin": "^8.12.0",
     "@typescript-eslint/parser": "^8.12.0",
+    "dotenv": "^17.2.1",
     "eslint": "^9.14.0",
     "eslint-config-next": "^15.3.1",
     "eslint-config-prettier": "^9.1.0",
@@ -53,7 +57,9 @@
     "lint-staged": "^13.0.0",
     "prettier": "^3.0.0",
     "prettier-plugin-tailwindcss": "^0.6.11",
-    "typescript": "^5.1.3"
+    "typescript": "^5.1.3",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^3.2.4"
   },
   "lint-staged": {
     "*.+(js|jsx|ts|tsx)": [
