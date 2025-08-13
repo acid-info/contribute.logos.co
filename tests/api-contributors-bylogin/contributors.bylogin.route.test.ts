@@ -19,7 +19,7 @@ describe('GET /api/contributors/[login]', () => {
     )}&since=${encodeURIComponent(since)}&until=${encodeURIComponent(until)}&debug=true`
     const req = new Request(url)
     const { GET: GETByLogin } = await import('../../app/api/contributors/[login]/route')
-    const res = await GETByLogin(req, { params: { login } } as any)
+    const res = await GETByLogin(req)
     expect(res.status).toBe(200)
     const json = (await res.json()) as any
     expect(json).toMatchSnapshot('contributors-bylogin-response')
