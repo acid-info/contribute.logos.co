@@ -193,13 +193,19 @@ export async function GET(req: Request) {
             const api = `${GITHUB_API_BASE}/repos/${encodeURIComponent(r.owner)}/${encodeURIComponent(
               r.name
             )}/commits?per_page=${GITHUB_PER_PAGE}&since=${encodeURIComponent(since)}&until=${encodeURIComponent(until)}`
-            const commits = await paginate<any>(api, auth)
-            for (const c of commits) {
-              const login = c.author?.login
-              const date = c.commit?.author?.date
-              if (!login || !date) continue
-              rows.push({ login, date, type: 'COMMIT', link: c.html_url, repo: r.full })
-              commitCount++
+            try {
+              const commits = await paginate<any>(api, auth)
+              for (const c of commits) {
+                const login = c.author?.login
+                const date = c.commit?.author?.date
+                if (!login || !date) continue
+                rows.push({ login, date, type: 'COMMIT', link: c.html_url, repo: r.full })
+                commitCount++
+              }
+            } catch (e: any) {
+              const msg = e?.message || String(e)
+              if (msg.includes('409') || msg.includes('Git Repository is empty')) return
+              errors.push(`Commits ${r.full}: ${msg}`)
             }
           })
         )
