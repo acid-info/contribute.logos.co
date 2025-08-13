@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react'
 import { useTranslations } from 'next-intl'
 import { Button, Typography } from '@acid-info/lsd-react'
 import { Link } from '@/i18n/navigation'
-import { Contributor, MOCK_CONTRIBUTORS } from '@/constants/mockData'
+import { Contributor } from '@/constants/mockData'
+import { ORGS_PARAM } from '@/constants/orgs'
 import { ROUTES } from '@/constants/routes'
 
 export default function HomeContainer() {
@@ -15,7 +16,39 @@ export default function HomeContainer() {
   const itemsPerPage = 10
 
   useEffect(() => {
-    setContributors(MOCK_CONTRIBUTORS)
+    const fetchContributors = async () => {
+      try {
+        const until = new Date()
+        const since = new Date()
+        since.setFullYear(until.getFullYear() - 1)
+        const qs = new URLSearchParams({
+          orgs: ORGS_PARAM,
+          since: since.toISOString(),
+          until: until.toISOString(),
+        })
+        const res = await fetch(`/api/contributors?${qs.toString()}`)
+        if (!res.ok) throw new Error(`Failed: ${res.status}`)
+        const data = (await res.json()) as Array<{
+          login: string
+          profileUrl: string
+          contributionCount: number
+          latest: { date: string; type: 'PR' | 'REVIEW' | 'COMMIT'; link: string; repo: string }
+        }>
+        const mapped: Contributor[] = data.map((p, idx) => ({
+          id: idx + 1,
+          username: p.login,
+          profileUrl: p.profileUrl,
+          contributions: p.contributionCount,
+          latestContribution: p.latest.date,
+          latestRepo: p.latest.repo,
+          avatarUrl: `https://github.com/${p.login}.png`,
+        }))
+        setContributors(mapped)
+      } catch (e) {
+        setContributors([])
+      }
+    }
+    fetchContributors()
   }, [])
 
   const filteredContributors = contributors.filter(
