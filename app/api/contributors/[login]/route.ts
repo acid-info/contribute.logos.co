@@ -24,10 +24,12 @@ type Item = {
 
 export const dynamic = 'force-dynamic'
 
-export async function GET(req: Request, context: { params: { login: string } }) {
+export async function GET(req: Request) {
   try {
-    const login = context?.params?.login as string
-    const { searchParams } = new URL(req.url)
+    const url = new URL(req.url)
+    const searchParams = url.searchParams
+    const segments = url.pathname.split('/').filter(Boolean)
+    const login = decodeURIComponent(segments[segments.length - 1] || '')
     const orgs = (searchParams.get('orgs') || '')
       .split(',')
       .map((s) => s.trim())
