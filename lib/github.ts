@@ -66,11 +66,14 @@ export async function ghFetch(
     return ghFetch(url, auth, init, retries - 1)
   }
 
-  if (enableCache && method === 'GET' && res.ok) {
+  if (method === 'GET') {
     const clonedHeaders: Record<string, string> = {}
     for (const [k, v] of res.headers.entries()) clonedHeaders[k] = v
-    const body = await res.clone().text()
-    httpCache.set(cacheKey, { body, headers: clonedHeaders, status: res.status })
+    const body = await res.text()
+    if (enableCache && res.ok) {
+      httpCache.set(cacheKey, { body, headers: clonedHeaders, status: res.status })
+    }
+    return new Response(body, { status: res.status, headers: clonedHeaders })
   }
   return res
 }
@@ -101,9 +104,10 @@ export async function paginate<T = any>(
       } catch {}
       throw new Error(`GitHub error ${res.status}${body ? `: ${body}` : ''}`)
     }
+    const linkHeader = res.headers.get('link')
     const page = (await res.json()) as T[]
     all = all.concat(page)
-    const links = parseLinkHeader(res.headers.get('link'))
+    const links = parseLinkHeader(linkHeader)
     next = links.next || null
   }
   return all
