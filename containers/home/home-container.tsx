@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl'
 import { Button, Typography } from '@acid-info/lsd-react'
 import { Link } from '@/i18n/navigation'
 import { Contributor } from '@/constants/mockData'
-import { ORGS_PARAM } from '@/constants/orgs'
+import { ORGS_PARAM, ONLY_EXCLUDE_ORGS_PARAM } from '@/constants/orgs'
 import { ROUTES } from '@/constants/routes'
 
 export default function HomeContainer() {
@@ -23,6 +23,7 @@ export default function HomeContainer() {
         since.setFullYear(until.getFullYear() - 1)
         const qs = new URLSearchParams({
           orgs: ORGS_PARAM,
+          onlyExcludeOrgs: ONLY_EXCLUDE_ORGS_PARAM,
           since: since.toISOString(),
           until: until.toISOString(),
         })
