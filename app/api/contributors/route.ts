@@ -38,11 +38,15 @@ export async function GET(req: Request) {
     const { since, until } = clampWindow(searchParams.get('since'), searchParams.get('until'))
     const auth = getAuth()
     const limit = makeLimiter(DEFAULT_CONCURRENCY)
-    const debug = searchParams.get('debug') === 'true'
     const limitReposPerOrg = Number(searchParams.get('limitReposPerOrg') || '0') || undefined
     const maxPrPages = Number(searchParams.get('maxPrPages') || '20')
     const maxReviewFetches = Number(searchParams.get('maxReviewFetches') || '200')
     const commitStrategy = (searchParams.get('commitStrategy') || 'list') as 'list' | 'search'
+    const onlyExcludeOrgs = (searchParams.get('onlyExcludeOrgs') || '')
+      .split(',')
+      .map((s) => s.trim())
+      .filter(Boolean)
+    const orgsForMembership = Array.from(new Set([...orgs, ...onlyExcludeOrgs]))
 
     // 1 list public repos per org
     const reposPerOrg = await Promise.all(
@@ -57,13 +61,13 @@ export async function GET(req: Request) {
     )
     const repos = reposPerOrg.flat()
 
-    // 2 public members set
+    // 2 org members set
     const internalPublic = new Set<string>()
     await Promise.all(
-      orgs.map((org) =>
+      orgsForMembership.map((org) =>
         limit(async () => {
-          const url = `${GITHUB_API_BASE}/orgs/${encodeURIComponent(org)}/public_members?per_page=${GITHUB_PER_PAGE}`
-          const members = await paginate<any>(url, auth)
+          const base = `${GITHUB_API_BASE}/orgs/${encodeURIComponent(org)}`
+          const members = await paginate<any>(`${base}/members?per_page=${GITHUB_PER_PAGE}`, auth)
           for (const m of members) if (m.login) internalPublic.add(m.login)
         })
       )
