@@ -40,7 +40,6 @@ export async function GET(req: Request) {
     const { since, until } = clampWindow(searchParams.get('since'), searchParams.get('until'))
     const auth = getAuth()
     const limit = makeLimiter(DEFAULT_CONCURRENCY)
-    const debug = searchParams.get('debug') === 'true'
     const started = Date.now()
 
     const items: Item[] = []
