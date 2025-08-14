@@ -31,6 +31,19 @@
 
 ## Getting Started
 
+### Tech Stack
+
+* **Next.js 15** and **React 19** for the core application framework
+* **Tailwind CSS 4** with PostCSS and `tailwind-merge` for styling and utility class management
+* **next-intl** for internationalization support
+* **MDX**, Remark, and Rehype plugins for content processing
+* **@acid-info/lsd-react** for UI components
+* **TypeScript** for type-safe development
+* **ESLint** with Prettier and Tailwind plugins for code linting and formatting
+* **Vitest** for testing
+* **Husky** and **lint-staged** for pre-commit checks
+
+
 ### Install dependencies and run the development server
 
 ```bash
