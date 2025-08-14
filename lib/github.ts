@@ -172,18 +172,16 @@ export const clampWindow = (since?: string | null, until?: string | null) => {
   return { since: iso(since) || w.since, until: iso(until) || w.until }
 }
 
-export const prQuery = `
-query RepoPRs($owner:String!,$name:String!,$after:String){
-  repository(owner:$owner,name:$name){
-    nameWithOwner url
-    pullRequests(states:[OPEN,MERGED,CLOSED], first:100, orderBy:{field:CREATED_AT,direction:DESC}, after:$after){
-      nodes{ number createdAt url author{ login __typename }
-        repository{ nameWithOwner url }
-      }
-      pageInfo{ hasNextPage endCursor }
-    }
-  }
-}`
+import {
+  Commit,
+  PullRequestContributor,
+  PullRequest,
+  PullRequestsResponse,
+  prQuery,
+} from './github/types'
+
+export type { Commit, PullRequestContributor, PullRequest, PullRequestsResponse }
+export { prQuery }
 
 export function parsePrUrl(url: string): { owner: string; repo: string; number: string } | null {
   const m = url.match(/github\.com\/([^/]+)\/([^/]+)\/pull\/(\d+)/)
@@ -193,4 +191,84 @@ export function parsePrUrl(url: string): { owner: string; repo: string; number: 
 export function parseCommitUrlToRepo(url: string): string | null {
   const m = url.match(/github\.com\/([^/]+)\/([^/]+)\/commit\//)
   return m ? `${m[1]}/${m[2]}` : null
+}
+
+export async function fetchPullRequestContributors(
+  owner: string,
+  repo: string,
+  prNumber: number,
+  auth: GitHubAuth = getAuth()
+): Promise<PullRequestContributor[]> {
+  const commitsUrl = `${GITHUB_API_BASE}/repos/${owner}/${repo}/pulls/${prNumber}/commits?per_page=100`
+  const commits: Commit[] = await paginate<Commit>(commitsUrl, auth)
+
+  const contributorMap = new Map<string, PullRequestContributor>()
+
+  for (const commit of commits) {
+    if (commit.author?.login) {
+      const login = commit.author.login
+      const avatar_url = commit.author.avatar_url
+      if (contributorMap.has(login)) {
+        const contributor = contributorMap.get(login)!
+        contributor.commitCount++
+      } else {
+        contributorMap.set(login, { login, avatar_url, commitCount: 1 })
+      }
+    }
+  }
+
+  return Array.from(contributorMap.values()).sort((a, b) => b.commitCount - a.commitCount)
+}
+
+export async function fetchPullRequests(
+  owner: string,
+  repo: string,
+  auth: GitHubAuth = getAuth(),
+  limit = DEFAULT_PAGINATE_LIMIT
+): Promise<PullRequest[]> {
+  let basicPullRequests: Omit<PullRequest, 'contributors'>[] = [] // Use Omit to type basic PRs
+  let hasNextPage = true
+  let after: string | null = null
+
+  // Step 1: Fetch all basic PR data first (up to the limit) to ensure correct order.
+  // The GraphQL query already sorts them by UPDATED_AT DESC.
+  while (hasNextPage && basicPullRequests.length < limit) {
+    const variables = {
+      owner,
+      name: repo,
+      after,
+    }
+
+    const data = await graphql<PullRequestsResponse>(prQuery, variables, auth)
+
+    basicPullRequests = basicPullRequests.concat(data.repository.pullRequests.nodes)
+
+    hasNextPage = data.repository.pullRequests.pageInfo.hasNextPage
+    after = data.repository.pullRequests.pageInfo.endCursor
+  }
+
+  // Slice to ensure we don't exceed the limit, as the last fetch might go over.
+  const finalPrList = basicPullRequests.slice(0, limit)
+
+  // Step 2: Now, fetch contributors for each PR in the correctly sorted list.
+  const limiter = makeLimiter(DEFAULT_CONCURRENCY) // Use existing concurrency limit
+  const prsWithContributors = await Promise.all(
+    finalPrList.map(async (pr) => {
+      const contributors = await limiter(() =>
+        fetchPullRequestContributors(owner, repo, pr.number, auth)
+      )
+      // Combine the basic PR data with the fetched contributors
+      return { ...pr, contributors }
+    })
+  )
+
+  // Step 3: Final sort by mergedAt date to ensure strict chronological order.
+  // PRs without a mergedAt date (e.g., not actually merged) will be sorted by createdAt.
+  prsWithContributors.sort((a, b) => {
+    const dateA = new Date(a.mergedAt || a.createdAt).getTime()
+    const dateB = new Date(b.mergedAt || b.createdAt).getTime()
+    return dateB - dateA // Sorts in descending order (newest first)
+  })
+
+  return prsWithContributors
 }
