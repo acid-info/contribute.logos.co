@@ -6,6 +6,7 @@ import {
   paginate,
   parsePrUrl,
   parseCommitUrlToRepo,
+  isBotAccount,
   GITHUB_API_BASE,
   GITHUB_PER_PAGE,
   DEFAULT_CONCURRENCY,
@@ -41,6 +42,10 @@ export async function GET(req: Request) {
     const auth = getAuth()
     const limit = makeLimiter(DEFAULT_CONCURRENCY)
     const started = Date.now()
+
+    if (isBotAccount(login)) {
+      return Response.json({ error: 'Bot accounts are not supported' }, { status: 400 })
+    }
 
     const items: Item[] = []
 

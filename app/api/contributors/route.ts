@@ -8,6 +8,7 @@ import {
   prQuery,
   uniqBy,
   parsePrUrl,
+  isBotAccount,
   GITHUB_API_BASE,
   GITHUB_PER_PAGE,
   DEFAULT_CONCURRENCY,
@@ -74,7 +75,14 @@ export async function GET(req: Request) {
     )
 
     // 3 collect contributions
-    type Row = { login: string; date: string; type: Latest['type']; link: string; repo: string }
+    type Row = {
+      login: string
+      date: string
+      type: Latest['type']
+      link: string
+      repo: string
+      userType?: string
+    }
     const rows: Row[] = []
     const started = Date.now()
     let prCount = 0
@@ -108,6 +116,7 @@ export async function GET(req: Request) {
                   type: 'PR',
                   link: pr.url,
                   repo: repo.nameWithOwner,
+                  userType: pr.author?.__typename,
                 })
                 prCount++
               }
@@ -146,6 +155,7 @@ export async function GET(req: Request) {
                 type: 'REVIEW',
                 link: rv.html_url,
                 repo: `${owner}/${repo}`,
+                userType: rv.user?.type,
               })
               reviewCount++
             }
@@ -227,6 +237,10 @@ export async function GET(req: Request) {
     const people: PersonAgg[] = []
     for (const [login, list] of byLogin) {
       if (internalPublic.has(login)) continue
+
+      const hasExplicitBotType = list.some((row) => row.userType === 'Bot')
+      if (hasExplicitBotType || isBotAccount(login)) continue
+
       const dedup = uniqBy(list, (x) => x.link)
       const latest = dedup.reduce((a, b) => (new Date(a.date) > new Date(b.date) ? a : b))
       people.push({

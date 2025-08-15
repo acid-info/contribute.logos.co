@@ -93,6 +93,7 @@ const moduleShape = {
     }
     return []
   },
+  isBotAccount: (login: string) => false,
 }
 
 export default moduleShape

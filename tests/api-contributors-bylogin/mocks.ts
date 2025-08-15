@@ -76,6 +76,7 @@ const moduleShape = {
     }
     return []
   },
+  isBotAccount: (login: string) => false,
   graphql: async (_q: string, _v: any) => ({}) as any,
 }
 

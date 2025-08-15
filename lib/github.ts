@@ -194,3 +194,16 @@ export function parseCommitUrlToRepo(url: string): string | null {
   const m = url.match(/github\.com\/([^/]+)\/([^/]+)\/commit\//)
   return m ? `${m[1]}/${m[2]}` : null
 }
+
+export function isBotAccount(login: string): boolean {
+  const botPatterns = [
+    /^.*\[bot\]$/i, // ends with '[bot]'
+    /^dependabot.*$/i, // dependabot variations
+    /^renovate.*$/i, // renovate variations
+    /^greenkeeper.*$/i, // greenkeeper variations
+    /^snyk.*$/i, // snyk variations
+    /^github-actions.*$/i, // github actions bot
+  ]
+
+  return botPatterns.some((pattern) => pattern.test(login))
+}
