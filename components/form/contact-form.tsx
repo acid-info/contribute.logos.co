@@ -80,7 +80,7 @@ export default function ContactForm() {
   const isSubmitting = status === 'submitting'
 
   return (
-    <div className="mx-auto max-w-2xl rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm sm:p-8 dark:border-neutral-800 dark:bg-neutral-900">
+    <div className="m:p-8 border-primary mx-auto max-w-2xl border p-6">
       {status === 'success' && (
         <div
           role="status"
@@ -118,10 +118,10 @@ export default function ContactForm() {
             onBlur={() => setTouched((t) => ({ ...t, name: true }))}
             aria-invalid={!!nameError}
             aria-describedby={nameError ? 'name-error' : undefined}
-            className={`w-full rounded-md border bg-white px-3 py-2 text-sm ring-0 transition-colors outline-none dark:bg-neutral-900 ${
+            className={`w-full rounded-none border bg-white px-3 py-2 text-sm ring-0 transition-colors outline-none dark:bg-neutral-900 ${
               nameError
                 ? 'border-red-500 focus:border-red-600'
-                : 'border-neutral-300 focus:border-neutral-400 dark:border-neutral-700'
+                : 'border-primary focus:border-primary'
             }`}
             placeholder="Enter your name"
           />
@@ -146,10 +146,10 @@ export default function ContactForm() {
             onBlur={() => setTouched((t) => ({ ...t, email: true }))}
             aria-invalid={!!emailError}
             aria-describedby={emailError ? 'email-error' : 'email-help'}
-            className={`w-full rounded-md border bg-white px-3 py-2 text-sm ring-0 transition-colors outline-none dark:bg-neutral-900 ${
+            className={`w-full rounded-none border bg-white px-3 py-2 text-sm ring-0 transition-colors outline-none dark:bg-neutral-900 ${
               emailError
                 ? 'border-red-500 focus:border-red-600'
-                : 'border-neutral-300 focus:border-neutral-400 dark:border-neutral-700'
+                : 'border-primary focus:border-primary'
             }`}
             placeholder="Enter your email"
           />
@@ -169,7 +169,7 @@ export default function ContactForm() {
             name="category"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
-            className="w-full rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm ring-0 transition-colors outline-none focus:border-neutral-400 dark:border-neutral-700 dark:bg-neutral-900"
+            className="border-primary focus:border-primary w-full rounded-none border bg-white px-3 py-2 text-sm ring-0 transition-colors outline-none dark:bg-neutral-900"
           >
             <option value="software">Software</option>
             <option value="translation">Translation</option>
@@ -192,10 +192,10 @@ export default function ContactForm() {
             onBlur={() => setTouched((t) => ({ ...t, message: true }))}
             aria-invalid={!!messageError}
             aria-describedby={messageError ? 'message-error' : undefined}
-            className={`w-full rounded-md border bg-white px-3 py-2 text-sm ring-0 transition-colors outline-none dark:bg-neutral-900 ${
+            className={`w-full rounded-none border bg-white px-3 py-2 text-sm ring-0 transition-colors outline-none dark:bg-neutral-900 ${
               messageError
                 ? 'border-red-500 focus:border-red-600'
-                : 'border-neutral-300 focus:border-neutral-400 dark:border-neutral-700'
+                : 'border-primary focus:border-primary'
             }`}
             placeholder="Please describe your proposal here."
           />
@@ -210,7 +210,7 @@ export default function ContactForm() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="inline-flex items-center justify-center gap-2 rounded-md bg-black px-4 py-2 text-sm font-medium text-white hover:bg-neutral-800 disabled:cursor-not-allowed disabled:opacity-70 dark:bg-white dark:text-black dark:hover:bg-neutral-200"
+            className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-none bg-black px-4 py-2 text-sm font-medium text-white hover:bg-neutral-800 disabled:cursor-not-allowed disabled:opacity-70 dark:bg-white dark:text-black dark:hover:bg-neutral-200"
           >
             {isSubmitting && (
               <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" aria-hidden="true">

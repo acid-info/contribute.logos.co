@@ -1,6 +1,7 @@
 import { ROUTES } from '@/constants/routes'
 import { createDefaultMetadata } from '@/lib/metadata'
 import ContactForm from '@/components/form/contact-form'
+import ProposalGuidelines from '@/components/form/proposal-guidelines'
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
@@ -23,6 +24,7 @@ export default function Page() {
         <p className="mb-8 text-base">Submit a proposals for Logos.</p>
       </div>
       <ContactForm />
+      <ProposalGuidelines />
     </div>
   )
 }
