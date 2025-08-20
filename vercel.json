@@ -1,0 +1,12 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/refresh",
+      "schedule": "0 0 * * *",
+      "data": {
+        "orgs": "acid-info,codex-storage,keycard-tech,logos-co,waku-org",
+        "onlyExcludeOrgs": "status-im,vacp2p"
+      }
+    }
+  ]
+}
