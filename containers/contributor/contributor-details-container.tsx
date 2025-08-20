@@ -28,14 +28,9 @@ export default function ContributorDetailsContainer({
       try {
         setLoading(true)
         setError(null)
-        const until = new Date()
-        const since = new Date()
-        since.setFullYear(until.getFullYear() - 1)
         const qs = new URLSearchParams({
           orgs: ORGS_PARAM,
           onlyExcludeOrgs: ONLY_EXCLUDE_ORGS_PARAM,
-          since: since.toISOString(),
-          until: until.toISOString(),
         })
         const res = await fetch(
           `/api/contributors/${encodeURIComponent(username)}?${qs.toString()}`
