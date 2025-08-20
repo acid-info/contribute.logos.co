@@ -1,11 +1,12 @@
 import pLimit from 'p-limit'
 import { LRUCache } from 'lru-cache'
+import { createHash } from 'crypto'
+import { DEFAULT_GITHUB_HTTP_TTL_SEC } from './constants'
 
 export type GitHubAuth = { token?: string | null }
 
 export const getAuth = (): GitHubAuth => {
-  const token = process.env.GITHUB_TOKEN || null
-  return { token }
+  return { token: process.env.GITHUB_TOKEN || null }
 }
 
 export const GITHUB_API_BASE = 'https://api.github.com'
@@ -16,28 +17,103 @@ export const DEFAULT_PAGINATE_LIMIT = 1000
 export const DEFAULT_RETRIES = 2
 export const RETRY_WAIT_RATELIMIT_MS = 60_000
 export const RETRY_WAIT_DEFAULT_MS = 3_000
-export const DEFAULT_WINDOW_DAYS = 90
+export const DEFAULT_WINDOW_DAYS = 365
 export const GITHUB_ACCEPT_JSON = 'application/vnd.github+json'
 export const GITHUB_ACCEPT_PREVIEW =
   'application/vnd.github.cloak-preview+json, application/vnd.github+json'
 
-const baseHeaders = {
-  Accept: 'application/vnd.github+json, application/vnd.github.cloak-preview+json',
-  'X-GitHub-Api-Version': '2022-11-28',
-}
+const baseHeaders = { Accept: GITHUB_ACCEPT_PREVIEW, 'X-GitHub-Api-Version': '2022-11-28' }
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms))
 
 export const makeLimiter = (concurrency = 3) => pLimit(concurrency)
 
-// Simple in-memory caches (per-process) to avoid redundant GitHub calls - todo replace with redis
+// Simple in-memory cache for GraphQL responses
 const enableCache = (process.env.GITHUB_CACHE_ENABLED ?? 'true') !== 'false'
-const httpCacheTtlMs = Number(process.env.GITHUB_CACHE_TTL_MS || String(5 * 60 * 1000))
 const gqlCacheTtlMs = Number(process.env.GITHUB_GQL_CACHE_TTL_MS || String(60 * 1000))
-
-type HttpCacheEntry = { body: string; headers: Record<string, string>; status: number }
-const httpCache = new LRUCache<string, HttpCacheEntry>({ max: 500, ttl: httpCacheTtlMs })
 const gqlCache = new LRUCache<string, any>({ max: 500, ttl: gqlCacheTtlMs })
+
+// ETag-aware HTTP cache for cross-process caching
+let etagGet: (k: string) => Promise<string | null> | undefined
+let etagSet: (k: string, v: string, ttlSec: number) => Promise<void> | undefined
+let bodyGet: (k: string) => Promise<string | null> | undefined
+let bodySet: (k: string, v: string, ttlSec: number) => Promise<void> | undefined
+
+async function initStore() {
+  if (
+    etagGet !== undefined &&
+    etagSet !== undefined &&
+    bodyGet !== undefined &&
+    bodySet !== undefined
+  )
+    return
+
+  const CACHE_PROVIDER = process.env.CACHE_PROVIDER || 'redis'
+
+  if (CACHE_PROVIDER === 'upstash') {
+    try {
+      const { Redis } = await import('@upstash/redis')
+      const UPSTASH_REDIS_REST_URL = process.env.UPSTASH_REDIS_REST_URL
+      const UPSTASH_REDIS_REST_TOKEN = process.env.UPSTASH_REDIS_REST_TOKEN
+
+      if (!UPSTASH_REDIS_REST_URL || !UPSTASH_REDIS_REST_TOKEN) {
+        throw new Error(
+          'UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN are required when CACHE_PROVIDER is upstash'
+        )
+      }
+
+      const upstashRedis = new Redis({
+        url: UPSTASH_REDIS_REST_URL,
+        token: UPSTASH_REDIS_REST_TOKEN,
+      })
+
+      etagGet = async (k) => await upstashRedis.get(k)
+      etagSet = async (k, v, ttl) => {
+        await upstashRedis.set(k, v, { ex: ttl })
+      }
+      bodyGet = async (k) => await upstashRedis.get(k)
+      bodySet = async (k, v, ttl) => {
+        await upstashRedis.set(k, v, { ex: ttl })
+      }
+    } catch {
+      // Fallback to in-memory if @upstash/redis not available
+      etagGet = async () => null
+      etagSet = async () => {}
+      bodyGet = async () => null
+      bodySet = async () => {}
+    }
+  } else {
+    try {
+      const { createClient } = await import('redis')
+      const REDIS_URL = process.env.REDIS_URL
+      if (!REDIS_URL) {
+        throw new Error('REDIS_URL is required when CACHE_PROVIDER is not upstash')
+      }
+
+      const r = createClient({ url: REDIS_URL })
+      await r.connect()
+
+      r.on('error', (err) => console.log('Redis Client Error', err))
+
+      etagGet = async (k) => await r.get(k)
+      etagSet = async (k, v, ttl) => {
+        await r.set(k, v, { EX: ttl })
+      }
+      bodyGet = async (k) => await r.get(k)
+      bodySet = async (k, v, ttl) => {
+        await r.set(k, v, { EX: ttl })
+      }
+    } catch {
+      // Fallback to in-memory if redis not available
+      etagGet = async () => null
+      etagSet = async () => {}
+      bodyGet = async () => null
+      bodySet = async () => {}
+    }
+  }
+}
+
+const HTTP_TTL_SEC = Number(process.env.GITHUB_HTTP_TTL_SEC || DEFAULT_GITHUB_HTTP_TTL_SEC)
 
 export async function ghFetch(
   url: string,
@@ -45,19 +121,34 @@ export async function ghFetch(
   init: RequestInit = {},
   retries = DEFAULT_RETRIES
 ): Promise<Response> {
+  await initStore()
+
   const headers: Record<string, string> = { ...baseHeaders, ...(init.headers as any) }
   if (auth.token) headers['Authorization'] = `Bearer ${auth.token}`
   const method = (init.method || 'GET').toUpperCase()
 
-  const cacheKey = `${method}:${url}:${headers['Accept'] || ''}:${headers['X-GitHub-Api-Version'] || ''}`
-  if (enableCache && method === 'GET') {
-    const hit = httpCache.get(cacheKey)
-    if (hit) {
-      return new Response(hit.body, { status: hit.status, headers: hit.headers })
-    }
+  const cacheKeyId = `${method}:${url}:${headers['Accept'] || ''}:${headers['X-GitHub-Api-Version'] || ''}`
+  const cacheKey = 'gh:http:' + createHash('sha1').update(cacheKeyId).digest('hex')
+  const etagKey = cacheKey + ':etag'
+
+  // Try ETag
+  if (method === 'GET' && etagGet) {
+    const etag = await etagGet(etagKey)
+    if (etag) headers['If-None-Match'] = etag
   }
 
   const res = await fetch(url, { ...init, headers })
+
+  if (res.status === 304 && method === 'GET' && bodyGet) {
+    const cached = await bodyGet(cacheKey)
+    if (cached) {
+      // synthesize a Response from cache
+      const clonedHeaders: Record<string, string> = {}
+      for (const [k, v] of res.headers.entries()) clonedHeaders[k] = v
+      return new Response(cached, { status: 200, headers: clonedHeaders })
+    }
+  }
+
   if (res.status === 403 && retries > 0) {
     const ra = res.headers.get('retry-after')
     const rl = Number(res.headers.get('x-ratelimit-remaining') || '1')
@@ -70,8 +161,10 @@ export async function ghFetch(
     const clonedHeaders: Record<string, string> = {}
     for (const [k, v] of res.headers.entries()) clonedHeaders[k] = v
     const body = await res.text()
-    if (enableCache && res.ok) {
-      httpCache.set(cacheKey, { body, headers: clonedHeaders, status: res.status })
+    if (res.ok) {
+      const etag = res.headers.get('etag')
+      if (etag && etagSet) await etagSet(etagKey, etag, HTTP_TTL_SEC)
+      if (bodySet) await bodySet(cacheKey, body, HTTP_TTL_SEC)
     }
     return new Response(body, { status: res.status, headers: clonedHeaders })
   }
