@@ -1,6 +1,7 @@
 import { enqueueRefresh } from './queue'
 import type { CollectParams } from './collectContributors'
 import { clampWindow } from './github'
+import { ORGS, ONLY_EXCLUDE_ORGS } from '@/constants/orgs'
 
 export type CronConfig = {
   schedule?: string
@@ -21,10 +22,10 @@ export async function triggerRefresh(config: CronConfig) {
 export const DEFAULT_CRON_CONFIG: CronConfig = {
   schedule: '0 0 * * *', // every 24 hours
   params: {
-    orgs: [],
+    orgs: [...ORGS],
     ...clampWindow(),
     maxPrPages: 20,
     maxReviewFetches: 200,
-    onlyExcludeOrgs: [],
+    onlyExcludeOrgs: [...ONLY_EXCLUDE_ORGS],
   },
 }
