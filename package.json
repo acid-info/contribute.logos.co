@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "next dev",
+    "start": "concurrently \"next start\" \"tsx worker/refreshWorker.ts\"",
     "dev": "concurrently \"next dev\" \"tsx worker/refreshWorker.ts\"",
     "dev:next": "next dev",
     "dev:worker": "tsx worker/refreshWorker.ts",
