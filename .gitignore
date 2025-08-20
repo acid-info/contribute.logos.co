@@ -45,3 +45,5 @@ yarn-error.log*
 
 # Content collections
 .content-collections
+
+tsconfig.tsbuildinfo
