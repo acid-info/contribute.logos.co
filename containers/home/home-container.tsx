@@ -18,14 +18,9 @@ export default function HomeContainer() {
   useEffect(() => {
     const fetchContributors = async () => {
       try {
-        const until = new Date()
-        const since = new Date()
-        since.setFullYear(until.getFullYear() - 1)
         const qs = new URLSearchParams({
           orgs: ORGS_PARAM,
           onlyExcludeOrgs: ONLY_EXCLUDE_ORGS_PARAM,
-          since: since.toISOString(),
-          until: until.toISOString(),
         })
         const res = await fetch(`/api/contributors?${qs.toString()}`)
         if (!res.ok) throw new Error(`Failed: ${res.status}`)
