@@ -1,6 +1,11 @@
 'use client'
 
 import { useState } from 'react'
+import dynamic from 'next/dynamic'
+
+const RichTextEditor = dynamic(() => import('./rich-text-editor'), {
+  ssr: false,
+})
 
 // TEMPORARY: This is the endpoint for the form submission
 const SUBMIT_ENDPOINT = 'https://logos-admin-git-develop-acidinfo.vercel.app/contribute/form'
@@ -16,7 +21,9 @@ type TouchedState = {
 export default function ContactForm() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
-  const [message, setMessage] = useState('')
+  const [messageHtml, setMessageHtml] = useState('')
+  const [messageText, setMessageText] = useState('')
+  const [editorResetKey, setEditorResetKey] = useState(0)
   const [category, setCategory] = useState('software')
   const [status, setStatus] = useState<SubmitState>('idle')
   const [error, setError] = useState<string | null>(null)
@@ -36,7 +43,7 @@ export default function ContactForm() {
   const emailError =
     touched.email && !validateEmail(email) ? 'Please enter a valid email address.' : ''
   const messageError =
-    touched.message && message.trim().length < 5 ? 'Please enter at least 5 characters.' : ''
+    touched.message && messageText.trim().length < 5 ? 'Please enter at least 5 characters.' : ''
 
   async function handleSubmit(e: { preventDefault: () => void }) {
     e.preventDefault()
@@ -44,7 +51,8 @@ export default function ContactForm() {
     const nextTouched: TouchedState = { name: true, email: true, message: true }
     setTouched(nextTouched)
 
-    const hasErrors = name.trim().length < 2 || !validateEmail(email) || message.trim().length < 5
+    const hasErrors =
+      name.trim().length < 2 || !validateEmail(email) || messageText.trim().length < 5
     if (hasErrors) {
       setStatus('idle')
       return
@@ -57,7 +65,7 @@ export default function ContactForm() {
       const res = await fetch(SUBMIT_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, message, category }),
+        body: JSON.stringify({ name, email, message: messageHtml, category }),
       })
 
       if (!res.ok) {
@@ -68,7 +76,9 @@ export default function ContactForm() {
       setStatus('success')
       setName('')
       setEmail('')
-      setMessage('')
+      setMessageHtml('')
+      setMessageText('')
+      setEditorResetKey((k) => k + 1)
       setCategory('software')
       setTouched({ name: false, email: false, message: false })
     } catch (err) {
@@ -182,21 +192,19 @@ export default function ContactForm() {
           <label htmlFor="message" className="mb-1 block text-sm font-medium">
             Message
           </label>
-          <textarea
-            id="message"
-            name="message"
-            required
-            rows={6}
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
+          <div id="message" className="sr-only" aria-hidden="true">
+            Editor
+          </div>
+          <RichTextEditor
+            initialValue={messageHtml}
+            resetKey={editorResetKey}
+            onChange={(html, text) => {
+              setMessageHtml(html)
+              setMessageText(text)
+            }}
             onBlur={() => setTouched((t) => ({ ...t, message: true }))}
-            aria-invalid={!!messageError}
-            aria-describedby={messageError ? 'message-error' : undefined}
-            className={`w-full rounded-none border bg-white px-3 py-2 text-sm ring-0 transition-colors outline-none dark:bg-neutral-900 ${
-              messageError
-                ? 'border-red-500 focus:border-red-600'
-                : 'border-primary focus:border-primary'
-            }`}
+            invalid={!!messageError}
+            ariaDescribedBy={messageError ? 'message-error' : undefined}
             placeholder="Please describe your proposal here."
           />
           {messageError && (
