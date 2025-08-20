@@ -1,0 +1,238 @@
+'use client'
+
+import { useState } from 'react'
+
+// TEMPORARY: This is the endpoint for the form submission
+const SUBMIT_ENDPOINT = 'https://logos-admin-git-develop-acidinfo.vercel.app/contribute/form'
+
+type SubmitState = 'idle' | 'submitting' | 'success' | 'error'
+
+type TouchedState = {
+  name: boolean
+  email: boolean
+  message: boolean
+}
+
+export default function ContactForm() {
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [message, setMessage] = useState('')
+  const [category, setCategory] = useState('software')
+  const [status, setStatus] = useState<SubmitState>('idle')
+  const [error, setError] = useState<string | null>(null)
+  const [touched, setTouched] = useState<TouchedState>({
+    name: false,
+    email: false,
+    message: false,
+  })
+
+  function validateEmail(value: string) {
+    const re = /\S+@\S+\.\S+/
+    return re.test(value)
+  }
+
+  const nameError =
+    touched.name && name.trim().length < 2 ? 'Please enter at least 2 characters.' : ''
+  const emailError =
+    touched.email && !validateEmail(email) ? 'Please enter a valid email address.' : ''
+  const messageError =
+    touched.message && message.trim().length < 5 ? 'Please enter at least 5 characters.' : ''
+
+  async function handleSubmit(e: { preventDefault: () => void }) {
+    e.preventDefault()
+
+    const nextTouched: TouchedState = { name: true, email: true, message: true }
+    setTouched(nextTouched)
+
+    const hasErrors = name.trim().length < 2 || !validateEmail(email) || message.trim().length < 5
+    if (hasErrors) {
+      setStatus('idle')
+      return
+    }
+
+    setStatus('submitting')
+    setError(null)
+
+    try {
+      const res = await fetch(SUBMIT_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, message, category }),
+      })
+
+      if (!res.ok) {
+        const text = await res.text()
+        throw new Error(text || 'Failed to submit')
+      }
+
+      setStatus('success')
+      setName('')
+      setEmail('')
+      setMessage('')
+      setCategory('software')
+      setTouched({ name: false, email: false, message: false })
+    } catch (err) {
+      setStatus('error')
+      setError(err instanceof Error ? err.message : 'Something went wrong')
+    }
+  }
+
+  const isSubmitting = status === 'submitting'
+
+  return (
+    <div className="mx-auto max-w-2xl rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm sm:p-8 dark:border-neutral-800 dark:bg-neutral-900">
+      {status === 'success' && (
+        <div
+          role="status"
+          aria-live="polite"
+          className="mb-4 rounded-md bg-green-50 p-3 text-sm text-green-700 dark:bg-green-950/30 dark:text-green-300"
+        >
+          Thanks! Your message has been sent.
+        </div>
+      )}
+      {status === 'error' && (
+        <div
+          role="alert"
+          className="mb-4 rounded-md bg-red-50 p-3 text-sm text-red-700 dark:bg-red-950/30 dark:text-red-300"
+        >
+          {error || 'There was an error sending your message.'}
+        </div>
+      )}
+
+      <form
+        onSubmit={handleSubmit}
+        noValidate
+        className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2"
+      >
+        <div className="flex flex-col">
+          <label htmlFor="name" className="mb-1 block text-sm font-medium">
+            Name
+          </label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            required
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            onBlur={() => setTouched((t) => ({ ...t, name: true }))}
+            aria-invalid={!!nameError}
+            aria-describedby={nameError ? 'name-error' : undefined}
+            className={`w-full rounded-md border bg-white px-3 py-2 text-sm ring-0 transition-colors outline-none dark:bg-neutral-900 ${
+              nameError
+                ? 'border-red-500 focus:border-red-600'
+                : 'border-neutral-300 focus:border-neutral-400 dark:border-neutral-700'
+            }`}
+            placeholder="Enter your name"
+          />
+          {nameError && (
+            <p id="name-error" className="mt-1 text-xs text-red-600">
+              {nameError}
+            </p>
+          )}
+        </div>
+
+        <div className="flex flex-col">
+          <label htmlFor="email" className="mb-1 block text-sm font-medium">
+            Email
+          </label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            onBlur={() => setTouched((t) => ({ ...t, email: true }))}
+            aria-invalid={!!emailError}
+            aria-describedby={emailError ? 'email-error' : 'email-help'}
+            className={`w-full rounded-md border bg-white px-3 py-2 text-sm ring-0 transition-colors outline-none dark:bg-neutral-900 ${
+              emailError
+                ? 'border-red-500 focus:border-red-600'
+                : 'border-neutral-300 focus:border-neutral-400 dark:border-neutral-700'
+            }`}
+            placeholder="Enter your email"
+          />
+          {emailError && (
+            <p id="email-error" className="mt-1 text-xs text-red-600">
+              {emailError}
+            </p>
+          )}
+        </div>
+
+        <div className="flex flex-col">
+          <label htmlFor="category" className="mb-1 block text-sm font-medium">
+            Category
+          </label>
+          <select
+            id="category"
+            name="category"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            className="w-full rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm ring-0 transition-colors outline-none focus:border-neutral-400 dark:border-neutral-700 dark:bg-neutral-900"
+          >
+            <option value="software">Software</option>
+            <option value="translation">Translation</option>
+            <option value="content">Content</option>
+            <option value="writing">Writing</option>
+          </select>
+        </div>
+
+        <div className="md:col-span-2">
+          <label htmlFor="message" className="mb-1 block text-sm font-medium">
+            Message
+          </label>
+          <textarea
+            id="message"
+            name="message"
+            required
+            rows={6}
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            onBlur={() => setTouched((t) => ({ ...t, message: true }))}
+            aria-invalid={!!messageError}
+            aria-describedby={messageError ? 'message-error' : undefined}
+            className={`w-full rounded-md border bg-white px-3 py-2 text-sm ring-0 transition-colors outline-none dark:bg-neutral-900 ${
+              messageError
+                ? 'border-red-500 focus:border-red-600'
+                : 'border-neutral-300 focus:border-neutral-400 dark:border-neutral-700'
+            }`}
+            placeholder="Please describe your proposal here."
+          />
+          {messageError && (
+            <p id="message-error" className="mt-1 text-xs text-red-600">
+              {messageError}
+            </p>
+          )}
+        </div>
+
+        <div className="pt-2 md:col-span-2">
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="inline-flex items-center justify-center gap-2 rounded-md bg-black px-4 py-2 text-sm font-medium text-white hover:bg-neutral-800 disabled:cursor-not-allowed disabled:opacity-70 dark:bg-white dark:text-black dark:hover:bg-neutral-200"
+          >
+            {isSubmitting && (
+              <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" aria-hidden="true">
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                ></circle>
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                ></path>
+              </svg>
+            )}
+            {isSubmitting ? 'Sending...' : 'Send'}
+          </button>
+        </div>
+      </form>
+    </div>
+  )
+}
