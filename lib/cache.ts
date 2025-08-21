@@ -1,3 +1,4 @@
+import { logger } from '@/lib/logger'
 import { createHash } from 'crypto'
 import { DEFAULT_SOFT_TTL_MS, DEFAULT_HARD_TTL_MS } from './constants'
 
@@ -29,15 +30,18 @@ export const keyOf = (params: Record<string, any>) => {
   const SNAPSHOT_VERSION = process.env.SNAPSHOT_VERSION || 'v2'
   const key = 'gh:agg:' + SNAPSHOT_VERSION + ':' + createHash('sha1').update(norm).digest('hex')
 
-  console.log('keyOf debug:', {
-    snapshotVersion: SNAPSHOT_VERSION,
-    generatedKey: key,
-    params: Object.keys(params),
-    originalSince: params.since,
-    normalizedSince: normalizedParams.since,
-    originalUntil: params.until,
-    normalizedUntil: normalizedParams.until,
-  })
+  logger.debug(
+    {
+      snapshotVersion: SNAPSHOT_VERSION,
+      generatedKey: key,
+      params: Object.keys(params),
+      originalSince: params.since,
+      normalizedSince: normalizedParams.since,
+      originalUntil: params.until,
+      normalizedUntil: normalizedParams.until,
+    },
+    'keyOf debug'
+  )
 
   return key
 }
@@ -52,7 +56,7 @@ async function initCache() {
 
   let CACHE_PROVIDER = process.env.CACHE_PROVIDER || 'redis'
 
-  console.log('initCache: using provider:', CACHE_PROVIDER)
+  logger.info({ provider: CACHE_PROVIDER }, 'initCache: using provider')
 
   if (CACHE_PROVIDER === 'upstash') {
     const { Redis } = await import('@upstash/redis')
@@ -65,7 +69,7 @@ async function initCache() {
       )
     }
 
-    console.log('Connecting to Upstash Redis')
+    logger.info('Connecting to Upstash Redis')
     const upstashRedis = new Redis({
       url: UPSTASH_REDIS_REST_URL,
       token: UPSTASH_REDIS_REST_TOKEN,
@@ -87,18 +91,18 @@ async function initCache() {
       throw new Error('REDIS_URL is required when CACHE_PROVIDER is not upstash')
     }
 
-    console.log('Connecting to Redis')
+    logger.info('Connecting to Redis')
     redisClient = createClient({ url: REDIS_URL })
     await redisClient.connect()
 
-    redisClient.on('error', (err) => console.log('Redis Client Error', err))
-    redisClient.on('connect', () => console.log('Redis Client Connected'))
-    redisClient.on('ready', () => console.log('Redis Client Ready'))
+    redisClient.on('error', (err: any) => logger.error({ err }, 'Redis Client Error'))
+    redisClient.on('connect', () => logger.info('Redis Client Connected'))
+    redisClient.on('ready', () => logger.info('Redis Client Ready'))
 
     kvGet = async (k) => {
-      console.log('Redis GET:', k)
+      logger.debug({ key: k }, 'Redis GET')
       const s = await redisClient.get(k)
-      console.log('Redis GET result:', s ? 'found' : 'null')
+      logger.debug({ result: s ? 'found' : 'null' }, 'Redis GET result')
       return s ? JSON.parse(s) : null
     }
     kvSet = async (k, v, ttlSec) => {
@@ -123,20 +127,26 @@ export async function getSnapshot(params: Record<string, any>) {
   const payloadKey = base + ':payload'
   const statusKey = base + ':status'
 
-  console.log('getSnapshot debug:', {
-    base,
-    payloadKey,
-    statusKey,
-    cacheProvider: process.env.CACHE_PROVIDER,
-  })
+  logger.debug(
+    {
+      base,
+      payloadKey,
+      statusKey,
+      cacheProvider: process.env.CACHE_PROVIDER,
+    },
+    'getSnapshot debug'
+  )
 
   const [payload, status] = await kvMGet([payloadKey, statusKey])
 
-  console.log('getSnapshot result:', {
-    payloadFound: !!payload,
-    statusFound: !!status,
-    payloadKeys: payload ? Object.keys(payload) : null,
-  })
+  logger.debug(
+    {
+      payloadFound: !!payload,
+      statusFound: !!status,
+      payloadKeys: payload ? Object.keys(payload) : null,
+    },
+    'getSnapshot result'
+  )
 
   return { base, payload: payload as Snapshot | null, status: status as Status | null }
 }
@@ -158,14 +168,17 @@ export async function setSnapshot(base: string, snap: Snapshot) {
   const payloadKey = base + ':payload'
   const statusKey = base + ':status'
 
-  console.log('setSnapshot debug:', {
-    base,
-    payloadKey,
-    statusKey,
-    cacheProvider: process.env.CACHE_PROVIDER,
-    snapshotVersion: SNAPSHOT_VERSION,
-    peopleCount: snap.people?.length || 0,
-  })
+  logger.debug(
+    {
+      base,
+      payloadKey,
+      statusKey,
+      cacheProvider: process.env.CACHE_PROVIDER,
+      snapshotVersion: SNAPSHOT_VERSION,
+      peopleCount: snap.people?.length || 0,
+    },
+    'setSnapshot debug'
+  )
 
   await kvSet(payloadKey, snap, Math.ceil(HARD_TTL_MS / 1000))
   await kvSet(statusKey, status, Math.ceil(HARD_TTL_MS / 1000))

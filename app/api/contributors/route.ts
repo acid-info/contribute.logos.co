@@ -1,6 +1,7 @@
 import { NextRequest } from 'next/server'
 import { getSnapshot } from '@/lib/cache'
 import { enqueueRefresh } from '@/lib/queue'
+import { logger } from '@/lib/logger'
 import {
   SOFT_TTL_MS,
   HARD_TTL_MS,
@@ -37,24 +38,26 @@ export async function GET(req: NextRequest) {
 
   const { base, payload, status } = await getSnapshot(params)
 
-  // Debug cache retrieval
-  console.log('Cache debug:', {
-    base,
-    payload: payload ? 'found' : 'null',
-    status: status ? 'found' : 'null',
-    statusLastUpdated: status?.lastUpdated,
-    cacheProvider: process.env.CACHE_PROVIDER,
-    snapshotVersion: process.env.SNAPSHOT_VERSION,
-    redisUrl: process.env.REDIS_URL ? 'configured' : 'not configured',
-    upstashRedisRestToken: process.env.UPSTASH_REDIS_REST_TOKEN ? 'configured' : 'not configured',
-  })
+  logger.debug(
+    {
+      base,
+      payload,
+      status,
+      statusLastUpdated: status?.lastUpdated,
+      cacheProvider: process.env.CACHE_PROVIDER,
+      snapshotVersion: process.env.SNAPSHOT_VERSION,
+      redisUrl: process.env.REDIS_URL ? 'configured' : 'not configured',
+      upstashRedisRestToken: process.env.UPSTASH_REDIS_REST_TOKEN ? 'configured' : 'not configured',
+    },
+    'Cache debug'
+  )
 
   const now = Date.now()
   const isStale = !status || now - status.lastUpdated > SOFT_TTL_MS
   const hardExpired = !status || now - status.lastUpdated > (status.hardTtlMs || HARD_TTL_MS)
 
   if (isStale) {
-    enqueueRefresh(params).catch(() => {})
+    enqueueRefresh(params).catch((err) => logger.error({ err }, 'enqueueRefresh failed'))
   }
 
   if (payload && !hardExpired) {
@@ -69,7 +72,7 @@ export async function GET(req: NextRequest) {
     return new Response(JSON.stringify(payload.people), { headers })
   }
 
-  enqueueRefresh(params).catch(() => {})
+  enqueueRefresh(params).catch((err) => logger.error({ err }, 'enqueueRefresh failed'))
   return Response.json([], {
     headers: {
       'x-data-stale': 'true',

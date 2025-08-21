@@ -13,6 +13,7 @@ import {
   DEFAULT_CONCURRENCY,
   GITHUB_WEB_BASE,
 } from '@/lib/github'
+import { logger } from '@/lib/logger'
 
 export type Latest = { date: string; type: 'PR' | 'REVIEW' | 'COMMIT'; link: string; repo: string }
 export type PersonAgg = {
@@ -36,13 +37,17 @@ export type CollectParams = {
 export async function collectContributors(
   p: CollectParams
 ): Promise<{ people: PersonAgg[]; meta: any }> {
-  console.log('Starting collectContributors with params:', {
-    orgs: p.orgs,
-    since: p.since,
-    until: p.until,
-  })
+  logger.info('Starting collectContributors')
+  logger.debug(
+    {
+      orgs: p.orgs,
+      since: p.since,
+      until: p.until,
+    },
+    'Starting collectContributors debug'
+  )
   const { since, until } = clampWindow(p.since, p.until)
-  console.log('Clamped window:', { since, until })
+  logger.debug({ since, until }, 'Clamped window')
 
   const auth = p.githubToken ? { token: p.githubToken } : getAuth()
   const limit = makeLimiter(DEFAULT_CONCURRENCY)
@@ -51,44 +56,47 @@ export async function collectContributors(
   const onlyExcludeOrgs = p.onlyExcludeOrgs || []
   const orgsForMembership = Array.from(new Set([...p.orgs, ...onlyExcludeOrgs]))
 
-  console.log('Configuration:', {
-    maxPrPages,
-    maxReviewFetches,
-    orgsForMembership,
-  })
+  logger.debug(
+    {
+      maxPrPages,
+      maxReviewFetches,
+      orgsForMembership,
+    },
+    'Configuration'
+  )
 
   // 1 list public repos per org
-  console.log('Step 1: Fetching public repos for orgs:', p.orgs)
+  logger.debug({ orgs: p.orgs }, 'Step 1: Fetching public repos for orgs')
   const reposPerOrg = await Promise.all(
     p.orgs.map((org) =>
       limit(async () => {
-        console.log(`Fetching repos for org: ${org}`)
+        logger.debug({ org }, 'Fetching repos for org')
         const url = `${GITHUB_API_BASE}/orgs/${encodeURIComponent(org)}/repos?type=public&per_page=${GITHUB_PER_PAGE}&sort=updated`
         const repos = await paginate<any>(url, auth)
         const mapped = repos.map((r) => ({ owner: org, name: r.name, full: r.full_name }))
-        console.log(`Found ${mapped.length} repos for org: ${org}`)
+        logger.debug({ org, count: mapped.length }, 'Found repos for org')
         return mapped
       })
     )
   )
   const repos = reposPerOrg.flat()
-  console.log(`Total repos found: ${repos.length}`)
+  logger.debug({ count: repos.length }, 'Total repos found')
 
   // 2 org members set
-  console.log('Step 2: Fetching org members for:', orgsForMembership)
+  logger.debug({ orgs: orgsForMembership }, 'Step 2: Fetching org members for')
   const internalPublic = new Set<string>()
   await Promise.all(
     orgsForMembership.map((org) =>
       limit(async () => {
-        console.log(`Fetching members for org: ${org}`)
+        logger.debug({ org }, 'Fetching members for org')
         const base = `${GITHUB_API_BASE}/orgs/${encodeURIComponent(org)}`
         const members = await paginate<any>(`${base}/members?per_page=${GITHUB_PER_PAGE}`, auth)
         for (const m of members) if (m.login) internalPublic.add(m.login)
-        console.log(`Found ${members.length} members for org: ${org}`)
+        logger.debug({ org, count: members.length }, 'Found members for org')
       })
     )
   )
-  console.log(`Total internal members found: ${internalPublic.size}`)
+  logger.debug({ count: internalPublic.size }, 'Total internal members found')
 
   // 3 collect contributions
   type Row = {
@@ -108,14 +116,14 @@ export async function collectContributors(
   const prAuthorByLink = new Map<string, string>()
 
   // PRs
-  console.log('Step 3a: Fetching PRs for repos:', repos.length)
+  logger.debug({ repoCount: repos.length }, 'Step 3a: Fetching PRs for repos')
   await Promise.all(
     repos.map((r) =>
       limit(async () => {
         const [owner, name] = r.full.split('/')
         let after: string | null = null
         try {
-          console.log(`Fetching PRs for repo: ${r.full}`)
+          logger.debug({ repo: r.full }, 'Fetching PRs for repo')
           for (let i = 0; i < maxPrPages; i++) {
             const data = await graphql<any>(prQuery, { owner, name, after }, auth)
             const repo = data.repository
@@ -144,22 +152,22 @@ export async function collectContributors(
             after = repo.pullRequests.pageInfo.endCursor
             if (!after) break
           }
-          console.log(`Found ${prCount} PRs for repo: ${r.full}`)
+          logger.debug({ repo: r.full, prCount }, 'Found PRs for repo')
         } catch (e: any) {
           const errorMsg = `PRs ${owner}/${name}: ${e?.message || String(e)}`
-          console.error(errorMsg)
+          logger.error({ err: e, msg: errorMsg }, 'Error while fetching PRs for repo')
           errors.push(errorMsg)
         }
       })
     )
   )
-  console.log(`Total PRs collected: ${prCount}`)
+  logger.debug({ prCount }, 'Total PRs collected')
 
   // Reviews - fetch for recent PRs found above
-  console.log('Step 3b: Fetching reviews for PRs')
+  logger.debug('Step 3b: Fetching reviews for PRs')
   const prLinks = rows.filter((r) => r.type === 'PR').map((r) => r.link)
   const prUnique = Array.from(new Set(prLinks)).slice(0, Math.max(0, maxReviewFetches))
-  console.log(`Fetching reviews for ${prUnique.length} unique PRs`)
+  logger.debug({ count: prUnique.length }, 'Fetching reviews for unique PRs')
   await Promise.all(
     prUnique.map((urlStr) =>
       limit(async () => {
@@ -167,7 +175,7 @@ export async function collectContributors(
         if (!parsed) return
         const { owner, repo, number } = parsed
         try {
-          console.log(`Fetching reviews for PR: ${owner}/${repo}#${number}`)
+          logger.debug({ owner, repo, number }, 'Fetching reviews for PR')
           const api = `${GITHUB_API_BASE}/repos/${owner}/${repo}/pulls/${number}/reviews?per_page=${GITHUB_PER_PAGE}`
           const reviews = await paginate<any>(api, auth)
           for (const rv of reviews) {
@@ -186,19 +194,19 @@ export async function collectContributors(
             })
             reviewCount++
           }
-          console.log(`Found ${reviews.length} reviews for PR: ${owner}/${repo}#${number}`)
+          logger.debug({ owner, repo, number, count: reviews.length }, 'Found reviews for PR')
         } catch (e: any) {
           const errorMsg = `Reviews ${owner}/${repo}#${number}: ${e?.message || String(e)}`
-          console.error(errorMsg)
+          logger.error({ err: e, msg: errorMsg }, 'Error while fetching reviews for PR')
           errors.push(errorMsg)
         }
       })
     )
   )
-  console.log(`Total reviews collected: ${reviewCount}`)
+  logger.debug({ reviewCount }, 'Total reviews collected')
 
   // PR commits: attribute contributions to non-author external committers
-  console.log('Step 3c: Fetching commits for PRs to attribute external committers')
+  logger.debug('Step 3c: Fetching commits for PRs to attribute external committers')
   await Promise.all(
     prUnique.map((urlStr) =>
       limit(async () => {
@@ -207,7 +215,7 @@ export async function collectContributors(
         const { owner, repo, number } = parsed
         const prAuthor = prAuthorByLink.get(urlStr)
         try {
-          console.log(`Fetching commits for PR: ${owner}/${repo}#${number}`)
+          logger.debug({ owner, repo, number }, 'Fetching commits for PR')
           const api = `${GITHUB_API_BASE}/repos/${owner}/${repo}/pulls/${number}/commits?per_page=${GITHUB_PER_PAGE}`
           const commits = await paginate<any>(api, auth)
           for (const c of commits) {
@@ -221,26 +229,26 @@ export async function collectContributors(
             rows.push({ login, date, type: 'COMMIT', link: c.html_url, repo: `${owner}/${repo}` })
             commitCount++
           }
-          console.log(`Found ${commits.length} commits for PR: ${owner}/${repo}#${number}`)
+          logger.debug({ owner, repo, number, count: commits.length }, 'Found commits for PR')
         } catch (e: any) {
           const errorMsg = `PRCommits ${owner}/${repo}#${number}: ${e?.message || String(e)}`
-          console.error(errorMsg)
+          logger.error({ err: e, msg: errorMsg }, 'Error while fetching commits for PR')
           errors.push(errorMsg)
         }
       })
     )
   )
-  console.log(`Total PR commit contributions collected: ${commitCount}`)
+  logger.debug({ commitCount }, 'Total PR commit contributions collected')
 
   // 4 aggregate & filter
-  console.log('Step 4: Aggregating and filtering contributors')
+  logger.debug('Step 4: Aggregating and filtering contributors')
   const byLogin = new Map<string, Row[]>()
   for (const r of rows) {
     if (!r.login) continue
     if (!byLogin.has(r.login)) byLogin.set(r.login, [])
     byLogin.get(r.login)!.push(r)
   }
-  console.log(`Unique contributors found: ${byLogin.size}`)
+  logger.debug({ count: byLogin.size }, 'Unique contributors found')
 
   const people: PersonAgg[] = []
   let filteredInternal = 0
@@ -269,8 +277,8 @@ export async function collectContributors(
     })
   }
 
-  console.log(`Filtered out ${filteredInternal} internal members and ${filteredBots} bots`)
-  console.log(`Final contributors: ${people.length}`)
+  logger.debug({ filteredInternal, filteredBots }, 'Filtered out internal members and bots')
+  logger.info({ count: people.length }, 'Final contributors')
 
   people.sort(
     (a, b) =>
@@ -279,8 +287,8 @@ export async function collectContributors(
   )
 
   const duration = Date.now() - started
-  console.log(`collectContributors completed in ${duration}ms`)
-  console.log('Summary:', { prCount, reviewCount, commitCount, errors: errors.length })
+  logger.info({ duration }, 'collectContributors completed')
+  logger.info({ prCount, reviewCount, commitCount, errors: errors.length }, 'Summary')
 
   return {
     people,

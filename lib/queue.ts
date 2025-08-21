@@ -1,3 +1,4 @@
+import { logger } from '@/lib/logger'
 export type RefreshJob = {
   orgs: string[]
   since?: string
@@ -8,11 +9,7 @@ export type RefreshJob = {
 }
 
 export async function enqueueRefresh(job: RefreshJob) {
-  console.log('enqueueRefresh debug:', {
-    jobData: job,
-    redisUrl: process.env.REDIS_URL ? 'configured' : 'not configured',
-    cacheProvider: process.env.CACHE_PROVIDER,
-  })
+  logger.debug({ jobData: job }, 'enqueueRefresh debug')
 
   const { Queue } = await import('bullmq')
 

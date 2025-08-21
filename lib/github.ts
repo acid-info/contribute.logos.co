@@ -1,3 +1,4 @@
+import { logger } from '@/lib/logger'
 import pLimit from 'p-limit'
 import { LRUCache } from 'lru-cache'
 import { createHash } from 'crypto'
@@ -93,7 +94,7 @@ async function initStore() {
       const r = createClient({ url: REDIS_URL })
       await r.connect()
 
-      r.on('error', (err) => console.log('Redis Client Error', err))
+      r.on('error', (err) => logger.error({ err }, 'Redis Client Error'))
 
       etagGet = async (k) => await r.get(k)
       etagSet = async (k, v, ttl) => {
