@@ -18,3 +18,9 @@ export interface NavItemWithChildren extends NavItem {
 export interface MainNavItem extends NavItem {}
 
 export interface SidebarNavItem extends NavItemWithChildren {}
+
+// TipTap placeholder module declaration (for IDE/TS until types are resolved)
+declare module '@tiptap/extension-placeholder' {
+  const Placeholder: any
+  export default Placeholder
+}

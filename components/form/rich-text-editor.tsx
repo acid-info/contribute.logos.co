@@ -4,6 +4,7 @@ import { EditorContent, useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import Underline from '@tiptap/extension-underline'
 import Link from '@tiptap/extension-link'
+import Placeholder from '@tiptap/extension-placeholder'
 
 type RichTextEditorProps = {
   initialValue?: string
@@ -26,7 +27,8 @@ export default function RichTextEditor({
 }: RichTextEditorProps) {
   const attributes: Record<string, string> = {
     'aria-invalid': invalid ? 'true' : 'false',
-    class: 'prose prose-sm dark:prose-invert min-h-[9rem] focus:outline-none',
+    class:
+      'prose prose-sm dark:prose-invert min-h-[9rem] focus:outline-none text-black dark:text-white',
   }
   if (ariaDescribedBy) {
     attributes['aria-describedby'] = ariaDescribedBy
@@ -48,6 +50,11 @@ export default function RichTextEditor({
             class:
               'underline underline-offset-2 text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300',
           },
+        }),
+        Placeholder.configure({
+          placeholder,
+          showOnlyWhenEditable: true,
+          showOnlyCurrent: true,
         }),
       ],
       content: initialValue || '',
@@ -77,12 +84,12 @@ export default function RichTextEditor({
   }
 
   return (
-    <div className={`w-full ${invalid ? '' : ''}`}>
-      <div className="flex flex-wrap items-center gap-1 border border-b-0 bg-neutral-50 p-1 text-sm dark:bg-neutral-900">
+    <div className={`rich-text-editor w-full ${invalid ? '' : ''}`}>
+      <div className="border-primary flex flex-wrap items-center gap-1 divide-x border border-b-0 bg-transparent p-1 text-sm text-black dark:bg-transparent dark:text-white">
         <button
           type="button"
           onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
-          className={`px-2 py-1 ${editor.isActive('heading', { level: 1 }) ? 'bg-neutral-200 dark:bg-neutral-800' : ''}`}
+          className={`cursor-pointer px-2 py-1 text-black dark:text-white ${editor.isActive('heading', { level: 1 }) ? 'font-semibold underline' : 'opacity-80 hover:opacity-100'} pr-3`}
           aria-label="Toggle H1"
         >
           H1
@@ -90,7 +97,7 @@ export default function RichTextEditor({
         <button
           type="button"
           onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
-          className={`px-2 py-1 ${editor.isActive('heading', { level: 2 }) ? 'bg-neutral-200 dark:bg-neutral-800' : ''}`}
+          className={`cursor-pointer px-2 py-1 text-black dark:text-white ${editor.isActive('heading', { level: 2 }) ? 'font-semibold underline' : 'opacity-80 hover:opacity-100'} pr-3 pl-3`}
           aria-label="Toggle H2"
         >
           H2
@@ -98,7 +105,7 @@ export default function RichTextEditor({
         <button
           type="button"
           onClick={() => editor.chain().focus().toggleBold().run()}
-          className={`px-2 py-1 ${editor.isActive('bold') ? 'bg-neutral-200 dark:bg-neutral-800' : ''}`}
+          className={`cursor-pointer px-2 py-1 text-black dark:text-white ${editor.isActive('bold') ? 'font-semibold underline' : 'opacity-80 hover:opacity-100'} pr-3 pl-3`}
           aria-label="Bold"
         >
           B
@@ -106,7 +113,7 @@ export default function RichTextEditor({
         <button
           type="button"
           onClick={() => editor.chain().focus().toggleItalic().run()}
-          className={`px-2 py-1 ${editor.isActive('italic') ? 'bg-neutral-200 dark:bg-neutral-800' : ''}`}
+          className={`cursor-pointer px-2 py-1 text-black dark:text-white ${editor.isActive('italic') ? 'font-semibold underline' : 'opacity-80 hover:opacity-100'} pr-3 pl-3`}
           aria-label="Italic"
         >
           I
@@ -114,18 +121,22 @@ export default function RichTextEditor({
         <button
           type="button"
           onClick={() => editor.chain().focus().toggleUnderline().run()}
-          className={`px-2 py-1 ${editor.isActive('underline') ? 'bg-neutral-200 dark:bg-neutral-800' : ''}`}
+          className={`cursor-pointer px-2 py-1 text-black dark:text-white ${editor.isActive('underline') ? 'font-semibold underline' : 'opacity-80 hover:opacity-100'} pr-3 pl-3`}
           aria-label="Underline"
         >
           U
         </button>
-        <button type="button" onClick={setLink} className="px-2 py-1" aria-label="Set link">
-          Link
+        <button
+          type="button"
+          onClick={setLink}
+          className={`cursor-pointer px-2 py-1 text-black dark:text-white ${editor.isActive('link') ? 'font-semibold underline' : 'opacity-80 hover:opacity-100'} pl-3`}
+          aria-label="Set link"
+        >
+          🔗
         </button>
-        <span className="ml-auto text-xs opacity-60">{placeholder}</span>
       </div>
       <div
-        className={`rounded-none border bg-white px-3 py-2 text-sm ring-0 transition-colors outline-none dark:bg-neutral-900 ${
+        className={`rounded-none border bg-transparent px-3 py-2 text-sm text-black ring-0 transition-colors outline-none dark:bg-transparent dark:text-white ${
           invalid ? 'border-red-500 focus:border-red-600' : 'border-primary focus:border-primary'
         }`}
       >

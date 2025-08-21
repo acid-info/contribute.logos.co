@@ -112,7 +112,7 @@ export default function ContactForm() {
       <form
         onSubmit={handleSubmit}
         noValidate
-        className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2"
+        className="form grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2"
       >
         <div className="flex flex-col">
           <label htmlFor="name" className="mb-1 block text-sm font-medium">
@@ -128,7 +128,7 @@ export default function ContactForm() {
             onBlur={() => setTouched((t) => ({ ...t, name: true }))}
             aria-invalid={!!nameError}
             aria-describedby={nameError ? 'name-error' : undefined}
-            className={`w-full rounded-none border bg-white px-3 py-2 text-sm ring-0 transition-colors outline-none dark:bg-neutral-900 ${
+            className={`w-full rounded-none border bg-transparent px-3 py-2 text-sm text-black ring-0 transition-colors outline-none dark:bg-transparent dark:text-white ${
               nameError
                 ? 'border-red-500 focus:border-red-600'
                 : 'border-primary focus:border-primary'
@@ -156,7 +156,7 @@ export default function ContactForm() {
             onBlur={() => setTouched((t) => ({ ...t, email: true }))}
             aria-invalid={!!emailError}
             aria-describedby={emailError ? 'email-error' : 'email-help'}
-            className={`w-full rounded-none border bg-white px-3 py-2 text-sm ring-0 transition-colors outline-none dark:bg-neutral-900 ${
+            className={`w-full rounded-none border bg-transparent px-3 py-2 text-sm text-black ring-0 transition-colors outline-none dark:bg-transparent dark:text-white ${
               emailError
                 ? 'border-red-500 focus:border-red-600'
                 : 'border-primary focus:border-primary'
@@ -174,18 +174,34 @@ export default function ContactForm() {
           <label htmlFor="category" className="mb-1 block text-sm font-medium">
             Category
           </label>
-          <select
-            id="category"
-            name="category"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            className="border-primary focus:border-primary w-full rounded-none border bg-white px-3 py-2 text-sm ring-0 transition-colors outline-none dark:bg-neutral-900"
-          >
-            <option value="software">Software</option>
-            <option value="translation">Translation</option>
-            <option value="content">Content</option>
-            <option value="writing">Writing</option>
-          </select>
+          <div className="relative">
+            <select
+              id="category"
+              name="category"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              className="border-primary focus:border-primary w-full appearance-none rounded-none border bg-transparent px-3 py-2 pr-10 text-sm text-black ring-0 transition-colors outline-none dark:bg-transparent dark:text-white"
+            >
+              <option value="software">Software</option>
+              <option value="translation">Translation</option>
+              <option value="content">Content</option>
+              <option value="writing">Writing</option>
+            </select>
+            <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
+              <svg
+                className="h-4 w-4 text-black dark:text-white"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M6 9l6 6 6-6" />
+              </svg>
+            </span>
+          </div>
         </div>
 
         <div className="md:col-span-2">
@@ -218,7 +234,7 @@ export default function ContactForm() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-none bg-black px-4 py-2 text-sm font-medium text-white hover:bg-neutral-800 disabled:cursor-not-allowed disabled:opacity-70 dark:bg-white dark:text-black dark:hover:bg-neutral-200"
+            className="border-primary inline-flex cursor-pointer items-center justify-center gap-2 rounded-none border px-4 py-2 text-sm font-medium disabled:cursor-not-allowed disabled:opacity-70"
           >
             {isSubmitting && (
               <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" aria-hidden="true">

@@ -93,13 +93,14 @@ body {
   padding: 0;
 }
 
-/* Theme-based logo swap */
 .logo-dark {
   display: none;
 }
+
 [data-theme='dark'] .logo-light {
   display: none;
 }
+
 [data-theme='dark'] .logo-dark {
   display: inline-block;
 }
@@ -142,4 +143,35 @@ input:focus-visible {
     padding-left: 2rem;
     padding-right: 2rem;
   }
+}
+
+/* TipTap placeholder inside editor content */
+.ProseMirror p.is-editor-empty::before {
+  content: attr(data-placeholder);
+  color: rgba(0, 0, 0, 0.45);
+  pointer-events: none;
+  float: left;
+  height: 0;
+}
+
+.dark .ProseMirror p.is-editor-empty::before {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+[data-theme='dark'] .rich-text-editor *,
+[data-theme='dark'] .form * {
+  color: white !important;
+}
+
+[data-theme='light'] .rich-text-editor *,
+[data-theme='light'] .form * {
+  color: black !important;
+}
+
+[data-theme='dark'] .rich-text-editor p.is-editor-empty::before {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+[data-theme='light'] .rich-text-editor p.is-editor-empty::before {
+  color: rgba(0, 0, 0, 0.45);
 }
