@@ -158,13 +158,13 @@ input:focus-visible {
   color: rgba(255, 255, 255, 0.6);
 }
 
-[data-theme='dark'] .rich-text-editor *,
-[data-theme='dark'] .form * {
+[data-theme='dark'] .rich-text-editor *:not(a),
+[data-theme='dark'] .form *:not(a) {
   color: white !important;
 }
 
-[data-theme='light'] .rich-text-editor *,
-[data-theme='light'] .form * {
+[data-theme='light'] .rich-text-editor *:not(a),
+[data-theme='light'] .form *:not(a) {
   color: black !important;
 }
 
