@@ -10,6 +10,9 @@ const RichTextEditor = dynamic(() => import('./rich-text-editor'), {
 // TEMPORARY: This is the endpoint for the form submission
 const SUBMIT_ENDPOINT = 'https://logos-admin-git-develop-acidinfo.vercel.app/contribute/form'
 
+// Add: Email notification endpoint to send category and message after successful submit
+const EMAIL_ENDPOINT = 'https://logos-admin-git-develop-acidinfo.vercel.app/api/email/contribute'
+
 type SubmitState = 'idle' | 'submitting' | 'success' | 'error'
 
 type TouchedState = {
@@ -74,6 +77,18 @@ export default function ContactForm() {
       }
 
       setStatus('success')
+
+      // After successful submit, send email notification with category and plain-text message
+      try {
+        await fetch(EMAIL_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ category, message: messageHtml, name, email }),
+        })
+      } catch (e) {
+        // Intentionally ignore email notification errors so UI success persists
+      }
+
       setName('')
       setEmail('')
       setMessageHtml('')
