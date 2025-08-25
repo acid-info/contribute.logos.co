@@ -8,7 +8,7 @@ const RichTextEditor = dynamic(() => import('./rich-text-editor'), {
 })
 
 // TEMPORARY: This is the endpoint for the form submission
-const SUBMIT_ENDPOINT = 'https://logos-admin-git-develop-acidinfo.vercel.app/contribute/form'
+const SUBMIT_ENDPOINT = 'https://logos-admin-git-develop-acidinfo.vercel.app/api/contribute'
 
 // Add: Email notification endpoint to send category and message after successful submit
 const EMAIL_ENDPOINT = 'https://logos-admin-git-develop-acidinfo.vercel.app/api/email/contribute'
