@@ -10,6 +10,7 @@ import { ROUTES } from '@/constants/routes'
 const Header = () => {
   const t = useTranslations('common')
   const pathname = usePathname()
+  const currentPath = pathname !== '/' && pathname.endsWith('/') ? pathname.slice(0, -1) : pathname
 
   return (
     <header className="border-primary border-b px-4 py-3 sm:px-6 lg:px-8">
@@ -24,7 +25,7 @@ const Header = () => {
             <Link href={ROUTES.home}>
               <Typography
                 variant="body1"
-                className={`underline-offset-5 hover:underline ${pathname === ROUTES.home ? 'underline' : ''}`}
+                className={`underline-offset-5 hover:underline ${currentPath === ROUTES.home ? 'underline' : ''}`}
               >
                 {t('nav.directory')}
               </Typography>
@@ -32,7 +33,7 @@ const Header = () => {
             <Link href={ROUTES.resources}>
               <Typography
                 variant="body1"
-                className={`underline-offset-5 hover:underline ${pathname === ROUTES.resources ? 'underline' : ''}`}
+                className={`underline-offset-5 hover:underline ${currentPath === ROUTES.resources ? 'underline' : ''}`}
               >
                 {t('nav.resources')}
               </Typography>
@@ -40,7 +41,7 @@ const Header = () => {
             <Link href={ROUTES.proposals}>
               <Typography
                 variant="body1"
-                className={`underline-offset-5 hover:underline ${pathname === ROUTES.proposals ? 'underline' : ''}`}
+                className={`underline-offset-5 hover:underline ${currentPath === ROUTES.proposals ? 'underline' : ''}`}
               >
                 {t('nav.proposals')}
               </Typography>
