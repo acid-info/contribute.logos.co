@@ -1,16 +1,28 @@
-export default [
+import tsParser from '@typescript-eslint/parser'
+import unusedImports from 'eslint-plugin-unused-imports'
+
+/** @type {import('eslint').Linter.Config} */
+const config = [
   {
-    plugins: ['tailwindcss', 'unused-imports'],
+    ignores: ['.next/**', 'out/**', 'dist/**', 'node_modules/**'],
+  },
+  {
+    files: ['**/*.{js,jsx,ts,tsx}'],
+    plugins: {
+      'unused-imports': unusedImports,
+    },
+    languageOptions: {
+      parser: tsParser,
+      ecmaVersion: 2023,
+      sourceType: 'module',
+    },
     rules: {
-      '@next/next/no-html-link-for-pages': 'off',
-      '@next/next/no-img-element': 'off',
-      'tailwindcss/no-custom-classname': 'off',
-      'tailwindcss/classnames-order': 'off',
+      'unused-imports/no-unused-imports': 'warn',
     },
     settings: {
-      tailwindcss: { callees: ['cn', 'cva'], config: 'tailwind.config.cjs' },
       next: { rootDir: ['app/*/'] },
     },
-    overrides: [{ files: ['*.ts', '*.tsx'], parser: '@typescript-eslint/parser' }],
   },
 ]
+
+export default config

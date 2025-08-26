@@ -2,6 +2,7 @@ import { ROUTES } from '@/constants/routes'
 import { createDefaultMetadata } from '@/lib/metadata'
 import ContactForm from '@/components/form/contact-form'
 import ProposalGuidelines from '@/components/form/proposal-guidelines'
+import { routing } from '@/i18n/routing'
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
@@ -27,4 +28,8 @@ export default function Page() {
       <ProposalGuidelines />
     </div>
   )
+}
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }))
 }

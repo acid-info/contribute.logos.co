@@ -15,34 +15,36 @@
 
 ## Key features
 
-* **Contributor Directory**
-  * Displays Github usernames, profile links, number of contributions, latest contribution, and link to full contribution history.
+- **Contributor Directory**
 
-* **Contributor Profiles**
-  * Individual pages with contribution details and a list of all contributions.
+  - Displays Github usernames, profile links, number of contributions, latest contribution, and link to full contribution history.
 
-* **Search Functionality**
-  * Search by Github username or repository name.
+- **Contributor Profiles**
 
-* **Contribution Guidelines**
-  * Provide clear instructions and best practices for open source contributions.
-  * All content is maintained on Github in markdown format.
-  * Suggestions can be submitted and reviewed through Github Issues.
+  - Individual pages with contribution details and a list of all contributions.
+
+- **Search Functionality**
+
+  - Search by Github username or repository name.
+
+- **Contribution Guidelines**
+  - Provide clear instructions and best practices for open source contributions.
+  - All content is maintained on Github in markdown format.
+  - Suggestions can be submitted and reviewed through Github Issues.
 
 ## Getting Started
 
 ### Tech Stack
 
-* **Next.js 15** and **React 19** for the core application framework
-* **Tailwind CSS 4** with PostCSS and `tailwind-merge` for styling and utility class management
-* **next-intl** for internationalization support
-* **MDX**, Remark, and Rehype plugins for content processing
-* **@acid-info/lsd-react** for UI components
-* **TypeScript** for type-safe development
-* **ESLint** with Prettier and Tailwind plugins for code linting and formatting
-* **Vitest** for testing
-* **Husky** and **lint-staged** for pre-commit checks
-
+- **Next.js 15** and **React 19** for the core application framework
+- **Tailwind CSS 4** with PostCSS and `tailwind-merge` for styling and utility class management
+- **next-intl** for internationalization support
+- **MDX**, Remark, and Rehype plugins for content processing
+- **@acid-info/lsd-react** for UI components
+- **TypeScript** for type-safe development
+- **ESLint** with Prettier and Tailwind plugins for code linting and formatting
+- **Vitest** for testing
+- **Husky** and **lint-staged** for pre-commit checks
 
 ### Install dependencies and run the development server
 
@@ -76,6 +78,7 @@ Then build the project:
 
 ```bash
 pnpm build
+
 # Run any web server you prefer and host the /out directory.
 # Below is an example using http-server (install it globally first):
 http-server out

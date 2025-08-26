@@ -2,10 +2,10 @@ import { cn } from '@/lib/utils'
 
 import type { Metadata } from 'next'
 import { allResources } from 'content-collections'
+import { routing } from '@/i18n/routing'
 
 import { DocNavigation } from '@/components/pager'
 import { Mdx } from '@/components/mdx-components'
-import { getTranslations } from 'next-intl/server'
 
 import '@/css/mdx.css'
 import { absoluteUrl } from '@/lib/metadata'
@@ -15,9 +15,19 @@ async function getDocFromParams({ params }: any) {
   const _params = await params
   const locale = _params.locale || 'en'
   const slugPath = _params.slug?.join('/') || ''
-  const slug = `${ROUTES.resources}/${locale}${slugPath ? `/${slugPath}` : ''}`
+  const slugA = `${ROUTES.resources}/${locale}${slugPath ? `/${slugPath}` : ''}`
+  const slugB = `${ROUTES.resources}/${locale}${slugPath ? `/${slugPath}` : '/index'}`
 
-  const doc = allResources.find((doc) => doc.slug === slug && doc.locale === locale)
+  const slugAsParamsA = `${locale}${slugPath ? `/${slugPath}` : ''}`
+  const slugAsParamsB = `${locale}${slugPath ? `/${slugPath}` : '/index'}`
+
+  const doc =
+    allResources.find((d) => d.locale === locale && (d.slug === slugA || d.slug === slugB)) ||
+    allResources.find(
+      (d) =>
+        d.locale === locale &&
+        (d.slugAsParams === slugAsParamsA || d.slugAsParams === slugAsParamsB)
+    )
 
   return doc || null
 }
@@ -55,7 +65,6 @@ export default async function Page({ params }: any) {
   const locale = _params.locale || 'en'
 
   const doc = await getDocFromParams({ params: _params })
-  const t = await getTranslations()
 
   return (
     doc && (
@@ -77,4 +86,20 @@ export default async function Page({ params }: any) {
       </main>
     )
   )
+}
+
+export function generateStaticParams() {
+  const locales = routing.locales
+  const paths = allResources
+    .map((doc) => {
+      const parts = doc.slugAsParams.split('/')
+      const [_locale, ...rest] = parts
+      // Exclude explicit index slugs; root per-locale is handled by indexParams
+      if (rest.length === 1 && rest[0] === 'index') return null
+      return { locale: doc.locale, slug: rest }
+    })
+    .filter(Boolean) as { locale: string; slug: string[] }[]
+  // Ensure index pages per locale are included
+  const indexParams = locales.map((locale) => ({ locale, slug: [] as string[] }))
+  return [...paths, ...indexParams]
 }
