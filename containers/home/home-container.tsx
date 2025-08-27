@@ -4,8 +4,7 @@ import { useState, useEffect } from 'react'
 import { useTranslations } from 'next-intl'
 import { Button, Typography } from '@acid-info/lsd-react'
 import { Link } from '@/i18n/navigation'
-import { Contributor } from '@/constants/mockData'
-import { ORGS_PARAM, ONLY_EXCLUDE_ORGS_PARAM } from '@/constants/orgs'
+import { Contributor } from '@/types'
 import { ROUTES } from '@/constants/routes'
 
 export default function HomeContainer() {
@@ -18,16 +17,7 @@ export default function HomeContainer() {
   useEffect(() => {
     const fetchContributors = async () => {
       try {
-        const until = new Date()
-        const since = new Date()
-        since.setFullYear(until.getFullYear() - 1)
-        const qs = new URLSearchParams({
-          orgs: ORGS_PARAM,
-          onlyExcludeOrgs: ONLY_EXCLUDE_ORGS_PARAM,
-          since: since.toISOString(),
-          until: until.toISOString(),
-        })
-        const res = await fetch(`/api/contributors?${qs.toString()}`)
+        const res = await fetch(`http://localhost:3000/api/contribute/contributors`)
         if (!res.ok) throw new Error(`Failed: ${res.status}`)
         const data = (await res.json()) as Array<{
           login: string

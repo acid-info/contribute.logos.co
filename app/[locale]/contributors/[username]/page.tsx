@@ -1,8 +1,6 @@
 import { createDefaultMetadata } from '@/lib/metadata'
 import { ROUTES } from '@/constants/routes'
 import ContributorDetailsContainer from '@/containers/contributor/contributor-details-container'
-import { MOCK_CONTRIBUTORS } from '@/constants/mockData'
-import { routing } from '@/i18n/routing'
 
 interface PageProps {
   params: Promise<{ locale: string; username: string }>
@@ -28,7 +26,5 @@ export default async function ContributorPage({ params }: PageProps) {
 }
 
 export function generateStaticParams() {
-  const locales = routing.locales
-  const usernames = MOCK_CONTRIBUTORS.map((c) => c.username)
-  return locales.flatMap((locale) => usernames.map((username) => ({ locale, username })))
+  return []
 }

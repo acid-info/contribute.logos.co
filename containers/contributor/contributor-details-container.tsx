@@ -5,7 +5,6 @@ import { Button, Typography } from '@acid-info/lsd-react'
 import { Link } from '@/i18n/navigation'
 import { ROUTES } from '@/constants/routes'
 import { useEffect, useMemo, useState } from 'react'
-import { ORGS_PARAM, ONLY_EXCLUDE_ORGS_PARAM } from '@/constants/orgs'
 
 interface ContributorDetailsContainerProps {
   username: string
@@ -28,17 +27,8 @@ export default function ContributorDetailsContainer({
       try {
         setLoading(true)
         setError(null)
-        const until = new Date()
-        const since = new Date()
-        since.setFullYear(until.getFullYear() - 1)
-        const qs = new URLSearchParams({
-          orgs: ORGS_PARAM,
-          onlyExcludeOrgs: ONLY_EXCLUDE_ORGS_PARAM,
-          since: since.toISOString(),
-          until: until.toISOString(),
-        })
         const res = await fetch(
-          `/api/contributors/${encodeURIComponent(username)}?${qs.toString()}`
+          `http://localhost:3000/api/contribute/contributors/${encodeURIComponent(username)}`
         )
         if (!res.ok) throw new Error(`Failed: ${res.status}`)
         const json = (await res.json()) as {
