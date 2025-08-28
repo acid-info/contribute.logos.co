@@ -10,7 +10,6 @@ const RichTextEditor = dynamic(() => import('./rich-text-editor'), {
 
 const API_BASE = getContributeApiBase()
 const SUBMIT_ENDPOINT = `${API_BASE}/contribute`
-const EMAIL_ENDPOINT = `${API_BASE}/email/contribute`
 
 type SubmitState = 'idle' | 'submitting' | 'success' | 'error'
 
@@ -76,17 +75,6 @@ export default function ContactForm() {
       }
 
       setStatus('success')
-
-      // After successful submit, send email notification with category and plain-text message
-      try {
-        await fetch(EMAIL_ENDPOINT, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ category, message: messageHtml, name, email }),
-        })
-      } catch (e) {
-        // Intentionally ignore email notification errors so UI success persists
-      }
 
       setName('')
       setEmail('')
