@@ -2,16 +2,15 @@
 
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
+import { getContributeApiBase } from '@/lib/utils'
 
 const RichTextEditor = dynamic(() => import('./rich-text-editor'), {
   ssr: false,
 })
 
-// TEMPORARY: This is the endpoint for the form submission
-const SUBMIT_ENDPOINT = 'https://logos-admin-git-develop-acidinfo.vercel.app/api/contribute'
-
-// Add: Email notification endpoint to send category and message after successful submit
-const EMAIL_ENDPOINT = 'https://logos-admin-git-develop-acidinfo.vercel.app/api/email/contribute'
+const API_BASE = getContributeApiBase()
+const SUBMIT_ENDPOINT = `${API_BASE}/contribute/form`
+const EMAIL_ENDPOINT = `${API_BASE}/email/contribute`
 
 type SubmitState = 'idle' | 'submitting' | 'success' | 'error'
 

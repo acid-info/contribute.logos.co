@@ -6,6 +6,7 @@ import { Button, Typography } from '@acid-info/lsd-react'
 import { Link } from '@/i18n/navigation'
 import { Contributor } from '@/types'
 import { ROUTES } from '@/constants/routes'
+import { getContributeApiBase } from '@/lib/utils'
 
 export default function HomeContainer() {
   const t = useTranslations('home')
@@ -17,7 +18,8 @@ export default function HomeContainer() {
   useEffect(() => {
     const fetchContributors = async () => {
       try {
-        const res = await fetch(`http://localhost:3000/api/contribute/contributors`)
+        const base = getContributeApiBase()
+        const res = await fetch(`${base}/contribute/contributors`)
         if (!res.ok) throw new Error(`Failed: ${res.status}`)
         const data = (await res.json()) as Array<{
           login: string
@@ -178,7 +180,9 @@ export default function HomeContainer() {
                           {t('contributors.viewGithubProfile')}
                         </Button>
                       </a>
-                      <Link href={`${ROUTES.contributors}/${contributor.username}`}>
+                      <Link
+                        href={`${ROUTES.contributors}?username=${encodeURIComponent(contributor.username)}`}
+                      >
                         <Button size="small" className="w-full sm:w-auto">
                           {t('contributors.viewDetails')}
                         </Button>

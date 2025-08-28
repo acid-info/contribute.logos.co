@@ -5,31 +5,35 @@ import { Button, Typography } from '@acid-info/lsd-react'
 import { Link } from '@/i18n/navigation'
 import { ROUTES } from '@/constants/routes'
 import { useEffect, useMemo, useState } from 'react'
-
-interface ContributorDetailsContainerProps {
-  username: string
-}
+import { useSearchParams } from 'next/navigation'
+import { getContributeApiBase } from '@/lib/utils'
 
 type ApiItemType = 'PR' | 'REVIEW' | 'COMMIT'
 type ApiItem = { date: string; repo: string; repoUrl: string; type: ApiItemType; link: string }
 
-export default function ContributorDetailsContainer({
-  username,
-}: ContributorDetailsContainerProps) {
+export default function ContributorDetailsContainer() {
   const t = useTranslations('contributor')
   const [items, setItems] = useState<ApiItem[]>([])
   const [total, setTotal] = useState(0)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const searchParams = useSearchParams()
+  const username = searchParams.get('username') || ''
 
   useEffect(() => {
+    if (!username) {
+      setItems([])
+      setTotal(0)
+      setLoading(false)
+      setError('Missing username')
+      return
+    }
     const fetchItems = async () => {
       try {
         setLoading(true)
         setError(null)
-        const res = await fetch(
-          `http://localhost:3000/api/contribute/contributors/${encodeURIComponent(username)}`
-        )
+        const base = getContributeApiBase()
+        const res = await fetch(`${base}/contribute/contributors/${encodeURIComponent(username)}`)
         if (!res.ok) throw new Error(`Failed: ${res.status}`)
         const json = (await res.json()) as {
           login: string
@@ -67,8 +71,11 @@ export default function ContributorDetailsContainer({
           ? 'Review'
           : 'Contribution'
 
-  const avatarUrl = useMemo(() => `https://github.com/${username}.png`, [username])
-  const profileUrl = useMemo(() => `https://github.com/${username}`, [username])
+  const avatarUrl = useMemo(
+    () => (username ? `https://github.com/${username}.png` : ''),
+    [username]
+  )
+  const profileUrl = useMemo(() => (username ? `https://github.com/${username}` : '#'), [username])
   const latest = items[0]
 
   return (
@@ -91,7 +98,7 @@ export default function ContributorDetailsContainer({
                 />
                 <div>
                   <Typography variant="h1" className="mb-2">
-                    {username}
+                    {username || '-'}
                   </Typography>
                   <Typography variant="body1" className="text-gray-600">
                     {total} {t('contributionsToEcosystem')}
