@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { getContributeApiBase } from '@/lib/utils'
+import { CONTACT_CATEGORIES } from '@/constants/contact-categories'
 
 const RichTextEditor = dynamic(() => import('./rich-text-editor'), {
   ssr: false,
@@ -184,10 +185,11 @@ export default function ContactForm() {
               onChange={(e) => setCategory(e.target.value)}
               className="border-primary focus:border-primary w-full appearance-none rounded-none border bg-transparent px-3 py-2 pr-10 text-sm text-black ring-0 transition-colors outline-none dark:bg-transparent dark:text-white"
             >
-              <option value="software">Software</option>
-              <option value="translation">Translation</option>
-              <option value="content">Content</option>
-              <option value="writing">Writing</option>
+              {CONTACT_CATEGORIES.map((cat) => (
+                <option key={cat.value} value={cat.value}>
+                  {cat.label}
+                </option>
+              ))}
             </select>
             <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
               <svg

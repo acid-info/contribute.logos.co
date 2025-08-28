@@ -1,4 +1,5 @@
 import { Icons } from '@/components/icons'
+import { CONTACT_CATEGORIES } from '@/constants/contact-categories'
 
 export interface NavItem {
   title: string
@@ -28,6 +29,8 @@ export interface Contributor {
   latestRepo: string
   avatarUrl: string
 }
+
+export type ContactCategory = (typeof CONTACT_CATEGORIES)[number]['value']
 
 // TipTap placeholder module declaration (for IDE/TS until types are resolved)
 declare module '@tiptap/extension-placeholder' {
