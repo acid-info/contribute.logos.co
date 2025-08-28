@@ -9,7 +9,7 @@ const RichTextEditor = dynamic(() => import('./rich-text-editor'), {
 })
 
 const API_BASE = getContributeApiBase()
-const SUBMIT_ENDPOINT = `${API_BASE}/contribute/form`
+const SUBMIT_ENDPOINT = `${API_BASE}/contribute`
 const EMAIL_ENDPOINT = `${API_BASE}/email/contribute`
 
 type SubmitState = 'idle' | 'submitting' | 'success' | 'error'
