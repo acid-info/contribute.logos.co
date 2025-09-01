@@ -79,6 +79,19 @@
   .border-primary {
     border-color: rgb(var(--lsd-border-primary));
   }
+
+  .bg-primary {
+    background-color: rgb(var(--lsd-surface-primary));
+  }
+
+  .text-primary {
+    color: rgb(var(--lsd-theme-primary));
+  }
+
+  .theme-primary {
+    color: rgb(var(--lsd-theme-primary));
+    background-color: rgb(var(--lsd-surface-primary));
+  }
 }
 
 html {
@@ -91,6 +104,7 @@ html {
 body {
   background-color: rgb(var(--lsd-theme-secondary));
   padding: 0;
+  padding-top: 4rem; /* Account for fixed header */
 }
 
 .logo-dark {

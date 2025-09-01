@@ -74,9 +74,7 @@ export function DocsSidebarNavItems({ items, pathname }: DocsSidebarNavItemsProp
               <span
                 className={cn(
                   'ml-2 px-1.5 py-0.5 text-xs leading-none no-underline',
-                  currentPath === item.href
-                    ? 'bg-neutral-900 text-white'
-                    : 'bg-[#000000] text-[#000000]'
+                  currentPath === item.href ? 'text-white' : 'bg-[#000000] text-[#000000]'
                 )}
               >
                 {item.label}
