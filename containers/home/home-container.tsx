@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useTranslations } from 'next-intl'
-import { Button, Typography } from '@acid-info/lsd-react'
+import { Button, Typography, Badge } from '@acid-info/lsd-react'
 import { Link } from '@/i18n/navigation'
 import { Contributor } from '@/types'
 import { ROUTES } from '@/constants/routes'
@@ -10,6 +10,7 @@ import { getContributeApiBase } from '@/lib/utils'
 
 export default function HomeContainer() {
   const t = useTranslations('home')
+  const tc = useTranslations('common')
   const [searchTerm, setSearchTerm] = useState('')
   const [contributors, setContributors] = useState<Contributor[]>([])
   const [currentPage, setCurrentPage] = useState(1)
@@ -141,9 +142,14 @@ export default function HomeContainer() {
 
         <div className="border-primary border">
           <div className="border-primary border-b px-4 py-4 sm:px-6">
-            <Typography variant="h3" className="!text-lg sm:!text-xl">
-              {t('contributors.title')}
-            </Typography>
+            <div className="flex items-center gap-3">
+              <Typography variant="h3" className="!text-lg sm:!text-xl">
+                {t('contributors.title')}
+              </Typography>
+              <Badge size="small" className="!cursor-default !no-underline hover:!no-underline">
+                {tc('contribute.timePeriod')}
+              </Badge>
+            </div>
           </div>
           <div className="divide-primary divide-y">
             {currentContributors.length > 0 ? (

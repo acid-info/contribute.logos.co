@@ -1,7 +1,7 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-import { Button, Typography } from '@acid-info/lsd-react'
+import { Button, Typography, Badge } from '@acid-info/lsd-react'
 import { Link } from '@/i18n/navigation'
 import { ROUTES } from '@/constants/routes'
 import { useEffect, useMemo, useState } from 'react'
@@ -13,6 +13,7 @@ type ApiItem = { date: string; repo: string; repoUrl: string; type: ApiItemType;
 
 export default function ContributorDetailsContainer() {
   const t = useTranslations('contributor')
+  const tc = useTranslations('common')
   const [items, setItems] = useState<ApiItem[]>([])
   const [total, setTotal] = useState(0)
   const [loading, setLoading] = useState(true)
@@ -166,7 +167,12 @@ export default function ContributorDetailsContainer() {
 
         <div className="border-primary border">
           <div className="border-primary border-b px-8 py-6">
-            <Typography variant="h2">{t('contributionHistory')}</Typography>
+            <div className="flex items-center gap-3">
+              <Typography variant="h2">{t('contributionHistory')}</Typography>
+              <Badge className="!cursor-default !no-underline hover:!no-underline">
+                {tc('contribute.timePeriod')}
+              </Badge>
+            </div>
           </div>
           <div className="divide-primary divide-y">
             {loading && (

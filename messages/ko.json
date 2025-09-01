@@ -1,5 +1,10 @@
 {
-  "locale": { "language": "언어", "en": "English", "fr": "Français", "ko": "한국어" },
+  "locale": {
+    "language": "언어",
+    "en": "English",
+    "fr": "Français",
+    "ko": "한국어"
+  },
   "common": {
     "nav": {
       "directory": "디렉토리",
@@ -7,6 +12,9 @@
       "contributors": "기여자",
       "milestones": "마일스톤",
       "proposals": "제안"
+    },
+    "contribute": {
+      "timePeriod": "최근 12개월"
     }
   },
   "home": {
