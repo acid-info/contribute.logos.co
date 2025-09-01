@@ -6,5 +6,5 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function getContributeApiBase() {
-  return 'https://logos-admin-git-develop-acidinfo.vercel.app/api'
+  return 'http://dev-admin-acid.logos.co/api'
 }
