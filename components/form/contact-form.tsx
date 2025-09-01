@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import { getContributeApiBase } from '@/lib/utils'
 import { CONTACT_CATEGORIES } from '@/constants/contact-categories'
@@ -27,6 +27,7 @@ export default function ContactForm() {
   const [messageText, setMessageText] = useState('')
   const [editorResetKey, setEditorResetKey] = useState(0)
   const [category, setCategory] = useState('software')
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const [status, setStatus] = useState<SubmitState>('idle')
   const [error, setError] = useState<string | null>(null)
   const [touched, setTouched] = useState<TouchedState>({
@@ -34,10 +35,51 @@ export default function ContactForm() {
     email: false,
     message: false,
   })
+  const dropdownRef = useRef<HTMLDivElement>(null)
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
 
   function validateEmail(value: string) {
     const re = /\S+@\S+\.\S+/
     return re.test(value)
+  }
+
+  function handleCategorySelect(value: string) {
+    setCategory(value)
+    setIsDropdownOpen(false)
+  }
+
+  function handleDropdownKeyDown(event: React.KeyboardEvent) {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault()
+      setIsDropdownOpen(!isDropdownOpen)
+    } else if (event.key === 'Escape') {
+      setIsDropdownOpen(false)
+    } else if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+      event.preventDefault()
+      if (!isDropdownOpen) {
+        setIsDropdownOpen(true)
+      }
+    }
+  }
+
+  function handleOptionKeyDown(event: React.KeyboardEvent, value: string) {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault()
+      handleCategorySelect(value)
+    }
   }
 
   const nameError =
@@ -131,7 +173,7 @@ export default function ContactForm() {
             onBlur={() => setTouched((t) => ({ ...t, name: true }))}
             aria-invalid={!!nameError}
             aria-describedby={nameError ? 'name-error' : undefined}
-            className={`w-full rounded-none border bg-transparent px-3 py-2 text-sm text-black ring-0 transition-colors outline-none dark:bg-transparent dark:text-white ${
+            className={`w-full rounded-none border bg-transparent px-3 py-2 text-sm ring-0 transition-colors outline-none dark:bg-transparent ${
               nameError
                 ? 'border-red-500 focus:border-red-600'
                 : 'border-primary focus:border-primary'
@@ -159,7 +201,7 @@ export default function ContactForm() {
             onBlur={() => setTouched((t) => ({ ...t, email: true }))}
             aria-invalid={!!emailError}
             aria-describedby={emailError ? 'email-error' : 'email-help'}
-            className={`w-full rounded-none border bg-transparent px-3 py-2 text-sm text-black ring-0 transition-colors outline-none dark:bg-transparent dark:text-white ${
+            className={`w-full rounded-none border bg-transparent px-3 py-2 text-sm ring-0 transition-colors outline-none dark:bg-transparent ${
               emailError
                 ? 'border-red-500 focus:border-red-600'
                 : 'border-primary focus:border-primary'
@@ -177,23 +219,24 @@ export default function ContactForm() {
           <label htmlFor="category" className="mb-1 block text-sm font-medium">
             Category
           </label>
-          <div className="relative">
-            <select
+          <div className="relative" ref={dropdownRef}>
+            <div
               id="category"
-              name="category"
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-              className="border-primary focus:border-primary w-full appearance-none rounded-none border bg-transparent px-3 py-2 pr-10 text-sm text-black ring-0 transition-colors outline-none dark:bg-transparent dark:text-white"
+              role="combobox"
+              aria-expanded={isDropdownOpen}
+              aria-haspopup="listbox"
+              tabIndex={0}
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              onKeyDown={handleDropdownKeyDown}
+              className="border-primary focus:border-primary w-full cursor-pointer rounded-none border bg-transparent px-3 py-2 pr-10 text-sm text-black ring-0 transition-colors outline-none dark:bg-transparent dark:text-white"
             >
-              {CONTACT_CATEGORIES.map((cat) => (
-                <option key={cat.value} value={cat.value}>
-                  {cat.label}
-                </option>
-              ))}
-            </select>
+              {CONTACT_CATEGORIES.find((cat) => cat.value === category)?.label || 'Select category'}
+            </div>
             <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
               <svg
-                className="h-4 w-4 text-black dark:text-white"
+                className={`h-4 w-4 text-black transition-transform dark:text-white ${
+                  isDropdownOpen ? 'rotate-180' : ''
+                }`}
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -205,6 +248,33 @@ export default function ContactForm() {
                 <path d="M6 9l6 6 6-6" />
               </svg>
             </span>
+            {isDropdownOpen && (
+              <div
+                role="listbox"
+                className="dropdown-menu absolute top-full right-0 left-0 z-10 mt-1 border border-black bg-white shadow-lg dark:border-white dark:bg-black"
+                style={{
+                  backgroundColor: 'var(--dropdown-bg, white)',
+                  color: 'var(--dropdown-text, black)',
+                }}
+              >
+                {CONTACT_CATEGORIES.map((cat) => (
+                  <div
+                    key={cat.value}
+                    role="option"
+                    aria-selected={category === cat.value}
+                    tabIndex={0}
+                    onClick={() => handleCategorySelect(cat.value)}
+                    onKeyDown={(e) => handleOptionKeyDown(e, cat.value)}
+                    className="dropdown-option cursor-pointer px-3 py-2 text-sm transition-colors"
+                    style={{
+                      color: 'inherit',
+                    }}
+                  >
+                    {cat.label}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
 
