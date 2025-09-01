@@ -19,13 +19,17 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default function Page() {
   return (
-    <div className="mx-auto min-h-[calc(100vh-60px)] max-w-2xl px-4 py-10 sm:px-6 lg:px-8">
+    <div className="mx-auto flex min-h-[calc(100vh-60px)] flex-col items-center px-4 py-10 sm:px-6 lg:px-8">
       <div className="mb-8 flex flex-col items-center gap-2">
         <h1 className="mb-6 text-2xl font-semibold">Proposals</h1>
         <p className="mb-8 text-base">Submit your proposal for Logos.</p>
       </div>
-      <ContactForm />
-      <ProposalGuidelines />
+      <div className="max-w-3xl">
+        <ContactForm />
+      </div>
+      <div className="max-w-3xl">
+        <ProposalGuidelines />
+      </div>
     </div>
   )
 }
