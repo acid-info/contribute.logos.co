@@ -4,56 +4,20 @@ import { useTranslations } from 'next-intl'
 import { Button, Typography, Badge } from '@acid-info/lsd-react'
 import { Link } from '@/i18n/navigation'
 import { ROUTES } from '@/constants/routes'
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import { useSearchParams } from 'next/navigation'
-import { getContributeApiBase } from '@/lib/utils'
-
-type ApiItemType = 'PR' | 'REVIEW' | 'COMMIT'
-type ApiItem = { date: string; repo: string; repoUrl: string; type: ApiItemType; link: string }
+import { useContributorDetails, type ApiItemType } from '@/hooks/useContributorDetails'
 
 export default function ContributorDetailsContainer() {
   const t = useTranslations('contributor')
   const tc = useTranslations('common')
-  const [items, setItems] = useState<ApiItem[]>([])
-  const [total, setTotal] = useState(0)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
   const searchParams = useSearchParams()
   const username = searchParams.get('username') || ''
 
-  useEffect(() => {
-    if (!username) {
-      setItems([])
-      setTotal(0)
-      setLoading(false)
-      setError('Missing username')
-      return
-    }
-    const fetchItems = async () => {
-      try {
-        setLoading(true)
-        setError(null)
-        const base = getContributeApiBase()
-        const res = await fetch(`${base}/contribute/contributors/${encodeURIComponent(username)}`)
-        if (!res.ok) throw new Error(`Failed: ${res.status}`)
-        const json = (await res.json()) as {
-          login: string
-          total: number
-          items: ApiItem[]
-          nextCursor?: string
-        }
-        setItems(json.items || [])
-        setTotal(json.total || 0)
-      } catch (e: any) {
-        setError(e?.message || 'Failed to load contributions')
-        setItems([])
-        setTotal(0)
-      } finally {
-        setLoading(false)
-      }
-    }
-    fetchItems()
-  }, [username])
+  const { data, isLoading: loading, error } = useContributorDetails(username)
+
+  const items = data?.items || []
+  const total = data?.total || 0
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
@@ -102,7 +66,11 @@ export default function ContributorDetailsContainer() {
                     {username || '-'}
                   </Typography>
                   <Typography variant="body1" className="text-gray-600">
-                    {total} {t('contributionsToEcosystem')}
+                    {loading || error ? (
+                      <div className="inline-block h-4 w-4 animate-spin rounded-full border border-gray-300 border-t-gray-900"></div>
+                    ) : (
+                      `${total} ${t('contributionsToEcosystem')}`
+                    )}
                   </Typography>
                 </div>
               </div>
@@ -110,19 +78,33 @@ export default function ContributorDetailsContainer() {
               <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
                 <div className="border-primary border p-6 text-center">
                   <Typography variant="h2" className="mb-2">
-                    {total}
+                    {loading || error ? (
+                      <div className="mx-auto h-6 w-6 animate-spin rounded-full border-2 border-gray-300 border-t-gray-900"></div>
+                    ) : (
+                      total
+                    )}
                   </Typography>
                   <Typography variant="body2">{t('totalContributions')}</Typography>
                 </div>
                 <div className="border-primary border p-6 text-center">
                   <Typography variant="h2" className="mb-2">
-                    {latest?.repo || '-'}
+                    {loading || error ? (
+                      <div className="mx-auto h-6 w-6 animate-spin rounded-full border-2 border-gray-300 border-t-gray-900"></div>
+                    ) : (
+                      latest?.repo || '-'
+                    )}
                   </Typography>
                   <Typography variant="body2">{t('latestRepository')}</Typography>
                 </div>
                 <div className="border-primary border p-6 text-center">
                   <Typography variant="h2" className="mb-2">
-                    {latest ? formatDate(latest.date) : '-'}
+                    {loading || error ? (
+                      <div className="mx-auto h-6 w-6 animate-spin rounded-full border-2 border-gray-300 border-t-gray-900"></div>
+                    ) : latest ? (
+                      formatDate(latest.date)
+                    ) : (
+                      '-'
+                    )}
                   </Typography>
                   <Typography variant="body2">{t('latestContribution')}</Typography>
                 </div>
@@ -145,19 +127,33 @@ export default function ContributorDetailsContainer() {
                 <div className="flex justify-between">
                   <Typography variant="body2">Total Contributions</Typography>
                   <Typography variant="body2" className="font-medium">
-                    {total}
+                    {loading || error ? (
+                      <div className="h-4 w-4 animate-spin rounded-full border border-gray-300 border-t-gray-900"></div>
+                    ) : (
+                      total
+                    )}
                   </Typography>
                 </div>
                 <div className="flex justify-between">
                   <Typography variant="body2">Latest Repository</Typography>
                   <Typography variant="body2" className="font-medium">
-                    {latest?.repo || '-'}
+                    {loading || error ? (
+                      <div className="h-4 w-4 animate-spin rounded-full border border-gray-300 border-t-gray-900"></div>
+                    ) : (
+                      latest?.repo || '-'
+                    )}
                   </Typography>
                 </div>
                 <div className="flex justify-between">
                   <Typography variant="body2">Last Contribution</Typography>
                   <Typography variant="body2" className="font-medium">
-                    {latest ? formatDate(latest.date) : '-'}
+                    {loading || error ? (
+                      <div className="h-4 w-4 animate-spin rounded-full border border-gray-300 border-t-gray-900"></div>
+                    ) : latest ? (
+                      formatDate(latest.date)
+                    ) : (
+                      '-'
+                    )}
                   </Typography>
                 </div>
               </div>
@@ -176,13 +172,22 @@ export default function ContributorDetailsContainer() {
           </div>
           <div className="divide-primary divide-y">
             {loading && (
-              <div className="p-8">
-                <Typography variant="body2">Loading…</Typography>
+              <div className="flex justify-center p-8 sm:p-12">
+                <div className="flex flex-col items-center space-y-4">
+                  <div className="h-8 w-8 animate-spin rounded-full border-2 border-gray-300 border-t-gray-900"></div>
+                  <Typography variant="body2" className="text-gray-600">
+                    Loading contributions...
+                  </Typography>
+                </div>
               </div>
             )}
             {!loading && error && (
-              <div className="p-8">
-                <Typography variant="body2">{error}</Typography>
+              <div className="flex justify-center p-8 sm:p-12">
+                <div className="flex flex-col items-center space-y-4">
+                  <Typography variant="body2" className="text-red-600">
+                    {error instanceof Error ? error.message : 'Failed to load contributions'}
+                  </Typography>
+                </div>
               </div>
             )}
             {!loading && !error && items.length === 0 && (
