@@ -4,8 +4,6 @@ import Footer from '@/components/site-footer'
 import QueryProvider from '@/components/providers/query-provider'
 import { NextIntlClientProvider } from 'next-intl'
 
-export const dynamic = 'force-static'
-
 export default async function LocaleLayout({
   children,
   params,
