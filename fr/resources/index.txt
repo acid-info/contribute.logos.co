@@ -1,0 +1,268 @@
+1:"$Sreact.fragment"
+5:I[3080,[],""]
+6:I[3758,[],""]
+8:I[8296,[],"MetadataBoundary"]
+a:I[8296,[],"OutletBoundary"]
+d:I[5168,[],"AsyncMetadataOutlet"]
+f:I[8296,[],"ViewportBoundary"]
+11:I[4583,[],""]
+:HL["/_next/static/css/2ab1a5ab4d9b5436.css","style"]
+:HL["/_next/static/css/3192417f49f86bda.css","style"]
+:HL["/_next/static/css/ef46db3751d8e999.css","style"]
+0:{"P":null,"b":"GZ_BqNKYCQV58_SX3cYIG","p":"","c":["","fr","resources",""],"i":false,"f":[[["",{"children":[["locale","fr","d"],{"children":["(resources)",{"children":["resources",{"children":[["slug","","oc"],{"children":["__PAGE__",{}]}]}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/2ab1a5ab4d9b5436.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/3192417f49f86bda.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],"$L2"]}],{"children":[["locale","fr","d"],["$","$1","c",{"children":[null,"$L3"]}],{"children":["(resources)",["$","$1","c",{"children":[null,"$L4"]}],{"children":["resources",["$","$1","c",{"children":[null,["$","$L5",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["slug","","oc"],["$","$1","c",{"children":[null,["$","$L5",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":["$L7",["$","$L8",null,{"children":"$L9"}],[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/ef46db3751d8e999.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","$La",null,{"children":["$Lb","$Lc",["$","$Ld",null,{"promise":"$@e"}]]}]]}],{},null,false]},null,false]},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,["$","$1","JWZvLiPKeU65sBcMkvElK",{"children":[["$","$Lf",null,{"children":"$L10"}],null]}],null]}],false]],"m":"$undefined","G":["$11","$undefined"],"s":false,"S":true}
+13:I[5097,["711","static/chunks/711-0f594593410428a0.js","337","static/chunks/337-443ee2ac079cbcba.js","129","static/chunks/app/%5Blocale%5D/(resources)/layout-963ccb98f6f434d1.js"],"DocsSidebarNav"]
+14:"$Sreact.suspense"
+15:I[5168,[],"AsyncMetadata"]
+12:T1696,:root, [data-theme="light"] {
+
+    --lsd-display1-fontSize: 5.5rem;
+--lsd-display1-fontWeight: normal;
+--lsd-display1-lineHeight: 6rem;
+--lsd-display2-fontSize: 4rem;
+--lsd-display2-fontWeight: normal;
+--lsd-display2-lineHeight: 4.5rem;
+--lsd-display3-fontSize: 3.5rem;
+--lsd-display3-fontWeight: normal;
+--lsd-display3-lineHeight: 4rem;
+--lsd-display4-fontSize: 3rem;
+--lsd-display4-fontWeight: normal;
+--lsd-display4-lineHeight: 3.5rem;
+--lsd-h1-fontSize: 2.5rem;
+--lsd-h1-fontWeight: normal;
+--lsd-h1-lineHeight: 3rem;
+--lsd-h2-fontSize: 2rem;
+--lsd-h2-fontWeight: normal;
+--lsd-h2-lineHeight: 2.5rem;
+--lsd-h3-fontSize: 1.75rem;
+--lsd-h3-fontWeight: normal;
+--lsd-h3-lineHeight: 2.25rem;
+--lsd-h4-fontSize: 1.5rem;
+--lsd-h4-fontWeight: normal;
+--lsd-h4-lineHeight: 2rem;
+--lsd-h5-fontSize: 1.25rem;
+--lsd-h5-fontWeight: normal;
+--lsd-h5-lineHeight: 1.75rem;
+--lsd-h6-fontSize: 1rem;
+--lsd-h6-fontWeight: normal;
+--lsd-h6-lineHeight: 1.5rem;
+--lsd-subtitle1-fontSize: 1.125rem;
+--lsd-subtitle1-fontWeight: normal;
+--lsd-subtitle1-lineHeight: 1.5rem;
+--lsd-subtitle2-fontSize: 1rem;
+--lsd-subtitle2-fontWeight: normal;
+--lsd-subtitle2-lineHeight: 1.5rem;
+--lsd-subtitle3-fontSize: 0.875rem;
+--lsd-subtitle3-fontWeight: normal;
+--lsd-subtitle3-lineHeight: 1.25rem;
+--lsd-subtitle4-fontSize: 0.75rem;
+--lsd-subtitle4-fontWeight: normal;
+--lsd-subtitle4-lineHeight: 1rem;
+--lsd-body1-fontSize: 1rem;
+--lsd-body1-fontWeight: normal;
+--lsd-body1-lineHeight: 1.5rem;
+--lsd-body2-fontSize: 0.875rem;
+--lsd-body2-fontWeight: normal;
+--lsd-body2-lineHeight: 1.25rem;
+--lsd-body3-fontSize: 0.75rem;
+--lsd-body3-fontWeight: normal;
+--lsd-body3-lineHeight: 1rem;
+--lsd-label1-fontSize: 0.875rem;
+--lsd-label1-fontWeight: normal;
+--lsd-label1-lineHeight: 1.25rem;
+--lsd-label2-fontSize: 0.75rem;
+--lsd-label2-fontWeight: normal;
+--lsd-label2-lineHeight: 1rem;
+--lsd-typography-generic-font-family: sans-serif;
+--lsd-theme-primary: 0, 0, 0;
+--lsd-theme-secondary: 255, 255, 255;
+--lsd-surface-primary: 255, 255, 255;
+--lsd-surface-secondary: 0, 0, 0;
+--lsd-border-primary: 0, 0, 0;
+--lsd-border-secondary: 255, 255, 255;
+--lsd-icon-primary: 0, 0, 0;
+--lsd-icon-secondary: 255, 255, 255;
+--lsd-text-primary: 0, 0, 0;
+--lsd-text-secondary: 255, 255, 255;
+--lsd-text-tertiary: 0, 0, 0, 0.34;
+--lsd-spacing-4: 4px;
+--lsd-spacing-8: 8px;
+--lsd-spacing-16: 16px;
+--lsd-spacing-24: 24px;
+--lsd-spacing-32: 32px;
+--lsd-spacing-40: 40px;
+--lsd-spacing-64: 64px;
+--lsd-spacing-80: 80px;
+--lsd-spacing-96: 96px;
+--lsd-spacing-120: 120px; 
+
+    @media (min-width: 0px) {
+      :root {
+        
+      }
+
+      
+    }
+@media (min-width: 400px) {
+      :root {
+        
+      }
+
+      
+    }
+@media (min-width: 768px) {
+      :root {
+        
+      }
+
+      
+    }
+@media (min-width: 1024px) {
+      :root {
+        
+      }
+
+      
+    }
+@media (min-width: 1205px) {
+      :root {
+        
+      }
+
+      
+    }
+  
+}
+
+[data-theme="dark"] {
+
+    --lsd-display1-fontSize: 5.5rem;
+--lsd-display1-fontWeight: normal;
+--lsd-display1-lineHeight: 6rem;
+--lsd-display2-fontSize: 4rem;
+--lsd-display2-fontWeight: normal;
+--lsd-display2-lineHeight: 4.5rem;
+--lsd-display3-fontSize: 3.5rem;
+--lsd-display3-fontWeight: normal;
+--lsd-display3-lineHeight: 4rem;
+--lsd-display4-fontSize: 3rem;
+--lsd-display4-fontWeight: normal;
+--lsd-display4-lineHeight: 3.5rem;
+--lsd-h1-fontSize: 2.5rem;
+--lsd-h1-fontWeight: normal;
+--lsd-h1-lineHeight: 3rem;
+--lsd-h2-fontSize: 2rem;
+--lsd-h2-fontWeight: normal;
+--lsd-h2-lineHeight: 2.5rem;
+--lsd-h3-fontSize: 1.75rem;
+--lsd-h3-fontWeight: normal;
+--lsd-h3-lineHeight: 2.25rem;
+--lsd-h4-fontSize: 1.5rem;
+--lsd-h4-fontWeight: normal;
+--lsd-h4-lineHeight: 2rem;
+--lsd-h5-fontSize: 1.25rem;
+--lsd-h5-fontWeight: normal;
+--lsd-h5-lineHeight: 1.75rem;
+--lsd-h6-fontSize: 1rem;
+--lsd-h6-fontWeight: normal;
+--lsd-h6-lineHeight: 1.5rem;
+--lsd-subtitle1-fontSize: 1.125rem;
+--lsd-subtitle1-fontWeight: normal;
+--lsd-subtitle1-lineHeight: 1.5rem;
+--lsd-subtitle2-fontSize: 1rem;
+--lsd-subtitle2-fontWeight: normal;
+--lsd-subtitle2-lineHeight: 1.5rem;
+--lsd-subtitle3-fontSize: 0.875rem;
+--lsd-subtitle3-fontWeight: normal;
+--lsd-subtitle3-lineHeight: 1.25rem;
+--lsd-subtitle4-fontSize: 0.75rem;
+--lsd-subtitle4-fontWeight: normal;
+--lsd-subtitle4-lineHeight: 1rem;
+--lsd-body1-fontSize: 1rem;
+--lsd-body1-fontWeight: normal;
+--lsd-body1-lineHeight: 1.5rem;
+--lsd-body2-fontSize: 0.875rem;
+--lsd-body2-fontWeight: normal;
+--lsd-body2-lineHeight: 1.25rem;
+--lsd-body3-fontSize: 0.75rem;
+--lsd-body3-fontWeight: normal;
+--lsd-body3-lineHeight: 1rem;
+--lsd-label1-fontSize: 0.875rem;
+--lsd-label1-fontWeight: normal;
+--lsd-label1-lineHeight: 1.25rem;
+--lsd-label2-fontSize: 0.75rem;
+--lsd-label2-fontWeight: normal;
+--lsd-label2-lineHeight: 1rem;
+--lsd-typography-generic-font-family: sans-serif;
+--lsd-theme-primary: 255, 255, 255;
+--lsd-theme-secondary: 0, 0, 0;
+--lsd-surface-primary: 0, 0, 0;
+--lsd-surface-secondary: 255, 255, 255;
+--lsd-border-primary: 255, 255, 255;
+--lsd-border-secondary: 0, 0, 0;
+--lsd-icon-primary: 255, 255, 255;
+--lsd-icon-secondary: 0, 0, 0;
+--lsd-text-primary: 255, 255, 255;
+--lsd-text-secondary: 0, 0, 0;
+--lsd-text-tertiary: 255, 255, 255, 0.34;
+--lsd-spacing-4: 4px;
+--lsd-spacing-8: 8px;
+--lsd-spacing-16: 16px;
+--lsd-spacing-24: 24px;
+--lsd-spacing-32: 32px;
+--lsd-spacing-40: 40px;
+--lsd-spacing-64: 64px;
+--lsd-spacing-80: 80px;
+--lsd-spacing-96: 96px;
+--lsd-spacing-120: 120px; 
+
+    @media (min-width: 0px) {
+      :root {
+        
+      }
+
+      
+    }
+@media (min-width: 400px) {
+      :root {
+        
+      }
+
+      
+    }
+@media (min-width: 768px) {
+      :root {
+        
+      }
+
+      
+    }
+@media (min-width: 1024px) {
+      :root {
+        
+      }
+
+      
+    }
+@media (min-width: 1205px) {
+      :root {
+        
+      }
+
+      
+    }
+  
+}
+
+2:["$","html",null,{"lang":"en","className":"scroll-smooth","suppressHydrationWarning":true,"children":[["$","head",null,{"children":[["$","link",null,{"rel":"apple-touch-icon","sizes":"76x76","href":"/favicon.ico"}],["$","link",null,{"rel":"icon","href":"/favicon.ico","type":"image/x-icon"}],["$","meta",null,{"name":"msapplication-TileColor","content":"#000000"}],["$","meta",null,{"name":"theme-color","media":"(prefers-color-scheme: light)","content":"#fff"}],["$","meta",null,{"name":"theme-color","media":"(prefers-color-scheme: dark)","content":"#000"}],["$","style",null,{"id":"lsd-theme-styles","dangerouslySetInnerHTML":{"__html":"$12"}}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"\n  (function() {\n    try {\n      var theme = localStorage.getItem('theme');\n      var systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';\n      var initialTheme = theme || systemTheme;\n      document.documentElement.setAttribute('data-theme', initialTheme);\n    } catch (e) {}\n  })();\n"}}]]}],["$","body",null,{"children":["$","$L5",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]]}]
+4:["$","div",null,{"className":"container-wrapper mt-20","children":["$","div",null,{"className":"container flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10","children":[["$","aside",null,{"className":"fixed top-16 z-30 hidden h-[calc(100vh-4rem)] w-full shrink-0 md:sticky md:block","children":["$","div",null,{"className":"no-scrollbar h-full overflow-auto py-6 pr-4 lg:py-8","children":["$","$L13",null,{"items":[{"title":"common.sidebar.docs","items":[{"title":"About Logos","href":"/resources","items":[]},{"title":"How to contribute","href":"/resources/how-to-contribute","items":[]}]}]}]}]}],["$","div",null,{"className":"px-4 md:px-0","children":["$","$L5",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]}]]}]}]
+9:["$","$14",null,{"fallback":null,"children":["$","$L15",null,{"promise":"$@16"}]}]
+c:null
+7:["$","main",null,{"className":"relative mb-24 lg:gap-10 xl:grid xl:grid-cols-[1fr_300px]","children":["$","div",null,{"className":"mx-auto w-full max-w-3xl min-w-0 py-6 lg:py-8","children":[["$","div",null,{"className":"space-y-2","children":["$","h1",null,{"className":"scroll-m-20 text-4xl font-medium tracking-tight","children":"Technologie Logos"}]}],["$","div",null,{"className":"pt-8 pb-12","children":["$","article",null,{"className":"markdown mx-auto max-w-[120ch]","children":[["$","p",null,{"className":"leading-7 [&:not(:first-child)]:mt-6","children":"Logos est une pile technologique souveraine et décentralisée qui concrétise la vision cypherpunk latente des territoires numériques autonomes, également appelés zones autonomes temporaires, méta-refuges, cyber-états ou, plus récemment, États-réseaux. Alors que les cypherspaces traditionnels comme Tor et I2P ont créé une forme de “sauvagerie” à travers des réseaux de communication anonymes, Logos y ajoute une pluralité d’ordres internes grâce à un consensus blockchain respectueux de la vie privée."}],"\n",["$","p",null,{"className":"leading-7 [&:not(:first-child)]:mt-6","children":"Cette combinaison établit un nouveau type de territoire dans le cyberespace : un « cypherstate » supra-juridictionnel capable de déployer des institutions stables et résistantes à la corruption pour toute personne, partout dans le monde."}],"\n",["$","p",null,{"className":"leading-7 [&:not(:first-child)]:mt-6","children":"La base technique du système repose sur une architecture hybride micro-noyau et microservices qui combine initialement trois protocoles fondamentaux existants :"}],"\n",["$","ul",null,{"className":"ml-6 list-disc","children":["\n",["$","li",null,{"className":"mt-2","children":["\n",["$","p",null,{"className":"leading-7 [&:not(:first-child)]:mt-6","children":[["$","strong",null,{"children":"Communication"}]," : Réseaux de communication anonymes pour une messagerie résistante aux adversaires étatiques"]}],"\n"]}],"\n",["$","li",null,{"className":"mt-2","children":["\n",["$","p",null,{"className":"leading-7 [&:not(:first-child)]:mt-6","children":[["$","strong",null,{"children":"Stockage"}]," : Stockage décentralisé pour des données persistantes et résistantes à la coercition, le partage de fichiers, et la distribution d’applications"]}],"\n"]}],"\n",["$","li",null,{"className":"mt-2","children":["\n",["$","p",null,{"className":"leading-7 [&:not(:first-child)]:mt-6","children":[["$","strong",null,{"children":"Blockchain"}]," : Blockchain préservant la vie privée pour l’ordre et la gouvernance souverains"]}],"\n"]}],"\n"]}],"\n",["$","p",null,{"className":"leading-7 [&:not(:first-child)]:mt-6","children":"Les applications communiquent en utilisant des formats de données auto-descriptifs RDF-star, permettant aux nœuds de découvrir et charger dynamiquement des modules tout en préservant la confidentialité. Cette architecture basée sur des modules (plugins) permet au réseau d’évoluer et de s’adapter, créant un support impartial pour les accords entre parties, qu’il s’agisse d’individus, d’organisations de la société civile ou d’États-nations."}],"\n",["$","p",null,{"className":"leading-7 [&:not(:first-child)]:mt-6","children":"L’architecture permet une gouvernance compétitive, où les institutions doivent gagner le soutien en améliorant réellement la vie des gens. En combinant une protection maximale de la vie privée avec une composabilité à l’exécution, elle fournit une base pour des institutions parallèles résistantes à la capture et à la corruption – qu’elles soient déployées de manière ascendante par la société civile ou descendante par des acteurs étatiques."}],"\n",["$","p",null,{"className":"leading-7 [&:not(:first-child)]:mt-6","children":"En tant que projet open-source, Logos n’est pas seulement un regroupement d’individus. Nous nous réunissons par choix pour relever des défis communs, faire avancer nos principes et créer des systèmes qui bénéficient à tous grâce à des contributions ouvertes."}],"\n",["$","p",null,{"className":"leading-7 [&:not(:first-child)]:mt-6","children":"Pour aller plus loin, explorez notre code."}],"\n",["$","br",null,{}],"\n",["$","br",null,{}],"\n",["$","a",null,{"href":"https://github.com/logos-co","target":"_blank","className":"cursor-pointer border border-black px-4 py-2 text-black","children":["$","span",null,{"children":"Rejoignez nos développeurs"}]}]]}]}],["$","div",null,{"className":"pt-8 pb-12"}],null]}]}]
+17:I[6421,["711","static/chunks/711-0f594593410428a0.js","346","static/chunks/346-439a750848683371.js","198","static/chunks/app/%5Blocale%5D/(resources)/resources/%5B%5B...slug%5D%5D/page-1edc615e010535a0.js"],"default"]
+18:I[5684,["711","static/chunks/711-0f594593410428a0.js","337","static/chunks/337-443ee2ac079cbcba.js","835","static/chunks/835-88744c3081c78c93.js","450","static/chunks/app/%5Blocale%5D/layout-943417a0fe6a89dc.js"],"default"]
+19:I[7132,["711","static/chunks/711-0f594593410428a0.js","337","static/chunks/337-443ee2ac079cbcba.js","835","static/chunks/835-88744c3081c78c93.js","450","static/chunks/app/%5Blocale%5D/layout-943417a0fe6a89dc.js"],"default"]
+3:["$","$L17",null,{"formats":"$undefined","locale":"fr","messages":{"locale":{"language":"Langue","en":"English","fr":"Français","ko":"한국어"},"common":{"nav":{"directory":"Répertoire","resources":"Ressources","contributors":"Contributeurs","milestones":"Jalons","proposals":"Propositions"},"contribute":{"timePeriod":"12 derniers mois"}},"home":{"title":"Logos Contribute","subtitle":"Célébrer les contributeurs open source et aider les nouveaux développeurs à faire leurs premières contributions","search":{"placeholder":"Rechercher par nom d'utilisateur ou dépôt..."},"stats":{"activeContributors":"Contributeurs actifs","totalContributions":"Contributions totales","repositories":"Dépôts"},"contributors":{"title":"Répertoire des contributeurs","contributions":"contributions","latest":"Dernière","viewGithubProfile":"Voir le profil GitHub","viewDetails":"Voir les détails","noResults":"Aucun contributeur trouvé correspondant à votre recherche.","pagination":{"showing":"Affichage de {start}-{end} sur {total} contributeurs","previous":"Précédent","next":"Suivant"}},"cta":{"title":"Prêt à faire votre première contribution ?","description":"Rejoignez notre communauté et aidez à construire l'avenir du développement open source.","getStarted":"Commencer","viewGuidelines":"Voir les directives"}},"contributor":{"backToContributors":"← Retour aux contributeurs","contributionsToEcosystem":"contributions à l'écosystème Logos","totalContributions":"Contributions totales","latestRepository":"Dernier dépôt","latestContribution":"Dernière contribution","viewGithubProfile":"Voir le profil GitHub","contributionHistory":"Historique des contributions","commit":"Commit","issue":"Problème","pullRequest":"Pull Request","review":"Avis","translation":"Traduction","contribution":"Contribution","view":"Voir"},"footer":{}},"now":"$undefined","timeZone":"UTC","children":[["$","$L18",null,{}],["$","main",null,{"children":["$","$L5",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"flex items-center justify-center py-20","children":["$","h1",null,{"className":"text-4xl font-light text-gray-500","children":"404 | Not Found"}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],["$","$L19",null,{}]]}]
+10:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+b:null
+16:{"metadata":[["$","title","0",{"children":"Technologie Logos"}],["$","meta","1",{"name":"description","content":"Une pile technologique souveraine et décentralisée pour des territoires numériques autonomes."}],["$","meta","2",{"property":"og:title","content":"Technologie Logos"}],["$","meta","3",{"property":"og:description","content":"Une pile technologique souveraine et décentralisée pour des territoires numériques autonomes."}],["$","meta","4",{"property":"og:url","content":"https://logos.co/fr/resources/fr/"}],["$","meta","5",{"property":"og:image","content":"http://localhost:3000/api/og?title=Technologie%20Logos&description=Une%20pile%20technologique%20souveraine%20et%20d%C3%A9centralis%C3%A9e%20pour%20des%20territoires%20num%C3%A9riques%20autonomes."}],["$","meta","6",{"property":"og:type","content":"article"}],["$","meta","7",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","8",{"name":"twitter:creator","content":"@logosnetwork"}],["$","meta","9",{"name":"twitter:title","content":"Technologie Logos"}],["$","meta","10",{"name":"twitter:description","content":"Une pile technologique souveraine et décentralisée pour des territoires numériques autonomes."}],["$","meta","11",{"name":"twitter:image","content":"https://logos.co/og?title=Technologie%20Logos&description=Une%20pile%20technologique%20souveraine%20et%20d%C3%A9centralis%C3%A9e%20pour%20des%20territoires%20num%C3%A9riques%20autonomes."}]],"error":null,"digest":"$undefined"}
+e:{"metadata":"$16:metadata","error":null,"digest":"$undefined"}
