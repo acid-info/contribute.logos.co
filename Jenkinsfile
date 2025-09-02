@@ -46,7 +46,7 @@ pipeline {
                 -b ${deployBranch()} \
                 -c ${deployDomain()} \
                 -p out
-              """, pure: false)
+              """, pure: false
             )
           }
         }
@@ -62,4 +62,3 @@ pipeline {
 def isMasterBranch() { GIT_BRANCH ==~ /.*master/ }
 def deployBranch() { isMasterBranch() ? 'deploy-master' : 'deploy-develop' }
 def deployDomain() { isMasterBranch() ? 'contribute.logos.co' : 'dev-contribute.logos.co' }
-def deployDomain() { isMasterBranch() ? 'logos.co' : 'dev.logos.co' }
