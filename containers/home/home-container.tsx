@@ -4,50 +4,17 @@ import { useState, useEffect } from 'react'
 import { useTranslations } from 'next-intl'
 import { Button, Typography, Badge } from '@acid-info/lsd-react'
 import { Link } from '@/i18n/navigation'
-import { Contributor } from '@/types'
 import { ROUTES } from '@/constants/routes'
-import { getContributeApiBase } from '@/lib/utils'
+import { useContributors } from '@/hooks/useContributors'
 
 export default function HomeContainer() {
   const t = useTranslations('home')
   const tc = useTranslations('common')
   const [searchTerm, setSearchTerm] = useState('')
-  const [contributors, setContributors] = useState<Contributor[]>([])
   const [currentPage, setCurrentPage] = useState(1)
-  const [isLoading, setIsLoading] = useState(true)
   const itemsPerPage = 10
 
-  useEffect(() => {
-    const fetchContributors = async () => {
-      setIsLoading(true)
-      try {
-        const base = getContributeApiBase()
-        const res = await fetch(`${base}/contribute/contributors`)
-        if (!res.ok) throw new Error(`Failed: ${res.status}`)
-        const data = (await res.json()) as Array<{
-          login: string
-          profileUrl: string
-          contributionCount: number
-          latest: { date: string; type: 'PR' | 'REVIEW' | 'COMMIT'; link: string; repo: string }
-        }>
-        const mapped: Contributor[] = data.map((p, idx) => ({
-          id: idx + 1,
-          username: p.login,
-          profileUrl: p.profileUrl,
-          contributions: p.contributionCount,
-          latestContribution: p.latest.date,
-          latestRepo: p.latest.repo,
-          avatarUrl: `https://github.com/${p.login}.png`,
-        }))
-        setContributors(mapped)
-      } catch (e) {
-        setContributors([])
-      } finally {
-        setIsLoading(false)
-      }
-    }
-    fetchContributors()
-  }, [])
+  const { data: contributors = [], isLoading, error } = useContributors()
 
   const filteredContributors = contributors.filter(
     (contributor) =>
@@ -120,7 +87,7 @@ export default function HomeContainer() {
         <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <div className="border-primary border p-4 sm:p-6">
             <Typography variant="h2" className="text-2xl sm:text-3xl">
-              {isLoading ? (
+              {isLoading || error ? (
                 <div className="h-8 w-8 animate-spin rounded-full border-2 border-gray-300 border-t-gray-900"></div>
               ) : (
                 contributors.length
@@ -132,7 +99,7 @@ export default function HomeContainer() {
           </div>
           <div className="border-primary border p-4 sm:p-6">
             <Typography variant="h2" className="text-2xl sm:text-3xl">
-              {isLoading ? (
+              {isLoading || error ? (
                 <div className="h-8 w-8 animate-spin rounded-full border-2 border-gray-300 border-t-gray-900"></div>
               ) : (
                 contributors.reduce((sum, c) => sum + c.contributions, 0)
@@ -144,7 +111,7 @@ export default function HomeContainer() {
           </div>
           <div className="border-primary border p-4 sm:col-span-2 sm:p-6 lg:col-span-1">
             <Typography variant="h2" className="text-2xl sm:text-3xl">
-              {isLoading ? (
+              {isLoading || error ? (
                 <div className="h-8 w-8 animate-spin rounded-full border-2 border-gray-300 border-t-gray-900"></div>
               ) : (
                 new Set(contributors.map((c) => c.latestRepo)).size
@@ -174,6 +141,14 @@ export default function HomeContainer() {
                   <div className="h-8 w-8 animate-spin rounded-full border-2 border-gray-300 border-t-gray-900"></div>
                   <Typography variant="body2" className="text-gray-600">
                     Loading contributors...
+                  </Typography>
+                </div>
+              </div>
+            ) : error ? (
+              <div className="flex justify-center p-8 sm:p-12">
+                <div className="flex flex-col items-center space-y-4">
+                  <Typography variant="body2" className="text-red-600">
+                    Failed to load contributors. Please try again later.
                   </Typography>
                 </div>
               </div>
@@ -229,7 +204,7 @@ export default function HomeContainer() {
             )}
           </div>
 
-          {!isLoading && totalPages > 1 && (
+          {!isLoading && !error && totalPages > 1 && (
             <div className="border-primary border-t px-4 py-4 sm:px-6">
               <div className="flex flex-col items-center gap-3 space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
                 <Typography variant="body2" className="text-center text-xs sm:text-left sm:text-sm">
