@@ -45,7 +45,9 @@ export function DocsSidebarNavItems({ items, pathname }: DocsSidebarNavItemsProp
     if (!path) return ''
     const pathSegments = path.split('/')
     if (pathSegments.length > 1 && pathSegments[1].length === 2) {
-      return '/' + pathSegments.slice(2).join('/')
+      const pathWithoutLocale = '/' + pathSegments.slice(2).join('/')
+      // Remove trailing slash unless it's the root path
+      return pathWithoutLocale === '/' ? '/' : pathWithoutLocale.replace(/\/$/, '')
     }
     return path
   }
