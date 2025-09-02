@@ -14,10 +14,12 @@ export default function HomeContainer() {
   const [searchTerm, setSearchTerm] = useState('')
   const [contributors, setContributors] = useState<Contributor[]>([])
   const [currentPage, setCurrentPage] = useState(1)
+  const [isLoading, setIsLoading] = useState(true)
   const itemsPerPage = 10
 
   useEffect(() => {
     const fetchContributors = async () => {
+      setIsLoading(true)
       try {
         const base = getContributeApiBase()
         const res = await fetch(`${base}/contribute/contributors`)
@@ -40,6 +42,8 @@ export default function HomeContainer() {
         setContributors(mapped)
       } catch (e) {
         setContributors([])
+      } finally {
+        setIsLoading(false)
       }
     }
     fetchContributors()
@@ -116,7 +120,11 @@ export default function HomeContainer() {
         <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <div className="border-primary border p-4 sm:p-6">
             <Typography variant="h2" className="text-2xl sm:text-3xl">
-              {contributors.length}
+              {isLoading ? (
+                <div className="h-8 w-8 animate-spin rounded-full border-2 border-gray-300 border-t-gray-900"></div>
+              ) : (
+                contributors.length
+              )}
             </Typography>
             <Typography variant="body2" className="text-sm sm:text-base">
               {t('stats.activeContributors')}
@@ -124,7 +132,11 @@ export default function HomeContainer() {
           </div>
           <div className="border-primary border p-4 sm:p-6">
             <Typography variant="h2" className="text-2xl sm:text-3xl">
-              {contributors.reduce((sum, c) => sum + c.contributions, 0)}
+              {isLoading ? (
+                <div className="h-8 w-8 animate-spin rounded-full border-2 border-gray-300 border-t-gray-900"></div>
+              ) : (
+                contributors.reduce((sum, c) => sum + c.contributions, 0)
+              )}
             </Typography>
             <Typography variant="body2" className="text-sm sm:text-base">
               {t('stats.totalContributions')}
@@ -132,7 +144,11 @@ export default function HomeContainer() {
           </div>
           <div className="border-primary border p-4 sm:col-span-2 sm:p-6 lg:col-span-1">
             <Typography variant="h2" className="text-2xl sm:text-3xl">
-              {new Set(contributors.map((c) => c.latestRepo)).size}
+              {isLoading ? (
+                <div className="h-8 w-8 animate-spin rounded-full border-2 border-gray-300 border-t-gray-900"></div>
+              ) : (
+                new Set(contributors.map((c) => c.latestRepo)).size
+              )}
             </Typography>
             <Typography variant="body2" className="text-sm sm:text-base">
               {t('stats.repositories')}
@@ -152,7 +168,16 @@ export default function HomeContainer() {
             </div>
           </div>
           <div className="divide-primary divide-y">
-            {currentContributors.length > 0 ? (
+            {isLoading ? (
+              <div className="flex justify-center p-8 sm:p-12">
+                <div className="flex flex-col items-center space-y-4">
+                  <div className="h-8 w-8 animate-spin rounded-full border-2 border-gray-300 border-t-gray-900"></div>
+                  <Typography variant="body2" className="text-gray-600">
+                    Loading contributors...
+                  </Typography>
+                </div>
+              </div>
+            ) : currentContributors.length > 0 ? (
               currentContributors.map((contributor) => (
                 <div key={contributor.id} className="p-4 sm:p-6">
                   <div className="flex flex-col space-y-3 sm:flex-row sm:items-center sm:space-y-0 sm:space-x-4">
@@ -204,7 +229,7 @@ export default function HomeContainer() {
             )}
           </div>
 
-          {totalPages > 1 && (
+          {!isLoading && totalPages > 1 && (
             <div className="border-primary border-t px-4 py-4 sm:px-6">
               <div className="flex flex-col items-center gap-3 space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
                 <Typography variant="body2" className="text-center text-xs sm:text-left sm:text-sm">
