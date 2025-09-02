@@ -2,8 +2,7 @@ import Markdown from 'react-markdown'
 import remarkBreaks from 'remark-breaks'
 import remarkGfm from 'remark-gfm'
 
-const content = `
-# Logos Contribution Guidelines
+const content = `## Logos Contribution Guidelines
 
 Welcome to Logos! We're excited to have you contribute to building the decentralized web. Whether you're a developer, writer, or have other valuable skills to offer, there are many ways to get involved.
 
@@ -182,7 +181,7 @@ const ProposalGuidelines = () => {
               {children}
             </td>
           ),
-          hr: () => <hr className="border-primary my-12" />,
+          hr: () => <hr className="border-primary my-10" />,
           blockquote({ children }) {
             return (
               <blockquote className="relative rounded-sm border-s-4 border-gray-800 bg-[--code-block-background] px-4 py-2">

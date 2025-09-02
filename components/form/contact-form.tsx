@@ -134,7 +134,7 @@ export default function ContactForm() {
   const isSubmitting = status === 'submitting'
 
   return (
-    <div className="m:p-8 border-primary mx-auto w-full border p-6">
+    <div className="border-primary mx-auto w-full border p-6">
       {status === 'success' && (
         <div
           role="status"
