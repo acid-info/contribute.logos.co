@@ -12,10 +12,10 @@ Welcome to Logos! We're excited to have you contribute to building the decentral
 ## For Developers
 
 ### Code Contributions
-- **Protocol Development**: Contribute to core protocol implementations in Nim, Go, or Rust
 - **Frontend Development**: Build user interfaces using React, TypeScript, and modern web technologies
 - **Mobile Development**: Develop mobile applications for iOS and Android
 - **Infrastructure**: Contribute to DevOps, CI/CD pipelines, and deployment automation
+- **Protocol Development**: Contribute to core protocol implementations in Nim, Go, or Rust
 - **Smart Contracts**: Help build and audit Logos-based contracts for the Logos ecosystem in Solidity, EVM, or Wasm
 
 ### Getting Started
