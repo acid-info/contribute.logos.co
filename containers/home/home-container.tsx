@@ -88,7 +88,7 @@ export default function HomeContainer() {
           <div className="border-primary border p-4 sm:p-6">
             <Typography variant="h2" className="text-2xl sm:text-3xl">
               {isLoading || error ? (
-                <div className="h-8 w-8 animate-spin rounded-full border-2 border-gray-300 border-t-gray-900"></div>
+                <div className="mb-2 h-6 w-6 animate-spin rounded-full border-2 border-gray-300 border-t-gray-900"></div>
               ) : (
                 contributors.length
               )}
@@ -100,7 +100,7 @@ export default function HomeContainer() {
           <div className="border-primary border p-4 sm:p-6">
             <Typography variant="h2" className="text-2xl sm:text-3xl">
               {isLoading || error ? (
-                <div className="h-8 w-8 animate-spin rounded-full border-2 border-gray-300 border-t-gray-900"></div>
+                <div className="mb-2 h-6 w-6 animate-spin rounded-full border-2 border-gray-300 border-t-gray-900"></div>
               ) : (
                 contributors.reduce((sum, c) => sum + c.contributions, 0)
               )}
@@ -112,7 +112,7 @@ export default function HomeContainer() {
           <div className="border-primary border p-4 sm:col-span-2 sm:p-6 lg:col-span-1">
             <Typography variant="h2" className="text-2xl sm:text-3xl">
               {isLoading || error ? (
-                <div className="h-8 w-8 animate-spin rounded-full border-2 border-gray-300 border-t-gray-900"></div>
+                <div className="mb-2 h-6 w-6 animate-spin rounded-full border-2 border-gray-300 border-t-gray-900"></div>
               ) : (
                 new Set(contributors.map((c) => c.latestRepo)).size
               )}
@@ -138,7 +138,7 @@ export default function HomeContainer() {
             {isLoading ? (
               <div className="flex justify-center p-8 sm:p-12">
                 <div className="flex flex-col items-center space-y-4">
-                  <div className="h-8 w-8 animate-spin rounded-full border-2 border-gray-300 border-t-gray-900"></div>
+                  <div className="mb-2 h-6 w-6 animate-spin rounded-full border-2 border-gray-300 border-t-gray-900"></div>
                   <Typography variant="body2" className="text-gray-600">
                     Loading contributors...
                   </Typography>

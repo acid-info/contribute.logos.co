@@ -1,8 +1,8 @@
 import { ROUTES } from '@/constants/routes'
 import { createDefaultMetadata } from '@/lib/metadata'
 import ContactForm from '@/components/form/contact-form'
-import ProposalGuidelines from '@/components/form/proposal-guidelines'
 import { routing } from '@/i18n/routing'
+import { Link } from '@/i18n/navigation'
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
@@ -24,9 +24,13 @@ export default function Page() {
         <h1 className="mb-6 text-2xl font-semibold">Proposals</h1>
         <p className="mb-8 text-base">Submit your proposal for Logos.</p>
       </div>
-      <div className="max-w-2xl">
+      <div className="w-full max-w-2xl">
         <ContactForm />
-        <ProposalGuidelines />
+        <div className="mt-12">
+          <Link href="/resources/how-to-contribute" className="underline">
+            How to contribute
+          </Link>
+        </div>
       </div>
     </div>
   )
