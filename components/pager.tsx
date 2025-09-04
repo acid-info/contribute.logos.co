@@ -29,20 +29,20 @@ export function DocNavigation({ doc, locale }: DocsPagerProps) {
       {hasPrev && pager.prev && (
         <Link
           href={pager.prev.href}
-          className="border-border flex w-[200px] justify-center gap-2 border px-2 py-1 text-center"
+          className="border-primary flex w-[200px] items-center justify-center gap-2 border px-2 py-1 text-center"
           title={pager.prev.title}
         >
           <span>{'←'}</span>
-          <span className="truncate">{pager.prev.title}</span>
+          <span className="truncate text-sm">{pager.prev.title}</span>
         </Link>
       )}
       {hasNext && pager.next && (
         <Link
           href={pager.next.href}
-          className="border-border flex w-[200px] justify-center gap-2 border px-2 py-1 text-center"
+          className="border-primary flex w-[200px] items-center justify-center gap-2 border px-2 py-1 text-center"
           title={pager.next.title}
         >
-          <span className="truncate">{pager.next.title}</span>
+          <span className="truncate text-sm">{pager.next.title}</span>
           <span>{'→'}</span>
         </Link>
       )}
@@ -62,9 +62,9 @@ export function getPagerForDoc(doc: Resource, locale: string) {
   const flattenedLinks = [null, ...flatten(resourcesConfig.sidebarNav[0].items), null]
 
   const normalizedSlug = doc.slug.replace(/\/index$/, '')
-  const docSlugWithoutLocale = normalizedSlug.replace(`/resources/${locale}`, '') || '/resources'
+  const docSlugWithoutLocale = normalizedSlug.replace(`/resources/${locale}`, '') || ''
   const fullDocSlug =
-    docSlugWithoutLocale === '/resources' ? '/resources' : `/resources${docSlugWithoutLocale}`
+    docSlugWithoutLocale === '' ? '/resources' : `/resources${docSlugWithoutLocale}`
 
   const activeIndex = flattenedLinks.findIndex((link) => {
     if (!link) return false
@@ -79,7 +79,7 @@ export function getPagerForDoc(doc: Resource, locale: string) {
   const next = activeIndex < flattenedLinks.length - 1 ? flattenedLinks[activeIndex + 1] : null
 
   return {
-    prev: prev ? { ...prev, href: `/${locale}${prev.href}` } : null,
-    next: next ? { ...next, href: `/${locale}${next.href}` } : null,
+    prev: prev ? { ...prev, href: prev.href } : null,
+    next: next ? { ...next, href: next.href } : null,
   }
 }

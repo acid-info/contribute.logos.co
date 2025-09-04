@@ -14,7 +14,7 @@ export const resourcesConfig: ResourcesConfig = {
         { title: 'How to contribute', href: '/resources/how-to-contribute', items: [] },
         { title: 'For Developers', href: '/resources/developers', items: [] },
         { title: 'For Writers', href: '/resources/writers', items: [] },
-        { title: 'For Event Organizers', href: '/resources/event-organizers', items: [] },
+        { title: 'For Event Organisers', href: '/resources/event-organisers', items: [] },
         { title: 'For Translators', href: '/resources/translators', items: [] },
         { title: 'For Designers', href: '/resources/designers', items: [] },
       ],
