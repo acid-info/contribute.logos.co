@@ -2,8 +2,8 @@
 
 import { useState, useRef, useEffect } from 'react'
 import dynamic from 'next/dynamic'
-import { getContributeApiBase } from '@/lib/utils'
-import { CONTACT_CATEGORIES } from '@/constants/contact-categories'
+import { useCategories } from '@/hooks/useCategories'
+import { useSubmitContribution } from '@/hooks/useSubmitContribution'
 
 const RichTextEditor = dynamic(() => import('./rich-text-editor'), {
   ssr: false,
@@ -85,11 +85,6 @@ const RichTextEditor = dynamic(() => import('./rich-text-editor'), {
   ),
 })
 
-const API_BASE = getContributeApiBase()
-const SUBMIT_ENDPOINT = `${API_BASE}/contribute`
-
-type SubmitState = 'idle' | 'submitting' | 'success' | 'error'
-
 type TouchedState = {
   name: boolean
   email: boolean
@@ -102,16 +97,27 @@ export default function ContactForm() {
   const [messageHtml, setMessageHtml] = useState('')
   const [messageText, setMessageText] = useState('')
   const [editorResetKey, setEditorResetKey] = useState(0)
-  const [category, setCategory] = useState('software')
+  const [category, setCategory] = useState<number | null>(null)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
-  const [status, setStatus] = useState<SubmitState>('idle')
-  const [error, setError] = useState<string | null>(null)
   const [touched, setTouched] = useState<TouchedState>({
     name: false,
     email: false,
     message: false,
   })
   const dropdownRef = useRef<HTMLDivElement>(null)
+
+  const {
+    data: categories = [],
+    isLoading: categoriesLoading,
+    error: categoriesError,
+  } = useCategories()
+  const submitMutation = useSubmitContribution()
+
+  useEffect(() => {
+    if (categories.length > 0 && category === null) {
+      setCategory(categories[0].id)
+    }
+  }, [categories, category])
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -131,7 +137,7 @@ export default function ContactForm() {
     return re.test(value)
   }
 
-  function handleCategorySelect(value: string) {
+  function handleCategorySelect(value: number) {
     setCategory(value)
     setIsDropdownOpen(false)
   }
@@ -150,7 +156,7 @@ export default function ContactForm() {
     }
   }
 
-  function handleOptionKeyDown(event: React.KeyboardEvent, value: string) {
+  function handleOptionKeyDown(event: React.KeyboardEvent, value: number) {
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault()
       handleCategorySelect(value)
@@ -173,41 +179,50 @@ export default function ContactForm() {
     const hasErrors =
       name.trim().length < 2 || !validateEmail(email) || messageText.trim().length < 5
     if (hasErrors) {
-      setStatus('idle')
       return
     }
 
-    setStatus('submitting')
-    setError(null)
-
-    try {
-      const res = await fetch(SUBMIT_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, message: messageHtml, category }),
-      })
-
-      if (!res.ok) {
-        const text = await res.text()
-        throw new Error(text || 'Failed to submit')
-      }
-
-      setStatus('success')
-
-      setName('')
-      setEmail('')
-      setMessageHtml('')
-      setMessageText('')
-      setEditorResetKey((k) => k + 1)
-      setCategory('software')
-      setTouched({ name: false, email: false, message: false })
-    } catch (err) {
-      setStatus('error')
-      setError(err instanceof Error ? err.message : 'Something went wrong')
+    if (!category) {
+      return
     }
+
+    submitMutation.mutate(
+      {
+        name,
+        email,
+        message: messageHtml,
+        category: category,
+      },
+      {
+        onSuccess: () => {
+          setName('')
+          setEmail('')
+          setMessageHtml('')
+          setMessageText('')
+          setEditorResetKey((k) => k + 1)
+          setCategory(categories.length > 0 ? categories[0].id : null)
+          setTouched({ name: false, email: false, message: false })
+        },
+      }
+    )
   }
 
-  const isSubmitting = status === 'submitting'
+  const isSubmitting = submitMutation.isPending
+  const status = submitMutation.isSuccess ? 'success' : submitMutation.isError ? 'error' : 'idle'
+  const error = submitMutation.error?.message || null
+
+  if (categoriesError) {
+    return (
+      <div className="border-primary mx-auto w-full border p-6">
+        <div
+          role="alert"
+          className="mb-4 rounded-md bg-red-50 p-3 text-sm text-red-700 dark:bg-red-950/30 dark:text-red-300"
+        >
+          Failed to load categories. Please refresh the page.
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="border-primary mx-auto w-full border p-6">
@@ -301,11 +316,15 @@ export default function ContactForm() {
               aria-expanded={isDropdownOpen}
               aria-haspopup="listbox"
               tabIndex={0}
-              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              onClick={() => !categoriesLoading && setIsDropdownOpen(!isDropdownOpen)}
               onKeyDown={handleDropdownKeyDown}
-              className="border-primary focus:border-primary w-full cursor-pointer rounded-none border bg-transparent px-3 py-2 pr-10 text-sm text-black ring-0 transition-colors outline-none dark:bg-transparent dark:text-white"
+              className={`border-primary focus:border-primary w-full rounded-none border bg-transparent px-3 py-2 pr-10 text-sm text-black ring-0 transition-colors outline-none dark:bg-transparent dark:text-white ${
+                categoriesLoading ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
+              }`}
             >
-              {CONTACT_CATEGORIES.find((cat) => cat.value === category)?.label || 'Select category'}
+              {categoriesLoading
+                ? 'Loading categories...'
+                : categories.find((cat) => cat.id === category)?.display_name || 'Select category'}
             </div>
             <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
               <svg
@@ -323,7 +342,7 @@ export default function ContactForm() {
                 <path d="M6 9l6 6 6-6" />
               </svg>
             </span>
-            {isDropdownOpen && (
+            {isDropdownOpen && !categoriesLoading && (
               <div
                 role="listbox"
                 className="dropdown-menu absolute top-full right-0 left-0 z-10 mt-1 border border-black bg-white shadow-lg dark:border-white dark:bg-black"
@@ -332,20 +351,20 @@ export default function ContactForm() {
                   color: 'var(--dropdown-text, black)',
                 }}
               >
-                {CONTACT_CATEGORIES.map((cat) => (
+                {categories.map((cat) => (
                   <div
-                    key={cat.value}
+                    key={cat.id}
                     role="option"
-                    aria-selected={category === cat.value}
+                    aria-selected={category === cat.id}
                     tabIndex={0}
-                    onClick={() => handleCategorySelect(cat.value)}
-                    onKeyDown={(e) => handleOptionKeyDown(e, cat.value)}
+                    onClick={() => handleCategorySelect(cat.id)}
+                    onKeyDown={(e) => handleOptionKeyDown(e, cat.id)}
                     className="dropdown-option cursor-pointer px-3 py-2 text-sm transition-colors"
                     style={{
                       color: 'inherit',
                     }}
                   >
-                    {cat.label}
+                    {cat.display_name}
                   </div>
                 ))}
               </div>
