@@ -59,11 +59,12 @@ export function flatten(links: any[]): any[] {
 }
 
 export function getPagerForDoc(doc: Resource, locale: string) {
-  const flattenedLinks = [null, ...flatten(resourcesConfig.sidebarNav), null]
+  const flattenedLinks = [null, ...flatten(resourcesConfig.sidebarNav[0].items), null]
 
   const normalizedSlug = doc.slug.replace(/\/index$/, '')
-  const docSlugWithoutLocale = normalizedSlug.replace(`/docs/${locale}`, '') || '/docs'
-  const fullDocSlug = docSlugWithoutLocale === '/docs' ? '/docs' : `/docs${docSlugWithoutLocale}`
+  const docSlugWithoutLocale = normalizedSlug.replace(`/resources/${locale}`, '') || '/resources'
+  const fullDocSlug =
+    docSlugWithoutLocale === '/resources' ? '/resources' : `/resources${docSlugWithoutLocale}`
 
   const activeIndex = flattenedLinks.findIndex((link) => {
     if (!link) return false

@@ -6,5 +6,5 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function getContributeApiBase() {
-  return 'http://localhost:3000/api'
+  return 'https://dev-admin-acid.logos.co/api'
 }
