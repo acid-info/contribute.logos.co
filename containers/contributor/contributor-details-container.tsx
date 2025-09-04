@@ -77,7 +77,7 @@ export default function ContributorDetailsContainer() {
 
               <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
                 <div className="border-primary border p-6 text-center">
-                  <Typography variant="body1" className="mb-2 font-bold">
+                  <Typography variant="h3" className="mb-2 line-clamp-2 font-bold">
                     {loading || error ? (
                       <div className="mx-auto h-6 w-6 animate-spin rounded-full border-2 border-gray-300 border-t-gray-900"></div>
                     ) : (
@@ -87,7 +87,7 @@ export default function ContributorDetailsContainer() {
                   <Typography variant="body2">{t('totalContributions')}</Typography>
                 </div>
                 <div className="border-primary border p-6 text-center">
-                  <Typography variant="body1" className="mb-2 font-bold">
+                  <Typography variant="h3" className="mb-2 line-clamp-2 font-bold">
                     {loading || error ? (
                       <div className="mx-auto h-6 w-6 animate-spin rounded-full border-2 border-gray-300 border-t-gray-900"></div>
                     ) : (
@@ -97,7 +97,7 @@ export default function ContributorDetailsContainer() {
                   <Typography variant="body2">{t('latestRepository')}</Typography>
                 </div>
                 <div className="border-primary border p-6 text-center">
-                  <Typography variant="body1" className="mb-2 font-bold">
+                  <Typography variant="h3" className="mb-2 line-clamp-2 font-bold">
                     {loading || error ? (
                       <div className="mx-auto h-6 w-6 animate-spin rounded-full border-2 border-gray-300 border-t-gray-900"></div>
                     ) : latest ? (
