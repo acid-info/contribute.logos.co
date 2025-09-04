@@ -77,27 +77,34 @@ export default function ContributorDetailsContainer() {
 
               <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
                 <div className="border-primary border p-6 text-center">
-                  <Typography variant="h3" className="mb-2 line-clamp-2 font-bold">
+                  <Typography component="h3" variant="h6" className="pb-2 !font-semibold">
+                    {t('totalContributions')}
+                  </Typography>
+                  <Typography variant="body2">
                     {loading || error ? (
                       <div className="mx-auto h-6 w-6 animate-spin rounded-full border-2 border-gray-300 border-t-gray-900"></div>
                     ) : (
                       total
                     )}
                   </Typography>
-                  <Typography variant="body2">{t('totalContributions')}</Typography>
                 </div>
                 <div className="border-primary border p-6 text-center">
-                  <Typography variant="h3" className="mb-2 line-clamp-2 font-bold">
+                  <Typography component="h3" variant="h6" className="pb-2 !font-semibold">
+                    {t('latestRepository')}
+                  </Typography>
+                  <Typography variant="body2">
                     {loading || error ? (
                       <div className="mx-auto h-6 w-6 animate-spin rounded-full border-2 border-gray-300 border-t-gray-900"></div>
                     ) : (
                       latest?.repo || '-'
                     )}
                   </Typography>
-                  <Typography variant="body2">{t('latestRepository')}</Typography>
                 </div>
                 <div className="border-primary border p-6 text-center">
-                  <Typography variant="h3" className="mb-2 line-clamp-2 font-bold">
+                  <Typography component="h3" variant="h6" className="pb-2 !font-semibold">
+                    {t('latestContribution')}
+                  </Typography>
+                  <Typography variant="body2">
                     {loading || error ? (
                       <div className="mx-auto h-6 w-6 animate-spin rounded-full border-2 border-gray-300 border-t-gray-900"></div>
                     ) : latest ? (
@@ -106,7 +113,6 @@ export default function ContributorDetailsContainer() {
                       '-'
                     )}
                   </Typography>
-                  <Typography variant="body2">{t('latestContribution')}</Typography>
                 </div>
               </div>
 
