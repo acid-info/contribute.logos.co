@@ -59,9 +59,6 @@ importers:
       next-intl:
         specifier: ^4.3.4
         version: 4.3.4(next@15.3.2(@babel/core@7.27.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)(typescript@5.8.3)
-      p-limit:
-        specifier: ^6.2.0
-        version: 6.2.0
       postcss:
         specifier: ^8.4.24
         version: 8.5.3
