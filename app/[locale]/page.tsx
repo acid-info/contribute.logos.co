@@ -1,5 +1,6 @@
 import { ROUTES } from '@/constants/routes'
 import { createDefaultMetadata } from '@/lib/metadata'
+import { generateHomePageSchema } from '@/lib/schema'
 import HomeContainer from '@/containers/home/home-container'
 import { routing } from '@/i18n/routing'
 
@@ -17,8 +18,29 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return metadata
 }
 
-export default function Page() {
-  return <HomeContainer />
+export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+
+  const schemas = generateHomePageSchema({
+    locale,
+    path: ROUTES.home,
+  })
+
+  return (
+    <>
+      {/* JSON-LD Schema */}
+      {schemas.map((schema, index) => (
+        <script
+          key={index}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(schema),
+          }}
+        />
+      ))}
+      <HomeContainer />
+    </>
+  )
 }
 
 export function generateStaticParams() {

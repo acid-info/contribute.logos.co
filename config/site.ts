@@ -9,8 +9,9 @@ type SiteConfig = {
 
 const siteConfig: SiteConfig = {
   name: 'Logos',
-  title: 'Logos Next Tailwind Template',
-  description: 'Template for Next.js, Tailwind CSS, and Acid Info LSD',
+  title: 'Logos Contribute Portal',
+  description:
+    'Celebrating open source contributors and helping new developers make their first contributions',
   url: 'https://logos.co',
   keywords: ['Logos', 'Web3'],
   defaultLocale: 'en',
