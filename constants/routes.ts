@@ -4,4 +4,5 @@ export const ROUTES = {
   resources: '/resources',
   form: '/form',
   proposals: '/proposals',
+  projects: '/projects',
 }
