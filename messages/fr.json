@@ -11,7 +11,8 @@
       "resources": "Ressources",
       "contributors": "Contributeurs",
       "milestones": "Jalons",
-      "proposals": "Propositions"
+      "proposals": "Propositions",
+      "issues": "Problèmes"
     },
     "contribute": {
       "timePeriod": "12 derniers mois"
@@ -47,6 +48,20 @@
       "getStarted": "Commencer",
       "viewGuidelines": "Voir les directives"
     }
+  },
+  "issues": {
+    "title": "Problèmes",
+    "subtitle": "Problèmes ouverts pour contribute.logos.co. Choisissez votre problème et proposez votre solution.",
+    "loading": "Chargement des problèmes...",
+    "error": "Échec du chargement des problèmes.",
+    "empty": "Aucun problème ouvert trouvé.",
+    "by": "par {author}",
+    "comments": "{count} commentaires",
+    "updated": "mis à jour {date}",
+    "view": "Voir",
+    "showing": "Affichage de {start}-{end} sur {total} problèmes",
+    "previous": "Précédent",
+    "next": "Suivant"
   },
   "contributor": {
     "backToContributors": "← Retour aux contributeurs",

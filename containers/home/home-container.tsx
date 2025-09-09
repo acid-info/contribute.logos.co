@@ -6,6 +6,7 @@ import { Button, Typography, Badge } from '@acid-info/lsd-react'
 import { Link } from '@/i18n/navigation'
 import { ROUTES } from '@/constants/routes'
 import { useContributors } from '@/hooks/useContributors'
+import Pagination from '@/components/pagination'
 
 export default function HomeContainer() {
   const t = useTranslations('home')
@@ -205,87 +206,20 @@ export default function HomeContainer() {
           </div>
 
           {!isLoading && !error && totalPages > 1 && (
-            <div className="border-primary border-t px-4 py-4 sm:px-6">
-              <div className="flex flex-col items-center gap-3 space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
-                <Typography variant="body2" className="text-center text-xs sm:text-left sm:text-sm">
-                  {t('contributors.pagination.showing', {
-                    start: startIndex + 1,
-                    end: Math.min(endIndex, filteredContributors.length),
-                    total: filteredContributors.length,
-                  })}
-                </Typography>
-                <div className="flex w-full flex-col items-center space-y-3 sm:w-auto sm:flex-row sm:space-y-0 sm:space-x-2">
-                  <div className="flex items-center justify-center gap-2 sm:hidden">
-                    <Button
-                      variant="outlined"
-                      disabled={currentPage === 1}
-                      onClick={() => handlePageChange(currentPage - 1)}
-                      className="!h-9 !px-3 !text-sm"
-                    >
-                      {t('contributors.pagination.previous')}
-                    </Button>
-                    <span className="px-3 py-2 text-sm font-medium">
-                      {currentPage} / {totalPages}
-                    </span>
-                    <Button
-                      variant="outlined"
-                      disabled={currentPage === totalPages}
-                      onClick={() => handlePageChange(currentPage + 1)}
-                      className="!h-9 !px-3 !text-sm"
-                    >
-                      {t('contributors.pagination.next')}
-                    </Button>
-                  </div>
-
-                  <div className="hidden sm:flex sm:flex-row sm:space-x-2">
-                    <Button
-                      variant="outlined"
-                      disabled={currentPage === 1}
-                      onClick={() => handlePageChange(currentPage - 1)}
-                      className="!h-10"
-                    >
-                      {t('contributors.pagination.previous')}
-                    </Button>
-                    <div className="flex justify-center space-x-1">
-                      {Array.from({ length: totalPages }, (_, index) => {
-                        const page = index + 1
-                        const isCurrentPage = page === currentPage
-                        const isNearCurrent = Math.abs(page - currentPage) <= 2
-                        const isFirstOrLast = page === 1 || page === totalPages
-
-                        if (isFirstOrLast || isNearCurrent) {
-                          return (
-                            <Button
-                              key={page}
-                              variant={isCurrentPage ? 'filled' : 'outlined'}
-                              onClick={() => handlePageChange(page)}
-                              className="!h-10 !w-10 !p-0"
-                            >
-                              {page}
-                            </Button>
-                          )
-                        } else if (page === currentPage - 3 || page === currentPage + 3) {
-                          return (
-                            <span key={page} className="px-2 py-2">
-                              ...
-                            </span>
-                          )
-                        }
-                        return null
-                      })}
-                    </div>
-                    <Button
-                      variant="outlined"
-                      disabled={currentPage === totalPages}
-                      onClick={() => handlePageChange(currentPage + 1)}
-                      className="!h-10"
-                    >
-                      {t('contributors.pagination.next')}
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              totalItems={filteredContributors.length}
+              itemsPerPage={itemsPerPage}
+              onPageChange={handlePageChange}
+              showingText={t('contributors.pagination.showing', {
+                start: '{start}',
+                end: '{end}',
+                total: '{total}',
+              })}
+              previousText={t('contributors.pagination.previous')}
+              nextText={t('contributors.pagination.next')}
+            />
           )}
         </div>
 
