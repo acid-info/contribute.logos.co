@@ -7,6 +7,7 @@ import { ROUTES } from '@/constants/routes'
 import { useMemo } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { useContributorDetails, type ApiItemType } from '@/hooks/useContributorDetails'
+import { formatNumber } from '@/lib/utils'
 
 export default function ContributorDetailsContainer() {
   const t = useTranslations('contributor')
@@ -84,7 +85,7 @@ export default function ContributorDetailsContainer() {
                     {loading || error ? (
                       <div className="mx-auto h-6 w-6 animate-spin rounded-full border-2 border-gray-300 border-t-gray-900"></div>
                     ) : (
-                      total
+                      formatNumber(total)
                     )}
                   </Typography>
                 </div>
