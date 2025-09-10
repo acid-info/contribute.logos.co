@@ -6,6 +6,7 @@ import { Button, Typography, Badge } from '@acid-info/lsd-react'
 import { Link } from '@/i18n/navigation'
 import { ROUTES } from '@/constants/routes'
 import { useContributors } from '@/hooks/useContributors'
+import { formatNumber } from '@/lib/utils'
 
 export default function HomeContainer() {
   const t = useTranslations('home')
@@ -90,7 +91,7 @@ export default function HomeContainer() {
               {isLoading || error ? (
                 <div className="mb-2 h-6 w-6 animate-spin rounded-full border-2 border-gray-300 border-t-gray-900"></div>
               ) : (
-                contributors.length
+                formatNumber(contributors.length)
               )}
             </Typography>
             <Typography variant="body2" className="text-sm sm:text-base">
@@ -102,7 +103,7 @@ export default function HomeContainer() {
               {isLoading || error ? (
                 <div className="mb-2 h-6 w-6 animate-spin rounded-full border-2 border-gray-300 border-t-gray-900"></div>
               ) : (
-                contributors.reduce((sum, c) => sum + c.contributions, 0)
+                formatNumber(contributors.reduce((sum, c) => sum + c.contributions, 0))
               )}
             </Typography>
             <Typography variant="body2" className="text-sm sm:text-base">
@@ -114,7 +115,7 @@ export default function HomeContainer() {
               {isLoading || error ? (
                 <div className="mb-2 h-6 w-6 animate-spin rounded-full border-2 border-gray-300 border-t-gray-900"></div>
               ) : (
-                new Set(contributors.map((c) => c.latestRepo)).size
+                formatNumber(new Set(contributors.map((c) => c.latestRepo)).size)
               )}
             </Typography>
             <Typography variant="body2" className="text-sm sm:text-base">
