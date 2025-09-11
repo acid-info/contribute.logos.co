@@ -46,41 +46,37 @@ export default function HomeContainer() {
 
   return (
     <div className="min-h-screen">
-      <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 xl:px-0">
-        <div className="mb-12 flex flex-col gap-3 text-center">
-          <Typography variant="h1" className="mb-4 !text-3xl lg:!text-4xl">
-            {t('title')}
-          </Typography>
-          <Typography variant="subtitle1" className="mb-6 text-base sm:text-lg">
-            {t('subtitle')}
-          </Typography>
-        </div>
+      <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-20 text-center sm:px-6 xl:px-0">
+        <Typography variant="h1" className="mb-12 !text-3xl lg:!text-4xl">
+          {t('title')}
+        </Typography>
+        <Typography variant="subtitle1" className="mb-6 text-base sm:text-lg">
+          {t('subtitle')}
+        </Typography>
 
-        <div className="mb-12">
-          <div className="mx-auto max-w-md">
-            <div className="relative">
-              <input
-                type="text"
-                placeholder={t('search.placeholder')}
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="border-primary w-full border px-3 py-2 pl-10 text-sm sm:text-base"
-              />
-              <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                <svg
-                  className="h-4 w-4 text-gray-400 sm:h-5 sm:w-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                  />
-                </svg>
-              </div>
+        <div className="mx-auto mb-12 max-w-md">
+          <div className="relative">
+            <input
+              type="text"
+              placeholder={t('search.placeholder')}
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="border-primary w-full border px-3 py-2 pl-10 text-sm sm:text-base"
+            />
+            <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+              <svg
+                className="h-4 w-4 text-gray-400 sm:h-5 sm:w-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
             </div>
           </div>
         </div>
@@ -199,9 +195,9 @@ export default function HomeContainer() {
                 </div>
               ))
             ) : (
-              <div className="p-4 text-center sm:p-6">
-                <Typography variant="body2">{t('contributors.noResults')}</Typography>
-              </div>
+              <Typography variant="body2" className="p-4 text-center sm:p-6">
+                {t('contributors.noResults')}
+              </Typography>
             )}
           </div>
 
@@ -290,21 +286,19 @@ export default function HomeContainer() {
           )}
         </div>
 
-        <div className="mt-8 text-center sm:mt-12">
-          <div className="border-primary flex flex-col gap-4 border p-4 sm:p-8">
-            <Typography variant="h3" className="mb-4 text-lg sm:text-xl">
-              {t('cta.title')}
-            </Typography>
-            <Typography variant="body1" className="mb-6 text-sm sm:text-base">
-              {t('cta.description')}
-            </Typography>
-            <div className="flex justify-center">
-              <Link href={ROUTES.resources}>
-                <Button variant="outlined" size="small" className="w-full sm:w-auto">
-                  {t('cta.viewGuidelines')}
-                </Button>
-              </Link>
-            </div>
+        <div className="border-primary mt-8 flex flex-col gap-4 border p-4 text-center sm:mt-12 sm:p-8">
+          <Typography variant="h3" className="mb-4 text-lg sm:text-xl">
+            {t('cta.title')}
+          </Typography>
+          <Typography variant="body1" className="mb-6 text-sm sm:text-base">
+            {t('cta.description')}
+          </Typography>
+          <div className="flex justify-center">
+            <Link href={ROUTES.resources}>
+              <Button variant="outlined" size="small" className="w-full sm:w-auto">
+                {t('cta.viewGuidelines')}
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
