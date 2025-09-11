@@ -137,6 +137,14 @@ export default function ContactForm() {
     return re.test(value)
   }
 
+  function validateChatKey(value: string) {
+    return value.length === 49 && value.startsWith('zQ3sh') && /^[a-zA-Z0-9]+$/.test(value)
+  }
+
+  function validateContact(value: string) {
+    return validateEmail(value) || validateChatKey(value)
+  }
+
   function handleCategorySelect(value: number) {
     setCategory(value)
     setIsDropdownOpen(false)
@@ -166,7 +174,9 @@ export default function ContactForm() {
   const nameError =
     touched.name && name.trim().length < 2 ? 'Please enter at least 2 characters.' : ''
   const emailError =
-    touched.email && !validateEmail(email) ? 'Please enter a valid email address.' : ''
+    touched.email && !validateContact(email)
+      ? 'Please enter a valid email address or Status App chat key (49 characters starting with zQ3sh).'
+      : ''
   const messageError =
     touched.message && messageText.trim().length < 5 ? 'Please enter at least 5 characters.' : ''
 
@@ -177,7 +187,7 @@ export default function ContactForm() {
     setTouched(nextTouched)
 
     const hasErrors =
-      name.trim().length < 2 || !validateEmail(email) || messageText.trim().length < 5
+      name.trim().length < 2 || !validateContact(email) || messageText.trim().length < 5
     if (hasErrors) {
       return
     }
@@ -279,12 +289,12 @@ export default function ContactForm() {
 
         <div className="flex flex-col">
           <label htmlFor="email" className="mb-1 block text-sm font-medium">
-            Email
+            Email or Status App Chat Key
           </label>
           <input
             id="email"
             name="email"
-            type="email"
+            type="text"
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -296,7 +306,7 @@ export default function ContactForm() {
                 ? 'border-red-500 focus:border-red-600'
                 : 'border-primary focus:border-primary'
             }`}
-            placeholder="Enter your email"
+            placeholder="Enter your email or Status App chat key"
           />
           {emailError && (
             <p id="email-error" className="mt-1 text-xs text-red-600">
