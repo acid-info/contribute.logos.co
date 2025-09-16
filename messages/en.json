@@ -12,6 +12,7 @@
       "contributors": "Contributors",
       "miilestones": "Milestones",
       "proposals": "Proposals",
+      "issues": "Issues",
       "projects": "Projects"
     },
     "contribute": {
@@ -48,6 +49,20 @@
       "getStarted": "Get Started",
       "viewGuidelines": "View Guidelines"
     }
+  },
+  "issues": {
+    "title": "Issues",
+    "subtitle": "Open issues for contribute.logos.co. Pick your issue and suggest your solution.",
+    "loading": "Loading issues...",
+    "error": "Failed to load issues.",
+    "empty": "No open issues found.",
+    "by": "by {author}",
+    "comments": "{count} comments",
+    "updated": "updated {date}",
+    "view": "View",
+    "showing": "Showing {start}-{end} of {total} issues",
+    "previous": "Previous",
+    "next": "Next"
   },
   "contributor": {
     "backToContributors": "← Back to Contributors",

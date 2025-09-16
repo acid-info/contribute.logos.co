@@ -11,7 +11,8 @@
       "resources": "Ressources",
       "contributors": "Contributeurs",
       "milestones": "Jalons",
-      "proposals": "Propositions"
+      "proposals": "Propositions",
+      "issues": "Problèmes"
     },
     "contribute": {
       "timePeriod": "12 derniers mois"
@@ -21,12 +22,12 @@
     "title": "Logos Contribute",
     "subtitle": "Célébrer les contributeurs open source et aider les nouveaux développeurs à faire leurs premières contributions",
     "search": {
-      "placeholder": "Rechercher par nom d'utilisateur ou dépôt..."
+      "placeholder": "Rechercher par nom d'utilisateur ou repository..."
     },
     "stats": {
       "activeContributors": "Contributeurs actifs",
       "totalContributions": "Contributions totales",
-      "repositories": "Dépôts"
+      "repositories": "Repositories"
     },
     "contributors": {
       "title": "Répertoire des contributeurs",
@@ -48,11 +49,25 @@
       "viewGuidelines": "Voir les directives"
     }
   },
+  "issues": {
+    "title": "Problèmes",
+    "subtitle": "Problèmes ouverts pour contribute.logos.co. Choisissez votre problème et proposez votre solution.",
+    "loading": "Chargement des problèmes...",
+    "error": "Échec du chargement des problèmes.",
+    "empty": "Aucun problème ouvert trouvé.",
+    "by": "par {author}",
+    "comments": "{count} commentaires",
+    "updated": "mis à jour {date}",
+    "view": "Voir",
+    "showing": "Affichage de {start}-{end} sur {total} problèmes",
+    "previous": "Précédent",
+    "next": "Suivant"
+  },
   "contributor": {
     "backToContributors": "← Retour aux contributeurs",
     "contributionsToEcosystem": "contributions à l'écosystème Logos",
     "totalContributions": "Contributions totales",
-    "latestRepository": "Dernier dépôt",
+    "latestRepository": "Dernier repository",
     "latestContribution": "Dernière contribution",
     "viewGithubProfile": "Voir le profil GitHub",
     "contributionHistory": "Historique des contributions",

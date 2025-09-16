@@ -11,7 +11,8 @@
       "resources": "리소스",
       "contributors": "기여자",
       "milestones": "마일스톤",
-      "proposals": "제안"
+      "proposals": "제안",
+      "issues": "이슈"
     },
     "contribute": {
       "timePeriod": "최근 12개월"
@@ -47,6 +48,20 @@
       "getStarted": "시작하기",
       "viewGuidelines": "가이드라인 보기"
     }
+  },
+  "issues": {
+    "title": "이슈",
+    "subtitle": "contribute.logos.co의 열린 이슈. 이슈를 선택하고 솔루션을 제안하세요.",
+    "loading": "이슈를 불러오는 중...",
+    "error": "이슈를 불러오지 못했습니다.",
+    "empty": "열린 이슈가 없습니다.",
+    "by": "작성자 {author}",
+    "comments": "댓글 {count}개",
+    "updated": "업데이트 {date}",
+    "view": "보기",
+    "showing": "{total}개 이슈 중 {start}-{end} 표시",
+    "previous": "이전",
+    "next": "다음"
   },
   "contributor": {
     "backToContributors": "← 기여자 목록으로 돌아가기",
