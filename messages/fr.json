@@ -22,12 +22,12 @@
     "title": "Logos Contribute",
     "subtitle": "Célébrer les contributeurs open source et aider les nouveaux développeurs à faire leurs premières contributions",
     "search": {
-      "placeholder": "Rechercher par nom d'utilisateur ou dépôt..."
+      "placeholder": "Rechercher par nom d'utilisateur ou repository..."
     },
     "stats": {
       "activeContributors": "Contributeurs actifs",
       "totalContributions": "Contributions totales",
-      "repositories": "Dépôts"
+      "repositories": "Repositories"
     },
     "contributors": {
       "title": "Répertoire des contributeurs",
@@ -67,7 +67,7 @@
     "backToContributors": "← Retour aux contributeurs",
     "contributionsToEcosystem": "contributions à l'écosystème Logos",
     "totalContributions": "Contributions totales",
-    "latestRepository": "Dernier dépôt",
+    "latestRepository": "Dernier repository",
     "latestContribution": "Dernière contribution",
     "viewGithubProfile": "Voir le profil GitHub",
     "contributionHistory": "Historique des contributions",
