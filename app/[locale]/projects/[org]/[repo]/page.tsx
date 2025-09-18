@@ -1,6 +1,6 @@
 import { ROUTES } from '@/constants/routes'
-import { createDefaultMetadata } from '@/lib/metadata'
 import RepositoryContainer from '@/containers/repository/repository-container'
+import { createDefaultMetadata } from '@/lib/metadata'
 
 export async function generateMetadata({
   params,
