@@ -1,12 +1,15 @@
 'use client'
 
-import React, { useRef } from 'react'
-import { useTranslations } from 'next-intl'
 import { Button, Typography } from '@acid-info/lsd-react'
-import { Link } from '@/i18n/navigation'
-import { ROUTES } from '@/constants/routes'
+import Image from 'next/image'
 import { useParams } from 'next/navigation'
-import { useRepositoryData } from '@/hooks/useRepositoryData'
+import { useTranslations } from 'next-intl'
+import { useMemo, useRef } from 'react'
+import { ROUTES } from '@/constants/routes'
+import { useOrgProjects } from '@/hooks/useOrgProjects'
+import type { PullRequestContributor } from '@/hooks/usePullRequests'
+import { usePullRequests } from '@/hooks/usePullRequests'
+import { Link } from '@/i18n/navigation'
 
 export default function RepositoryContainer() {
   const t = useTranslations('repository')
@@ -15,19 +18,22 @@ export default function RepositoryContainer() {
   const timelineContainerRef = useRef<HTMLDivElement>(null)
 
   const {
-    loading,
-    notFound,
-    prsLoading,
-    prsError,
-    pullRequests,
-    repoData,
-    repoDataLoading,
-    repoDataError,
-    totalPullRequests,
-    formatDate,
-  } = useRepositoryData(org, repo)
+    data: repos = [],
+    isLoading: reposLoading = true,
+    error: reposError,
+  } = useOrgProjects(org)
+  const {
+    data: pullRequests = [],
+    isLoading: pullRequestsLoading = true,
+    error: pullRequestsError,
+  } = usePullRequests(org, repo)
 
-  if (loading || repoDataLoading) {
+  const repoData = useMemo(
+    () => repos.find((r) => r.full_name === `${org}/${repo}`),
+    [repos, org, repo]
+  )
+
+  if (reposLoading) {
     return (
       <Typography variant="body2" className="flex min-h-screen items-center justify-center">
         {t('loading')}
@@ -35,20 +41,31 @@ export default function RepositoryContainer() {
     )
   }
 
-  if (notFound) {
+  if (!repoData) {
     return null // Redirecting is handled by the hook
   }
 
-  if (repoDataError && !repoData) {
+  if (reposError && !repoData) {
     return (
       <Typography
         variant="body2"
         className="flex min-h-screen items-center justify-center text-red-500"
       >
-        Error loading repository data: {repoDataError}
+        Error loading repository data: {reposError.message}
       </Typography>
     )
   }
+
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+    })
+  }
+
+  const filterHumanContrib = (contributors: PullRequestContributor[]) =>
+    contributors.filter((contrib) => contrib.__typename === 'User')
 
   return (
     <div className="min-h-screen">
@@ -76,7 +93,7 @@ export default function RepositoryContainer() {
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
                   <div className="border-primary border p-6 text-center">
                     <Typography variant="h2" className="mb-2">
-                      {totalPullRequests}
+                      {pullRequests.filter((pr) => !!pr.mergedAt).length}
                     </Typography>
                     <Typography variant="body2">Merged Pull Requests</Typography>
                   </div>
@@ -139,19 +156,19 @@ export default function RepositoryContainer() {
           <div ref={timelineContainerRef} className="overflow-x-auto py-8">
             {' '}
             {/* Added padding for the timeline content */}
-            {prsError && (
+            {pullRequestsError && (
               <Typography variant="body2" className="text-center text-red-500">
-                {t('errorLoadingPullRequests', { error: prsError })}
+                {t('errorLoadingPullRequests', { error: pullRequestsError.message })}
               </Typography>
             )}
-            {prsLoading && (
+            {pullRequestsLoading && (
               <Typography variant="body2" className="flex justify-center py-10">
                 {' '}
                 {/* Added py-10 for better spacing */}
                 {t('loadingPullRequests')}
               </Typography>
             )}
-            {!prsLoading && !prsError && pullRequests.length > 0 && (
+            {!pullRequestsLoading && !pullRequestsError && pullRequests.length > 0 && (
               <div className="w-fit px-8">
                 <div>
                   <div
@@ -161,48 +178,52 @@ export default function RepositoryContainer() {
                       gridAutoFlow: 'column',
                     }}
                   >
-                    {pullRequests.map((pr, index) => {
-                      const isEven = index % 2 === 0
-                      // Use pr.url for the key, as it provides a globally unique identifier for each pull request.
-                      // This directly addresses the "Encountered two children with the same key" error.
-                      const itemKey = `pr-item-${pr.url}`
+                    {pullRequests
+                      .map((pr) => ({ ...pr, contributors: filterHumanContrib(pr.contributors) }))
+                      .filter((pr) => !!pr.contributors.length)
+                      .map((pr, index) => {
+                        const isEven = index % 2 === 0
+                        // Use pr.url for the key, as it provides a globally unique identifier for each pull request.
+                        // This directly addresses the "Encountered two children with the same key" error.
+                        const itemKey = `pr-item-${pr.url}`
 
-                      return (
-                        // Use a wrapper div to group the three parts of a single PR item.
-                        // This wrapper gets the unique key.
-                        <div key={itemKey} style={{ display: 'contents' }}>
-                          {/* Card */}
-                          <div
-                            className="flex w-64"
-                            style={{
-                              gridRowStart: isEven ? '1' : '5',
-                              gridColumnStart: index * 2 + 1,
-                              alignItems: isEven ? 'self-end' : 'self-start',
-                            }}
-                          >
-                            <a
-                              href={pr.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="border-primary bg-background block rounded-lg border p-4 shadow-sm transition-shadow hover:shadow-md"
+                        return (
+                          // Use a wrapper div to group the three parts of a single PR item.
+                          // This wrapper gets the unique key.
+                          <div key={itemKey} style={{ display: 'contents' }}>
+                            {/* Card */}
+                            <div
+                              className="flex w-64"
+                              style={{
+                                gridRowStart: isEven ? '1' : '5',
+                                gridColumnStart: index * 2 + 1,
+                                alignItems: isEven ? 'self-end' : 'self-start',
+                              }}
                             >
-                              <Typography
-                                variant="body1" // Changed from h3 to body1 for smaller text
-                                className="!text-sm leading-tight font-semibold" // Adjusted text size
+                              <a
+                                href={pr.url ?? undefined}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="border-primary bg-background block rounded-lg border p-4 shadow-sm transition-shadow hover:shadow-md"
                               >
-                                #{pr.number} {pr.title}
-                              </Typography>
-                              {/* Contributors Avatars */}
-                              {pr.contributors && pr.contributors.length > 0 && (
+                                <Typography
+                                  variant="body1" // Changed from h3 to body1 for smaller text
+                                  className="!text-sm leading-tight font-semibold" // Adjusted text size
+                                >
+                                  #{pr.number} {pr.title}
+                                </Typography>
+                                {/* Contributors Avatars */}
                                 <div className="mt-3 flex items-center">
                                   <div className="flex -space-x-2">
                                     {pr.contributors.slice(0, 10).map((contributor) => (
-                                      <img
+                                      <Image
                                         key={contributor.login}
-                                        src={contributor.avatar_url}
+                                        src={`https://github.com/${contributor.login}.png`}
+                                        width={32}
+                                        height={32}
                                         alt={contributor.login}
-                                        title={`${contributor.login} (${contributor.commitCount} commits)`}
-                                        className="border-background h-8 w-8 rounded-full border-2" // Increased avatar size
+                                        title={`${contributor.login}`}
+                                        className="border-background rounded-full border-2" // Increased avatar size
                                       />
                                     ))}
                                   </div>
@@ -212,47 +233,46 @@ export default function RepositoryContainer() {
                                     </Typography>
                                   )}
                                 </div>
-                              )}
-                            </a>
-                          </div>
-                          {/* Date */}
-                          <div
-                            className="flex justify-self-center py-1 text-sm"
-                            style={{
-                              gridRowStart: isEven ? '2' : '4',
-                              gridColumnStart: index * 2 + 1,
-                              alignItems: isEven ? 'self-end' : 'self-start',
-                            }}
-                          >
-                            <Typography
-                              variant="body2"
-                              className="text-gray-600 dark:text-gray-400"
-                            >
-                              {formatDate(pr.mergedAt || pr.createdAt)}
-                            </Typography>
-                          </div>
-                          {/* Dot */}
-                          <div
-                            className="relative flex items-center justify-center self-center"
-                            style={{
-                              gridRowStart: '3',
-                              gridColumnStart: index * 2 + 1,
-                            }}
-                          >
+                              </a>
+                            </div>
+                            {/* Date */}
                             <div
-                              className="absolute top-1/2 right-0 left-0 z-0 h-0.5 bg-gray-300 dark:bg-gray-700"
-                              style={{ transform: 'translateY(-50%)' }}
-                            ></div>
-                            <div className="border-primary bg-background z-10 h-6 w-6 rounded-full border-4"></div>
+                              className="flex justify-self-center py-1 text-sm"
+                              style={{
+                                gridRowStart: isEven ? '2' : '4',
+                                gridColumnStart: index * 2 + 1,
+                                alignItems: isEven ? 'self-end' : 'self-start',
+                              }}
+                            >
+                              <Typography
+                                variant="body2"
+                                className="text-gray-600 dark:text-gray-400"
+                              >
+                                {formatDate(pr.mergedAt || pr.createdAt)}
+                              </Typography>
+                            </div>
+                            {/* Dot */}
+                            <div
+                              className="relative flex items-center justify-center self-center"
+                              style={{
+                                gridRowStart: '3',
+                                gridColumnStart: index * 2 + 1,
+                              }}
+                            >
+                              <div
+                                className="absolute top-1/2 right-0 left-0 z-0 h-0.5 bg-gray-300 dark:bg-gray-700"
+                                style={{ transform: 'translateY(-50%)' }}
+                              ></div>
+                              <div className="border-primary bg-background z-10 h-6 w-6 rounded-full border-4"></div>
+                            </div>
                           </div>
-                        </div>
-                      )
-                    })}
+                        )
+                      })}
                   </div>
                 </div>
               </div>
             )}
-            {!prsLoading && !prsError && pullRequests.length === 0 && (
+            {!pullRequestsLoading && !pullRequestsError && pullRequests.length === 0 && (
               <Typography variant="body2" className="text-center">
                 {t('noPullRequests')}
               </Typography>

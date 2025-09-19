@@ -1,18 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { getContributeApiBase } from '@/lib/utils'
-
-interface Repository {
-  id: number
-  name: string
-  full_name: string
-  html_url: string
-  description: string | null
-  language: string | null
-  stargazers_count: number
-  forks_count: number
-  open_issues_count: number
-  updated_at: string
-}
+import type { Repository } from '@/types'
 
 interface OrgProjectsApiResponse {
   organization: string
@@ -45,6 +33,6 @@ export const useOrgProjects = (org: string | null) => {
     gcTime: 30 * 60 * 1000, // 30 minutes
     retry: 3,
     retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
-    enabled: !!org, // Only run the query if org is provided
+    enabled: !!org,
   })
 }
