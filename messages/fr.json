@@ -12,7 +12,8 @@
       "contributors": "Contributeurs",
       "milestones": "Jalons",
       "proposals": "Propositions",
-      "issues": "Problèmes"
+      "issues": "Problèmes",
+      "projects": "Projets"
     },
     "contribute": {
       "timePeriod": "12 derniers mois"
@@ -78,6 +79,19 @@
     "translation": "Traduction",
     "contribution": "Contribution",
     "view": "Voir"
+  },
+  "repository": {
+    "backToProjects": "Retour aux projets",
+    "loading": "Chargement du repository...",
+    "loadingPullRequests": "Chargement des pull requests...",
+    "errorLoadingPullRequests": "Erreur lors du chargement des pull requests : {error}",
+    "noPullRequests": "Aucune pull request trouvée pour ce repository.",
+    "pullRequestTimeline": "Chronologie des pull requests"
+  },
+  "projects": {
+    "title": "Projets",
+    "subtitle": "Explorez les projets open source et leurs pull requests",
+    "loading": "Chargement des projets..."
   },
   "footer": {}
 }
