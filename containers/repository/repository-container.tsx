@@ -7,9 +7,10 @@ import { useTranslations } from 'next-intl'
 import { useMemo, useRef } from 'react'
 import { ROUTES } from '@/constants/routes'
 import { useOrgProjects } from '@/hooks/useOrgProjects'
-import type { PullRequestContributor } from '@/hooks/usePullRequests'
 import { usePullRequests } from '@/hooks/usePullRequests'
 import { Link } from '@/i18n/navigation'
+import { formatDate } from '@/lib/utils'
+import type { PullRequestContributor } from '@/types'
 
 export default function RepositoryContainer() {
   const t = useTranslations('repository')
@@ -54,14 +55,6 @@ export default function RepositoryContainer() {
         Error loading repository data: {reposError.message}
       </Typography>
     )
-  }
-
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-    })
   }
 
   const filterHumanContrib = (contributors: PullRequestContributor[]) =>
