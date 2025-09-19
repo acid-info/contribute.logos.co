@@ -82,7 +82,6 @@
   },
   "repository": {
     "backToProjects": "Back to Projects",
-    "placeholderContent": "Repository details will be displayed here.",
     "loading": "Loading repository...",
     "loadingPullRequests": "Loading pull requests...",
     "errorLoadingPullRequests": "Error loading pull requests: {error}",
@@ -92,28 +91,7 @@
   "projects": {
     "title": "Projects",
     "subtitle": "Explore open source projects and their pull requests",
-    "search": {
-      "placeholder": "Search by project name or owner..."
-    },
-    "stats": {
-      "totalProjects": "Total Projects",
-      "totalPullRequests": "Total Pull Requests",
-      "uniqueContributors": "Unique Contributors"
-    },
-    "projects": {
-      "title": "Project Directory",
-      "pullRequests": "pull requests",
-      "viewRepository": "View Repository",
-      "recentPullRequests": "Recent Pull Requests",
-      "view": "View",
-      "noResults": "No projects found matching your search."
-    },
-    "loading": "Loading projects...",
-    "cta": {
-      "title": "Interested in contributing?",
-      "description": "Explore these projects and make your mark on open source development.",
-      "backToHome": "Back to Home",
-      "viewContributors": "View Contributors"
-    }
-  }
+    "loading": "Loading projects..."
+  },
+  "footer": {}
 }
