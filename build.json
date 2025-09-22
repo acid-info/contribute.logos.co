@@ -1,15 +1,15 @@
 {
-    "timestamp": "2025-09-16T02:07:35Z",
+    "timestamp": "2025-09-22T14:16:10Z",
     "git": {
-        "commit": "757fdf02bcf483c80a58bdcf1b0737fe4cc69baa",
+        "commit": "ff2545f3031769a908f41b1b8923adedd5da300f",
         "branch": "origin/master",
         "url": "git@github.com:acid-info/contribute.logos.co.git"
     },
     "build": {
-        "id": "23",
-        "number": "23",
+        "id": "24",
+        "number": "24",
         "name": "website/contribute.logos.co",
         "slave": "linux-01",
-        "url": "https://ci.infra.status.im/job/website/job/contribute.logos.co/23/"
+        "url": "https://ci.infra.status.im/job/website/job/contribute.logos.co/24/"
     }
 }
