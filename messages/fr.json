@@ -12,7 +12,8 @@
       "contributors": "Contributeurs",
       "milestones": "Jalons",
       "proposals": "Propositions",
-      "issues": "Problèmes"
+      "issues": "Problèmes",
+      "leaderboard": "Classement"
     },
     "contribute": {
       "timePeriod": "12 derniers mois"
@@ -62,6 +63,30 @@
     "showing": "Affichage de {start}-{end} sur {total} problèmes",
     "previous": "Précédent",
     "next": "Suivant"
+  },
+  "leaderboard": {
+    "title": "Classement de la communauté",
+    "subtitle": "Reconnaître nos meilleurs contributeurs et leur impact sur l'écosystème",
+    "tabs": {
+      "seasonal": "Classements saisonniers",
+      "historical": "Classements de tous les temps"
+    },
+    "description": {
+      "seasonal": "Les classements sont réinitialisés trimestriellement",
+      "historical": "Contributions cumulatives depuis 2025"
+    },
+    "table": {
+      "rank": "Rang",
+      "contributor": "Contributeur",
+      "score": "Score",
+      "contributions": "Contributions",
+      "repositories": "Repositories"
+    },
+    "pagination": {
+      "showing": "Affichage de {start}-{end} sur {total} contributeurs",
+      "previous": "Précédent",
+      "next": "Suivant"
+    }
   },
   "contributor": {
     "backToContributors": "← Retour aux contributeurs",

@@ -12,7 +12,8 @@
       "contributors": "기여자",
       "milestones": "마일스톤",
       "proposals": "제안",
-      "issues": "이슈"
+      "issues": "이슈",
+      "leaderboard": "리더보드"
     },
     "contribute": {
       "timePeriod": "최근 12개월"
@@ -62,6 +63,30 @@
     "showing": "{total}개 이슈 중 {start}-{end} 표시",
     "previous": "이전",
     "next": "다음"
+  },
+  "leaderboard": {
+    "title": "커뮤니티 리더보드",
+    "subtitle": "Logos 오픈소스 커뮤니티 기여자들에게 감사를 전합니다.",
+    "tabs": {
+      "seasonal": "시즌별 순위",
+      "historical": "전체 기간 순위"
+    },
+    "description": {
+      "seasonal": "순위는 분기별로 초기화",
+      "historical": "2025년 이후 누적 기여"
+    },
+    "table": {
+      "rank": "순위",
+      "contributor": "기여자",
+      "score": "점수",
+      "contributions": "기여",
+      "repositories": "저장소"
+    },
+    "pagination": {
+      "showing": "{total}명의 기여자 중 {start}-{end}명 표시",
+      "previous": "이전",
+      "next": "다음"
+    }
   },
   "contributor": {
     "backToContributors": "← 기여자 목록으로 돌아가기",

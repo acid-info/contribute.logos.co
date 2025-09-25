@@ -50,6 +50,20 @@
       "viewGuidelines": "View Guidelines"
     }
   },
+  "issues": {
+    "title": "Issues",
+    "subtitle": "Open issues for contribute.logos.co. Pick your issue and suggest your solution.",
+    "loading": "Loading issues...",
+    "error": "Failed to load issues.",
+    "empty": "No open issues found.",
+    "by": "by {author}",
+    "comments": "{count} comments",
+    "updated": "updated {date}",
+    "view": "View",
+    "showing": "Showing {start}-{end} of {total} issues",
+    "previous": "Previous",
+    "next": "Next"
+  },
   "leaderboard": {
     "title": "Community Leaderboard",
     "subtitle": "Recognizing our top contributors and their impact on the ecosystem",
@@ -75,35 +89,20 @@
     }
   },
   "contributor": {
-    "backToContributors": "Back to Contributors",
-    "contributionsToEcosystem": "contributions to the ecosystem",
+    "backToContributors": "← Back to Contributors",
+    "contributionsToEcosystem": "contributions to the Logos ecosystem",
     "totalContributions": "Total Contributions",
-    "repositories": "Repositories",
-    "avgScore": "Average Score",
-    "contributions": "Contributions",
-    "latest": "Latest",
-    "viewOnGithub": "View on GitHub"
-  },
-  "issues": {
-    "title": "Open Issues",
-    "subtitle": "Find issues to contribute to and help improve the ecosystem",
-    "filters": {
-      "all": "All Issues",
-      "goodFirstIssue": "Good First Issue",
-      "helpWanted": "Help Wanted",
-      "bug": "Bug",
-      "enhancement": "Enhancement"
-    },
-    "labels": {
-      "goodFirstIssue": "Good First Issue",
-      "helpWanted": "Help Wanted"
-    },
-    "openIssue": "Open Issue",
-    "pagination": {
-      "showing": "Showing {start}-{end} of {total} issues",
-      "previous": "Previous",
-      "next": "Next"
-    }
+    "latestRepository": "Latest Repository",
+    "latestContribution": "Latest Contribution",
+    "viewGithubProfile": "View GitHub Profile",
+    "contributionHistory": "Contribution History",
+    "commit": "Commit",
+    "issue": "Issue",
+    "pullRequest": "Pull Request",
+    "review": "Review",
+    "translation": "Translation",
+    "contribution": "Contribution",
+    "view": "View"
   },
   "footer": {}
 }

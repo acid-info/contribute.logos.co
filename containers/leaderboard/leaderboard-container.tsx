@@ -86,7 +86,7 @@ export default function LeaderboardContainer() {
     <div className="min-h-screen">
       <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 xl:px-0">
         <div className="mb-12 text-center">
-          <Typography variant="h1" className="mb-4 !text-3xl lg:!text-4xl">
+          <Typography variant="h1" className="pb-4 !text-3xl lg:!text-4xl">
             {t('title')}
           </Typography>
           <Typography variant="subtitle1" className="mb-6 text-base sm:text-lg">
