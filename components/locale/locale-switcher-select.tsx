@@ -1,6 +1,6 @@
 'use client'
 
-import { ChangeEvent, ReactNode, useTransition } from 'react'
+import React, { ReactNode, useTransition, useState, useRef, useEffect } from 'react'
 import { usePathname, useRouter } from '@/i18n/navigation'
 import clsx from 'clsx'
 import { Locale } from 'next-intl'
@@ -11,38 +11,68 @@ type Props = {
   label: string
 }
 
+const getLanguageDisplayName = (locale: string): string => {
+  const languageNames: Record<string, string> = {
+    en: 'English',
+    fr: 'Français',
+    ko: '한국어',
+  }
+  return languageNames[locale] || locale
+}
+
 export default function LocaleSwitcherSelect({ children, defaultValue }: Props) {
   const [isPending, startTransition] = useTransition()
+  const [isOpen, setIsOpen] = useState(false)
+  const [selectedValue, setSelectedValue] = useState(defaultValue)
   const pathname = usePathname()
   const router = useRouter()
+  const dropdownRef = useRef<HTMLDivElement>(null)
 
-  function onSelectChange(event: ChangeEvent<HTMLSelectElement>) {
-    const nextLocale = event.target.value as Locale
+  function onOptionClick(value: string) {
+    const nextLocale = value as Locale
+    setSelectedValue(value)
+    setIsOpen(false)
     startTransition(() => {
       const normalized = pathname.endsWith('/') ? pathname : pathname + '/'
       router.replace({ pathname: normalized }, { locale: nextLocale })
     })
   }
 
-  return (
-    <div className="relative inline-block w-24">
-      <select
-        className={clsx(
-          'border-primary w-full appearance-none border px-3 py-2 text-sm',
-          'cursor-pointer bg-transparent',
-          isPending && 'transition-opacity [&:disabled]:opacity-30'
-        )}
-        defaultValue={defaultValue}
-        disabled={isPending}
-        onChange={onSelectChange}
-      >
-        <optgroup label="Language">{children}</optgroup>
-      </select>
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false)
+      }
+    }
 
-      <span className="pointer-events-none absolute top-1/2 right-2 -translate-y-1/2 text-gray-500">
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
+
+  // Extract options from children
+  const options = React.Children.toArray(children)
+
+  return (
+    <div className="relative inline-block w-24" ref={dropdownRef}>
+      <div
+        className={clsx(
+          'border-primary w-full cursor-pointer border px-3 py-2 text-sm',
+          'flex items-center justify-between',
+
+          isPending && 'pointer-events-none opacity-30 transition-opacity'
+        )}
+        onClick={() => !isPending && setIsOpen(!isOpen)}
+      >
+        <span>{getLanguageDisplayName(selectedValue)}</span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="h-4 w-4"
+          className={clsx(
+            'h-4 w-4 text-gray-500 transition-transform dark:text-gray-400',
+            isOpen && 'rotate-180'
+          )}
           viewBox="0 0 20 20"
           fill="currentColor"
           aria-hidden="true"
@@ -53,7 +83,32 @@ export default function LocaleSwitcherSelect({ children, defaultValue }: Props) 
             clipRule="evenodd"
           />
         </svg>
-      </span>
+      </div>
+
+      {isOpen && (
+        <div className="border-primary absolute top-full right-0 left-0 z-50 mt-1 border">
+          {options.map((option, index) => {
+            const element = option as React.ReactElement<{ value: string; children: ReactNode }>
+            const optionValue = element.props.value
+
+            return (
+              <div
+                key={index}
+                className={clsx(
+                  'bg-primary text-primary cursor-pointer px-3 py-2 text-sm',
+
+                  'hover:bg-gray-100 hover:text-black dark:hover:bg-gray-800 dark:hover:text-white',
+                  selectedValue === optionValue &&
+                    'bg-gray-50 text-black dark:bg-gray-900 dark:text-white'
+                )}
+                onClick={() => onOptionClick(optionValue)}
+              >
+                {getLanguageDisplayName(optionValue)}
+              </div>
+            )
+          })}
+        </div>
+      )}
     </div>
   )
 }
