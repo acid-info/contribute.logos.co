@@ -78,6 +78,7 @@
     "table": {
       "rank": "Rang",
       "contributor": "Contributeur",
+      "tier": "Niveau",
       "score": "Score",
       "contributions": "Contributions",
       "repositories": "Repositories"

@@ -1,5 +1,7 @@
 import { Typography, Badge } from '@acid-info/lsd-react'
 
+export type TierType = 'Explorer' | 'Builder' | 'Champion' | 'Governor' | 'Council'
+
 export interface LeaderboardEntry {
   rank: number
   username: string
@@ -7,24 +9,29 @@ export interface LeaderboardEntry {
   contributions: number
   repositories: number
   avatarUrl: string
+  tier?: TierType
 }
 
 interface LeaderboardTableProps {
   entries: LeaderboardEntry[]
   rankLabel: string
   contributorLabel: string
+  tierLabel?: string
   scoreLabel: string
   contributionsLabel: string
   repositoriesLabel: string
+  showTier?: boolean
 }
 
 export default function LeaderboardTable({
   entries,
   rankLabel,
   contributorLabel,
+  tierLabel,
   scoreLabel,
   contributionsLabel,
   repositoriesLabel,
+  showTier = false,
 }: LeaderboardTableProps) {
   const getRankDisplay = (rank: number) => {
     // TBD: Featuring #1, #2, #3?
@@ -32,6 +39,23 @@ export default function LeaderboardTable({
     // if (rank === 2) return '🥈'
     // if (rank === 3) return '🥉'
     return rank.toString()
+  }
+
+  const getTierBadgeVariant = (tier: TierType) => {
+    switch (tier) {
+      case 'Council':
+        return 'filled'
+      case 'Governor':
+        return 'filled'
+      case 'Champion':
+        return 'outlined'
+      case 'Builder':
+        return 'outlined'
+      case 'Explorer':
+        return 'outlined'
+      default:
+        return 'outlined'
+    }
   }
 
   const handleContributorClick = (username: string) => {
@@ -50,6 +74,11 @@ export default function LeaderboardTable({
               <th className="px-6 py-3 text-left text-xs font-medium tracking-wider">
                 {contributorLabel}
               </th>
+              {showTier && tierLabel && (
+                <th className="px-6 py-3 text-left text-xs font-medium tracking-wider">
+                  {tierLabel}
+                </th>
+              )}
               <th className="px-6 py-3 text-left text-xs font-medium tracking-wider">
                 {scoreLabel}
               </th>
@@ -86,6 +115,13 @@ export default function LeaderboardTable({
                     </div>
                   </div>
                 </td>
+                {showTier && entry.tier && (
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <Badge variant={getTierBadgeVariant(entry.tier)} className="text-xs">
+                      {entry.tier}
+                    </Badge>
+                  </td>
+                )}
                 <td className="px-6 py-4 whitespace-nowrap">
                   <Badge variant="outlined" className="font-mono">
                     {entry.score.toLocaleString()}
