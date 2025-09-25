@@ -1,83 +1,108 @@
 {
   "locale": {
-    "language": "언어",
+    "language": "Language",
     "en": "English",
     "fr": "Français",
     "ko": "한국어"
   },
   "common": {
     "nav": {
-      "directory": "디렉토리",
-      "resources": "리소스",
-      "contributors": "기여자",
-      "milestones": "마일스톤",
-      "proposals": "제안",
-      "issues": "이슈"
+      "directory": "Directory",
+      "resources": "Resources",
+      "contributors": "Contributors",
+      "miilestones": "Milestones",
+      "proposals": "Proposals",
+      "issues": "Issues",
+      "leaderboard": "Leaderboard"
     },
     "contribute": {
-      "timePeriod": "최근 12개월"
+      "timePeriod": "Last 12 months"
     }
   },
   "home": {
     "title": "Logos Contribute",
-    "subtitle": "오픈소스 기여자를 축하하고 새로운 개발자들이 첫 기여를 할 수 있도록 돕습니다",
+    "subtitle": "Celebrating open source contributors and helping new developers make their first contributions",
     "search": {
-      "placeholder": "사용자명 또는 저장소로 검색..."
+      "placeholder": "Search by username or repository..."
     },
     "stats": {
-      "activeContributors": "활성 기여자",
-      "totalContributions": "총 기여 수",
-      "repositories": "저장소"
+      "activeContributors": "Active Contributors",
+      "totalContributions": "Total Contributions",
+      "repositories": "Repositories"
     },
     "contributors": {
-      "title": "기여자 디렉토리",
-      "contributions": "기여",
-      "latest": "최근",
-      "viewGithubProfile": "GitHub 프로필 보기",
-      "viewDetails": "상세 보기",
-      "noResults": "검색과 일치하는 기여자를 찾을 수 없습니다.",
+      "title": "Contributor Directory",
+      "contributions": "contributions",
+      "latest": "Latest",
+      "viewGithubProfile": "View GitHub Profile",
+      "viewDetails": "View Details",
+      "noResults": "No contributors found matching your search.",
       "pagination": {
-        "showing": "{total}명의 기여자 중 {start}-{end}명 표시",
-        "previous": "이전",
-        "next": "다음"
+        "showing": "Showing {start}-{end} of {total} contributors",
+        "previous": "Previous",
+        "next": "Next"
       }
     },
     "cta": {
-      "title": "첫 기여를 준비하셨나요?",
-      "description": "우리 커뮤니티에 참여하여 오픈소스 개발의 미래를 함께 만들어보세요.",
-      "getStarted": "시작하기",
-      "viewGuidelines": "가이드라인 보기"
+      "title": "Ready to make your first contribution?",
+      "description": "Join our community and help build the future of open source development.",
+      "getStarted": "Get Started",
+      "viewGuidelines": "View Guidelines"
     }
   },
-  "issues": {
-    "title": "이슈",
-    "subtitle": "contribute.logos.co의 열린 이슈. 이슈를 선택하고 솔루션을 제안하세요.",
-    "loading": "이슈를 불러오는 중...",
-    "error": "이슈를 불러오지 못했습니다.",
-    "empty": "열린 이슈가 없습니다.",
-    "by": "작성자 {author}",
-    "comments": "댓글 {count}개",
-    "updated": "업데이트 {date}",
-    "view": "보기",
-    "showing": "{total}개 이슈 중 {start}-{end} 표시",
-    "previous": "이전",
-    "next": "다음"
+  "leaderboard": {
+    "title": "Community Leaderboard",
+    "subtitle": "Recognizing our top contributors and their impact on the ecosystem",
+    "tabs": {
+      "seasonal": "Seasonal Rankings",
+      "historical": "All-Time Rankings"
+    },
+    "description": {
+      "seasonal": "Rankings reset quarterly",
+      "historical": "Cumulative contributions since 2025"
+    },
+    "table": {
+      "rank": "Rank",
+      "contributor": "Contributor",
+      "score": "Score",
+      "contributions": "Contributions",
+      "repositories": "Repositories"
+    },
+    "pagination": {
+      "showing": "Showing {start}-{end} of {total} contributors",
+      "previous": "Previous",
+      "next": "Next"
+    }
   },
   "contributor": {
-    "backToContributors": "← 기여자 목록으로 돌아가기",
-    "contributionsToEcosystem": "Logos 생태계에 대한 기여",
-    "totalContributions": "총 기여 수",
-    "latestRepository": "최근 저장소",
-    "latestContribution": "최근 기여",
-    "viewGithubProfile": "GitHub 프로필 보기",
-    "contributionHistory": "기여 기록",
-    "commit": "커밋",
-    "issue": "이슈",
-    "pullRequest": "풀 리퀘스트",
-    "review": "리뷰",
-    "translation": "번역",
-    "contribution": "기여",
-    "view": "보기"
+    "backToContributors": "Back to Contributors",
+    "contributionsToEcosystem": "contributions to the ecosystem",
+    "totalContributions": "Total Contributions",
+    "repositories": "Repositories",
+    "avgScore": "Average Score",
+    "contributions": "Contributions",
+    "latest": "Latest",
+    "viewOnGithub": "View on GitHub"
   },
-  "footer": {}
+  "issues": {
+    "title": "Open Issues",
+    "subtitle": "Find issues to contribute to and help improve the ecosystem",
+    "filters": {
+      "all": "All Issues",
+      "goodFirstIssue": "Good First Issue",
+      "helpWanted": "Help Wanted",
+      "bug": "Bug",
+      "enhancement": "Enhancement"
+    },
+    "labels": {
+      "goodFirstIssue": "Good First Issue",
+      "helpWanted": "Help Wanted"
+    },
+    "openIssue": "Open Issue",
+    "pagination": {
+      "showing": "Showing {start}-{end} of {total} issues",
+      "previous": "Previous",
+      "next": "Next"
+    }
+  }
 }

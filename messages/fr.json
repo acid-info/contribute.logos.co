@@ -1,83 +1,108 @@
 {
   "locale": {
-    "language": "Langue",
+    "language": "Language",
     "en": "English",
     "fr": "Français",
     "ko": "한국어"
   },
   "common": {
     "nav": {
-      "directory": "Répertoire",
-      "resources": "Ressources",
-      "contributors": "Contributeurs",
-      "milestones": "Jalons",
-      "proposals": "Propositions",
-      "issues": "Problèmes"
+      "directory": "Directory",
+      "resources": "Resources",
+      "contributors": "Contributors",
+      "miilestones": "Milestones",
+      "proposals": "Proposals",
+      "issues": "Issues",
+      "leaderboard": "Leaderboard"
     },
     "contribute": {
-      "timePeriod": "12 derniers mois"
+      "timePeriod": "Last 12 months"
     }
   },
   "home": {
     "title": "Logos Contribute",
-    "subtitle": "Célébrer les contributeurs open source et aider les nouveaux développeurs à faire leurs premières contributions",
+    "subtitle": "Celebrating open source contributors and helping new developers make their first contributions",
     "search": {
-      "placeholder": "Rechercher par nom d'utilisateur ou repository..."
+      "placeholder": "Search by username or repository..."
     },
     "stats": {
-      "activeContributors": "Contributeurs actifs",
-      "totalContributions": "Contributions totales",
+      "activeContributors": "Active Contributors",
+      "totalContributions": "Total Contributions",
       "repositories": "Repositories"
     },
     "contributors": {
-      "title": "Répertoire des contributeurs",
+      "title": "Contributor Directory",
       "contributions": "contributions",
-      "latest": "Dernière",
-      "viewGithubProfile": "Voir le profil GitHub",
-      "viewDetails": "Voir les détails",
-      "noResults": "Aucun contributeur trouvé correspondant à votre recherche.",
+      "latest": "Latest",
+      "viewGithubProfile": "View GitHub Profile",
+      "viewDetails": "View Details",
+      "noResults": "No contributors found matching your search.",
       "pagination": {
-        "showing": "Affichage de {start}-{end} sur {total} contributeurs",
-        "previous": "Précédent",
-        "next": "Suivant"
+        "showing": "Showing {start}-{end} of {total} contributors",
+        "previous": "Previous",
+        "next": "Next"
       }
     },
     "cta": {
-      "title": "Prêt à faire votre première contribution ?",
-      "description": "Rejoignez notre communauté et aidez à construire l'avenir du développement open source.",
-      "getStarted": "Commencer",
-      "viewGuidelines": "Voir les directives"
+      "title": "Ready to make your first contribution?",
+      "description": "Join our community and help build the future of open source development.",
+      "getStarted": "Get Started",
+      "viewGuidelines": "View Guidelines"
     }
   },
-  "issues": {
-    "title": "Problèmes",
-    "subtitle": "Problèmes ouverts pour contribute.logos.co. Choisissez votre problème et proposez votre solution.",
-    "loading": "Chargement des problèmes...",
-    "error": "Échec du chargement des problèmes.",
-    "empty": "Aucun problème ouvert trouvé.",
-    "by": "par {author}",
-    "comments": "{count} commentaires",
-    "updated": "mis à jour {date}",
-    "view": "Voir",
-    "showing": "Affichage de {start}-{end} sur {total} problèmes",
-    "previous": "Précédent",
-    "next": "Suivant"
+  "leaderboard": {
+    "title": "Classement Communautaire",
+    "subtitle": "Reconnaître nos meilleurs contributeurs et leur impact sur l'écosystème",
+    "tabs": {
+      "seasonal": "Classement Saisonnier",
+      "historical": "Classement de Tous les Temps"
+    },
+    "description": {
+      "seasonal": "Classements remis à zéro trimestriellement",
+      "historical": "Contributions cumulatives depuis 2025"
+    },
+    "table": {
+      "rank": "Rang",
+      "contributor": "Contributeur",
+      "score": "Score",
+      "contributions": "Contributions",
+      "repositories": "Dépôts"
+    },
+    "pagination": {
+      "showing": "Affichage {start}-{end} sur {total} contributeurs",
+      "previous": "Précédent",
+      "next": "Suivant"
+    }
   },
   "contributor": {
-    "backToContributors": "← Retour aux contributeurs",
-    "contributionsToEcosystem": "contributions à l'écosystème Logos",
-    "totalContributions": "Contributions totales",
-    "latestRepository": "Dernier repository",
-    "latestContribution": "Dernière contribution",
-    "viewGithubProfile": "Voir le profil GitHub",
-    "contributionHistory": "Historique des contributions",
-    "commit": "Commit",
-    "issue": "Problème",
-    "pullRequest": "Pull Request",
-    "review": "Avis",
-    "translation": "Traduction",
-    "contribution": "Contribution",
-    "view": "Voir"
+    "backToContributors": "Back to Contributors",
+    "contributionsToEcosystem": "contributions to the ecosystem",
+    "totalContributions": "Total Contributions",
+    "repositories": "Repositories",
+    "avgScore": "Average Score",
+    "contributions": "Contributions",
+    "latest": "Latest",
+    "viewOnGithub": "View on GitHub"
   },
-  "footer": {}
+  "issues": {
+    "title": "Open Issues",
+    "subtitle": "Find issues to contribute to and help improve the ecosystem",
+    "filters": {
+      "all": "All Issues",
+      "goodFirstIssue": "Good First Issue",
+      "helpWanted": "Help Wanted",
+      "bug": "Bug",
+      "enhancement": "Enhancement"
+    },
+    "labels": {
+      "goodFirstIssue": "Good First Issue",
+      "helpWanted": "Help Wanted"
+    },
+    "openIssue": "Open Issue",
+    "pagination": {
+      "showing": "Showing {start}-{end} of {total} issues",
+      "previous": "Previous",
+      "next": "Next"
+    }
+  }
 }

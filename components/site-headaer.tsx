@@ -60,6 +60,14 @@ const Header = () => {
                   {t('nav.issues')}
                 </Typography>
               </Link>
+              <Link href={ROUTES.leaderboard}>
+                <Typography
+                  variant="body1"
+                  className={`underline-offset-5 hover:underline ${currentPath === ROUTES.leaderboard ? 'underline' : ''}`}
+                >
+                  {t('nav.leaderboard')}
+                </Typography>
+              </Link>
             </nav>
           </div>
 

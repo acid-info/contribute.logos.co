@@ -5,4 +5,5 @@ export const ROUTES = {
   form: '/form',
   proposals: '/proposals',
   issues: '/issues',
+  leaderboard: '/leaderboard',
 } as const
