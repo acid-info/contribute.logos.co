@@ -9,11 +9,10 @@ export default function ScoringSystemContainer() {
 - Pull Request merged (code or docs): 7 pts
 - Code Review: 3 pts
 - Spec/ADR/Design Doc merged: 8 pts
-- Blog post (published on Logos or high-signal external): 5 pts
-- Translation: per 500 approved words: 4 pts *(aligns with ethereum.org's explicit translator recognition)*
-    - Reference: [ethereum.org](https://ethereum.org/en/contributing/translation-program)
+- Blog post: 5 pts
+- Translation: per 500 approved words: 4 pts
 - Design asset (UI kit, logo set, infographic) adopted: 6 pts
-- Meetup/Workshop organized (online/offline): 10 pts (in line with ambassador/event programs)
+- Meetup/Workshop organized (online/offline): 10 pts
 - Talk/Panel delivered at event: 7 pts
 - Mentorship (onboard a Seeker to first merged PR or published work): 6 pts
 
