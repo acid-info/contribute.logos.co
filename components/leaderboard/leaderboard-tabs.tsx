@@ -16,7 +16,7 @@ export default function LeaderboardTabs({
   historicalLabel,
 }: LeaderboardTabsProps) {
   return (
-    <div className="border-primary flex space-x-1 rounded-lg border p-1">
+    <div className="border-primary flex space-x-1 border p-1">
       <Button
         variant={activeTab === 'seasonal' ? 'filled' : 'outlined'}
         onClick={() => onTabChange('seasonal')}

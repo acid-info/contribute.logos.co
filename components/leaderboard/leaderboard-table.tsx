@@ -39,7 +39,7 @@ export default function LeaderboardTable({
   }
 
   return (
-    <div className="border-primary overflow-hidden rounded-lg border">
+    <div className="border-primary overflow-hidden border">
       <div className="overflow-x-auto">
         <table className="divide-primary min-w-full divide-y">
           <thead>

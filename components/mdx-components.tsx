@@ -88,7 +88,7 @@ const components = {
     <blockquote className={cn('mt-6 border-l-2 pl-6 italic', className)} {...props} />
   ),
   table: ({ className, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
-    <div className="my-6 w-full overflow-y-auto rounded-lg border dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-400">
+    <div className="my-6 w-full overflow-y-auto border dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-400">
       <table className={cn('my-0 w-full overflow-hidden', className)} {...props} />
     </div>
   ),
@@ -144,7 +144,7 @@ const components = {
       <>
         <pre
           className={cn(
-            'mt-6 mb-4 max-h-[650px] overflow-x-auto rounded-lg border bg-zinc-950 py-4 dark:bg-zinc-900',
+            'mt-6 mb-4 max-h-[650px] overflow-x-auto border bg-zinc-950 py-4 dark:bg-zinc-900',
             className
           )}
           {...props}
