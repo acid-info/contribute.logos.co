@@ -2,10 +2,15 @@ import 'css/tailwind.css'
 import '@acid-info/lsd-react/css'
 import { LsdThemeStyles } from '@acid-info/lsd-react/theme'
 import { themeInitScript } from '@/lib/theme'
+import Script from 'next/script'
+import { generateOrganizationJsonLd, generateWebSiteJsonLd } from '@/lib/jsonld-schemas'
 
 export const dynamic = 'force-static'
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const organizationSchema = generateOrganizationJsonLd()
+  const websiteSchema = generateWebSiteJsonLd()
+
   return (
     <html lang="en" className={`scroll-smooth`} suppressHydrationWarning>
       <head>
@@ -18,6 +23,22 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <script
           dangerouslySetInnerHTML={{
             __html: themeInitScript,
+          }}
+        />
+
+        {/* Schema.org JSON-LD */}
+        <Script
+          id="organization-jsonld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema),
+          }}
+        />
+        <Script
+          id="website-jsonld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteSchema),
           }}
         />
       </head>
