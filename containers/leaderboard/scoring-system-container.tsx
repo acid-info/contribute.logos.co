@@ -46,7 +46,7 @@ export default function ScoringSystemContainer() {
               strong: ({ children }) => <strong className="font-semibold">{children}</strong>,
               em: ({ children }) => <em className="italic">{children}</em>,
               code: ({ children }) => (
-                <code className="rounded bg-gray-100 px-1 py-0.5 font-mono text-xs">
+                <code className="rounded bg-gray-100 px-1 py-0.5 font-mono text-xs text-black">
                   {children}
                 </code>
               ),
