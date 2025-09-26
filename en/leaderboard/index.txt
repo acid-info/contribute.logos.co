@@ -1,0 +1,268 @@
+1:"$Sreact.fragment"
+4:I[3080,[],""]
+5:I[3758,[],""]
+6:I[910,["69","static/chunks/69-719d62cb30dfc8eb.js","862","static/chunks/862-77c93aba6c6f9fda.js","393","static/chunks/393-05cf12763e1656e5.js","161","static/chunks/app/%5Blocale%5D/leaderboard/page-abacdc920bd1f51f.js"],"default"]
+7:I[8296,[],"MetadataBoundary"]
+9:I[8296,[],"OutletBoundary"]
+c:I[5168,[],"AsyncMetadataOutlet"]
+e:I[8296,[],"ViewportBoundary"]
+10:I[4583,[],""]
+:HL["/_next/static/css/2ab1a5ab4d9b5436.css","style"]
+:HL["/_next/static/css/0134b67230a6e959.css","style"]
+0:{"P":null,"b":"_fQ_Sm24pMN1i006sA3Tk","p":"","c":["","en","leaderboard",""],"i":false,"f":[[["",{"children":[["locale","en","d"],{"children":["leaderboard",{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/2ab1a5ab4d9b5436.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/0134b67230a6e959.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],"$L2"]}],{"children":[["locale","en","d"],["$","$1","c",{"children":[null,"$L3"]}],{"children":["leaderboard",["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":[["$","div",null,{"className":"mx-auto flex min-h-[calc(100vh-60px)] max-w-7xl flex-col px-4 pt-10 pb-20 sm:px-6 lg:px-8","children":["$","$L6",null,{}]}],["$","$L7",null,{"children":"$L8"}],null,["$","$L9",null,{"children":["$La","$Lb",["$","$Lc",null,{"promise":"$@d"}]]}]]}],{},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,["$","$1","VvHRKeU2ziZA3kJA73_kd",{"children":[["$","$Le",null,{"children":"$Lf"}],null]}],null]}],false]],"m":"$undefined","G":["$10","$undefined"],"s":false,"S":true}
+12:I[6276,["177","static/chunks/app/layout-a7cf5322f79ba6d5.js"],""]
+13:"$Sreact.suspense"
+14:I[5168,[],"AsyncMetadata"]
+11:T1696,:root, [data-theme="light"] {
+
+    --lsd-display1-fontSize: 5.5rem;
+--lsd-display1-fontWeight: normal;
+--lsd-display1-lineHeight: 6rem;
+--lsd-display2-fontSize: 4rem;
+--lsd-display2-fontWeight: normal;
+--lsd-display2-lineHeight: 4.5rem;
+--lsd-display3-fontSize: 3.5rem;
+--lsd-display3-fontWeight: normal;
+--lsd-display3-lineHeight: 4rem;
+--lsd-display4-fontSize: 3rem;
+--lsd-display4-fontWeight: normal;
+--lsd-display4-lineHeight: 3.5rem;
+--lsd-h1-fontSize: 2.5rem;
+--lsd-h1-fontWeight: normal;
+--lsd-h1-lineHeight: 3rem;
+--lsd-h2-fontSize: 2rem;
+--lsd-h2-fontWeight: normal;
+--lsd-h2-lineHeight: 2.5rem;
+--lsd-h3-fontSize: 1.75rem;
+--lsd-h3-fontWeight: normal;
+--lsd-h3-lineHeight: 2.25rem;
+--lsd-h4-fontSize: 1.5rem;
+--lsd-h4-fontWeight: normal;
+--lsd-h4-lineHeight: 2rem;
+--lsd-h5-fontSize: 1.25rem;
+--lsd-h5-fontWeight: normal;
+--lsd-h5-lineHeight: 1.75rem;
+--lsd-h6-fontSize: 1rem;
+--lsd-h6-fontWeight: normal;
+--lsd-h6-lineHeight: 1.5rem;
+--lsd-subtitle1-fontSize: 1.125rem;
+--lsd-subtitle1-fontWeight: normal;
+--lsd-subtitle1-lineHeight: 1.5rem;
+--lsd-subtitle2-fontSize: 1rem;
+--lsd-subtitle2-fontWeight: normal;
+--lsd-subtitle2-lineHeight: 1.5rem;
+--lsd-subtitle3-fontSize: 0.875rem;
+--lsd-subtitle3-fontWeight: normal;
+--lsd-subtitle3-lineHeight: 1.25rem;
+--lsd-subtitle4-fontSize: 0.75rem;
+--lsd-subtitle4-fontWeight: normal;
+--lsd-subtitle4-lineHeight: 1rem;
+--lsd-body1-fontSize: 1rem;
+--lsd-body1-fontWeight: normal;
+--lsd-body1-lineHeight: 1.5rem;
+--lsd-body2-fontSize: 0.875rem;
+--lsd-body2-fontWeight: normal;
+--lsd-body2-lineHeight: 1.25rem;
+--lsd-body3-fontSize: 0.75rem;
+--lsd-body3-fontWeight: normal;
+--lsd-body3-lineHeight: 1rem;
+--lsd-label1-fontSize: 0.875rem;
+--lsd-label1-fontWeight: normal;
+--lsd-label1-lineHeight: 1.25rem;
+--lsd-label2-fontSize: 0.75rem;
+--lsd-label2-fontWeight: normal;
+--lsd-label2-lineHeight: 1rem;
+--lsd-typography-generic-font-family: sans-serif;
+--lsd-theme-primary: 0, 0, 0;
+--lsd-theme-secondary: 255, 255, 255;
+--lsd-surface-primary: 255, 255, 255;
+--lsd-surface-secondary: 0, 0, 0;
+--lsd-border-primary: 0, 0, 0;
+--lsd-border-secondary: 255, 255, 255;
+--lsd-icon-primary: 0, 0, 0;
+--lsd-icon-secondary: 255, 255, 255;
+--lsd-text-primary: 0, 0, 0;
+--lsd-text-secondary: 255, 255, 255;
+--lsd-text-tertiary: 0, 0, 0, 0.34;
+--lsd-spacing-4: 4px;
+--lsd-spacing-8: 8px;
+--lsd-spacing-16: 16px;
+--lsd-spacing-24: 24px;
+--lsd-spacing-32: 32px;
+--lsd-spacing-40: 40px;
+--lsd-spacing-64: 64px;
+--lsd-spacing-80: 80px;
+--lsd-spacing-96: 96px;
+--lsd-spacing-120: 120px; 
+
+    @media (min-width: 0px) {
+      :root {
+        
+      }
+
+      
+    }
+@media (min-width: 400px) {
+      :root {
+        
+      }
+
+      
+    }
+@media (min-width: 768px) {
+      :root {
+        
+      }
+
+      
+    }
+@media (min-width: 1024px) {
+      :root {
+        
+      }
+
+      
+    }
+@media (min-width: 1205px) {
+      :root {
+        
+      }
+
+      
+    }
+  
+}
+
+[data-theme="dark"] {
+
+    --lsd-display1-fontSize: 5.5rem;
+--lsd-display1-fontWeight: normal;
+--lsd-display1-lineHeight: 6rem;
+--lsd-display2-fontSize: 4rem;
+--lsd-display2-fontWeight: normal;
+--lsd-display2-lineHeight: 4.5rem;
+--lsd-display3-fontSize: 3.5rem;
+--lsd-display3-fontWeight: normal;
+--lsd-display3-lineHeight: 4rem;
+--lsd-display4-fontSize: 3rem;
+--lsd-display4-fontWeight: normal;
+--lsd-display4-lineHeight: 3.5rem;
+--lsd-h1-fontSize: 2.5rem;
+--lsd-h1-fontWeight: normal;
+--lsd-h1-lineHeight: 3rem;
+--lsd-h2-fontSize: 2rem;
+--lsd-h2-fontWeight: normal;
+--lsd-h2-lineHeight: 2.5rem;
+--lsd-h3-fontSize: 1.75rem;
+--lsd-h3-fontWeight: normal;
+--lsd-h3-lineHeight: 2.25rem;
+--lsd-h4-fontSize: 1.5rem;
+--lsd-h4-fontWeight: normal;
+--lsd-h4-lineHeight: 2rem;
+--lsd-h5-fontSize: 1.25rem;
+--lsd-h5-fontWeight: normal;
+--lsd-h5-lineHeight: 1.75rem;
+--lsd-h6-fontSize: 1rem;
+--lsd-h6-fontWeight: normal;
+--lsd-h6-lineHeight: 1.5rem;
+--lsd-subtitle1-fontSize: 1.125rem;
+--lsd-subtitle1-fontWeight: normal;
+--lsd-subtitle1-lineHeight: 1.5rem;
+--lsd-subtitle2-fontSize: 1rem;
+--lsd-subtitle2-fontWeight: normal;
+--lsd-subtitle2-lineHeight: 1.5rem;
+--lsd-subtitle3-fontSize: 0.875rem;
+--lsd-subtitle3-fontWeight: normal;
+--lsd-subtitle3-lineHeight: 1.25rem;
+--lsd-subtitle4-fontSize: 0.75rem;
+--lsd-subtitle4-fontWeight: normal;
+--lsd-subtitle4-lineHeight: 1rem;
+--lsd-body1-fontSize: 1rem;
+--lsd-body1-fontWeight: normal;
+--lsd-body1-lineHeight: 1.5rem;
+--lsd-body2-fontSize: 0.875rem;
+--lsd-body2-fontWeight: normal;
+--lsd-body2-lineHeight: 1.25rem;
+--lsd-body3-fontSize: 0.75rem;
+--lsd-body3-fontWeight: normal;
+--lsd-body3-lineHeight: 1rem;
+--lsd-label1-fontSize: 0.875rem;
+--lsd-label1-fontWeight: normal;
+--lsd-label1-lineHeight: 1.25rem;
+--lsd-label2-fontSize: 0.75rem;
+--lsd-label2-fontWeight: normal;
+--lsd-label2-lineHeight: 1rem;
+--lsd-typography-generic-font-family: sans-serif;
+--lsd-theme-primary: 255, 255, 255;
+--lsd-theme-secondary: 0, 0, 0;
+--lsd-surface-primary: 0, 0, 0;
+--lsd-surface-secondary: 255, 255, 255;
+--lsd-border-primary: 255, 255, 255;
+--lsd-border-secondary: 0, 0, 0;
+--lsd-icon-primary: 255, 255, 255;
+--lsd-icon-secondary: 0, 0, 0;
+--lsd-text-primary: 255, 255, 255;
+--lsd-text-secondary: 0, 0, 0;
+--lsd-text-tertiary: 255, 255, 255, 0.34;
+--lsd-spacing-4: 4px;
+--lsd-spacing-8: 8px;
+--lsd-spacing-16: 16px;
+--lsd-spacing-24: 24px;
+--lsd-spacing-32: 32px;
+--lsd-spacing-40: 40px;
+--lsd-spacing-64: 64px;
+--lsd-spacing-80: 80px;
+--lsd-spacing-96: 96px;
+--lsd-spacing-120: 120px; 
+
+    @media (min-width: 0px) {
+      :root {
+        
+      }
+
+      
+    }
+@media (min-width: 400px) {
+      :root {
+        
+      }
+
+      
+    }
+@media (min-width: 768px) {
+      :root {
+        
+      }
+
+      
+    }
+@media (min-width: 1024px) {
+      :root {
+        
+      }
+
+      
+    }
+@media (min-width: 1205px) {
+      :root {
+        
+      }
+
+      
+    }
+  
+}
+
+2:["$","html",null,{"lang":"en","className":"scroll-smooth","suppressHydrationWarning":true,"children":[["$","head",null,{"children":[["$","link",null,{"rel":"apple-touch-icon","sizes":"76x76","href":"/favicon.ico"}],["$","link",null,{"rel":"icon","href":"/favicon.ico","type":"image/x-icon"}],["$","meta",null,{"name":"msapplication-TileColor","content":"#000000"}],["$","meta",null,{"name":"theme-color","media":"(prefers-color-scheme: light)","content":"#fff"}],["$","meta",null,{"name":"theme-color","media":"(prefers-color-scheme: dark)","content":"#000"}],["$","style",null,{"id":"lsd-theme-styles","dangerouslySetInnerHTML":{"__html":"$11"}}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"\n  (function() {\n    try {\n      var theme = localStorage.getItem('theme');\n      var systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';\n      var initialTheme = theme || systemTheme;\n      document.documentElement.setAttribute('data-theme', initialTheme);\n    } catch (e) {}\n  })();\n"}}],["$","$L12",null,{"id":"organization-jsonld","type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"name\":\"Logos\",\"url\":\"https://logos.co\",\"logo\":\"https://contribute.logos.co/brand/logo.svg\",\"description\":\"Decentralized autonomous organization focused on privacy and freedom\",\"foundingDate\":\"2023\",\"sameAs\":[\"https://github.com/logos-co\",\"https://twitter.com/logosnetwork\"]}"}}],["$","$L12",null,{"id":"website-jsonld","type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@type\":\"WebSite\",\"name\":\"Logos Contribute\",\"url\":\"https://contribute.logos.co\",\"description\":\"Celebrating open source contributors and helping new developers make their first contributions\",\"publisher\":{\"@type\":\"Organization\",\"name\":\"Logos\",\"url\":\"https://logos.co\"},\"potentialAction\":{\"@type\":\"SearchAction\",\"target\":\"https://contribute.logos.co/search?q={search_term_string}\",\"query-input\":\"required name=search_term_string\"}}"}}]]}],["$","body",null,{"children":["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]]}]
+8:["$","$13",null,{"fallback":null,"children":["$","$L14",null,{"promise":"$@15"}]}]
+b:null
+16:I[8134,["69","static/chunks/69-719d62cb30dfc8eb.js","337","static/chunks/337-443ee2ac079cbcba.js","711","static/chunks/711-925bd2f4e0c29e25.js","862","static/chunks/862-77c93aba6c6f9fda.js","108","static/chunks/108-e8ae90fa97f2f358.js","701","static/chunks/701-99cb8c53e7718391.js","450","static/chunks/app/%5Blocale%5D/layout-368521853b9c0af0.js"],"default"]
+3:["$","$L16",null,{"children":"$L17"}]
+18:I[6421,["69","static/chunks/69-719d62cb30dfc8eb.js","337","static/chunks/337-443ee2ac079cbcba.js","711","static/chunks/711-925bd2f4e0c29e25.js","862","static/chunks/862-77c93aba6c6f9fda.js","108","static/chunks/108-e8ae90fa97f2f358.js","701","static/chunks/701-99cb8c53e7718391.js","450","static/chunks/app/%5Blocale%5D/layout-368521853b9c0af0.js"],"default"]
+19:I[5684,["69","static/chunks/69-719d62cb30dfc8eb.js","337","static/chunks/337-443ee2ac079cbcba.js","711","static/chunks/711-925bd2f4e0c29e25.js","862","static/chunks/862-77c93aba6c6f9fda.js","108","static/chunks/108-e8ae90fa97f2f358.js","701","static/chunks/701-99cb8c53e7718391.js","450","static/chunks/app/%5Blocale%5D/layout-368521853b9c0af0.js"],"default"]
+1a:I[7132,["69","static/chunks/69-719d62cb30dfc8eb.js","337","static/chunks/337-443ee2ac079cbcba.js","711","static/chunks/711-925bd2f4e0c29e25.js","862","static/chunks/862-77c93aba6c6f9fda.js","108","static/chunks/108-e8ae90fa97f2f358.js","701","static/chunks/701-99cb8c53e7718391.js","450","static/chunks/app/%5Blocale%5D/layout-368521853b9c0af0.js"],"default"]
+17:["$","$L18",null,{"formats":"$undefined","locale":"en","messages":{"locale":{"language":"Language","en":"English","fr":"Français","ko":"한국어"},"common":{"nav":{"directory":"Directory","resources":"Resources","contributors":"Contributors","miilestones":"Milestones","proposals":"Proposals","issues":"Issues","leaderboard":"Leaderboard"},"contribute":{"timePeriod":"Last 12 months"}},"home":{"title":"Logos Contribute","subtitle":"Celebrating open source contributors and helping new developers make their first contributions","search":{"placeholder":"Search by username or repository..."},"stats":{"activeContributors":"Active Contributors","totalContributions":"Total Contributions","repositories":"Repositories"},"contributors":{"title":"Contributor Directory","contributions":"contributions","latest":"Latest","viewGithubProfile":"View GitHub Profile","viewDetails":"View Details","noResults":"No contributors found matching your search.","pagination":{"showing":"Showing {start}-{end} of {total} contributors","previous":"Previous","next":"Next"}},"cta":{"title":"Ready to make your first contribution?","description":"Join our community and help build the future of open source development.","getStarted":"Get Started","viewGuidelines":"View Guidelines"}},"issues":{"title":"Issues","subtitle":"Open issues for contribute.logos.co. Pick your issue and suggest your solution.","loading":"Loading issues...","error":"Failed to load issues.","empty":"No open issues found.","by":"by {author}","comments":"{count} comments","updated":"updated {date}","view":"View","showing":"Showing {start}-{end} of {total} issues","previous":"Previous","next":"Next"},"leaderboard":{"title":"Community Leaderboard","subtitle":"Recognizing our top contributors and their impact on the ecosystem","tabs":{"seasonal":"Seasonal Rankings","historical":"All-Time Rankings"},"description":{"seasonal":"Rankings reset quarterly","historical":"Cumulative contributions since 2025"},"table":{"rank":"Rank","contributor":"Contributor","tier":"Tier","score":"Score","contributions":"Contributions","repositories":"Repositories"},"pagination":{"showing":"Showing {start}-{end} of {total} contributors","previous":"Previous","next":"Next"}},"contributor":{"backToContributors":"← Back to Contributors","contributionsToEcosystem":"contributions to the Logos ecosystem","totalContributions":"Total Contributions","latestRepository":"Latest Repository","latestContribution":"Latest Contribution","viewGithubProfile":"View GitHub Profile","contributionHistory":"Contribution History","commit":"Commit","issue":"Issue","pullRequest":"Pull Request","review":"Review","translation":"Translation","contribution":"Contribution","view":"View"},"footer":{}},"now":"$undefined","timeZone":"UTC","children":[["$","$L19",null,{}],["$","main",null,{"children":["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"flex items-center justify-center py-20","children":["$","h1",null,{"className":"text-4xl font-light text-gray-500","children":"404 | Not Found"}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],["$","$L1a",null,{}]]}]
+f:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+a:null
+15:{"metadata":[["$","title","0",{"children":"Leaderboard"}],["$","meta","1",{"name":"description","content":"View top contributors in our community leaderboard"}],["$","meta","2",{"name":"keywords","content":"Logos,Web3"}],["$","meta","3",{"name":"creator","content":"Logos"}],["$","meta","4",{"name":"publisher","content":"Logos"}],["$","meta","5",{"name":"robots","content":"noindex, follow"}],["$","meta","6",{"name":"googlebot","content":"noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"}],["$","link","7",{"rel":"canonical","href":"https://logos.co/leaderboard/"}],["$","link","8",{"rel":"alternate","hrefLang":"en","href":"https://logos.co/leaderboard/"}],["$","link","9",{"rel":"alternate","hrefLang":"fr","href":"https://logos.co/fr/leaderboard/"}],["$","link","10",{"rel":"alternate","hrefLang":"ko","href":"https://logos.co/ko/leaderboard/"}],["$","link","11",{"rel":"alternate","hrefLang":"x-default","href":"https://logos.co/leaderboard/"}],["$","meta","12",{"property":"og:title","content":"Leaderboard"}],["$","meta","13",{"property":"og:description","content":"View top contributors in our community leaderboard"}],["$","meta","14",{"property":"og:url","content":"https://logos.co/leaderboard/"}],["$","meta","15",{"property":"og:site_name","content":"Logos"}],["$","meta","16",{"property":"og:locale","content":"en"}],["$","meta","17",{"property":"og:image","content":"https://logos.co/og"}],["$","meta","18",{"property":"og:image:width","content":"1200"}],["$","meta","19",{"property":"og:image:height","content":"630"}],["$","meta","20",{"property":"og:image:alt","content":"Leaderboard"}],["$","meta","21",{"property":"og:image:type","content":"image/png"}],["$","meta","22",{"property":"og:type","content":"website"}],["$","meta","23",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","24",{"name":"twitter:creator","content":"@Logos"}],["$","meta","25",{"name":"twitter:title","content":"Leaderboard"}],["$","meta","26",{"name":"twitter:description","content":"View top contributors in our community leaderboard"}],["$","meta","27",{"name":"twitter:image","content":"https://logos.co/og"}],["$","link","28",{"rel":"icon","href":"/favicon.ico"}]],"error":null,"digest":"$undefined"}
+d:{"metadata":"$15:metadata","error":null,"digest":"$undefined"}
