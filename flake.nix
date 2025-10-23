@@ -25,7 +25,8 @@
           packages = with pkgsFor.${system}.buildPackages; [
             pnpm # 9.x
             nodejs_20 # v20.x for Next.js 15
-            git
+            git # 2.44.2
+            ghp-import # 2.1.0
           ];
         };
       });
