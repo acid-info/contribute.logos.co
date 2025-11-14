@@ -23,7 +23,7 @@ const Header = () => {
         <div className="mx-auto flex max-w-7xl items-center justify-between">
           <div className="flex items-center space-x-8">
             <Link href={ROUTES.home} className="flex items-center space-x-2">
-              <img src="/brand/logo-black.svg" alt="Logos" className="logo-light h-8 w-auto" />
+              <img src="/brand/logos-black.svg" alt="Logos" className="logo-light h-8 w-auto" />
               <img src="/brand/logo.svg" alt="Logos" className="logo-dark h-8 w-auto" />
             </Link>
 
