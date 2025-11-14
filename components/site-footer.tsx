@@ -8,7 +8,7 @@ export default function SiteFooter() {
       <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center space-y-4 sm:flex-row sm:justify-between sm:space-y-0">
           <div className="flex items-center space-x-2">
-            <img src="/brand/logo-black.svg" alt="Logos" className="h-5 w-auto sm:h-6" />
+            <img src="/brand/logos-black.svg" alt="Logos" className="h-5 w-auto sm:h-6" />
             <Typography variant="body2" className="text-xs sm:text-sm">
               Contribute
             </Typography>
