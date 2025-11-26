@@ -4,6 +4,16 @@ import { useState, useRef, useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import { useCategories } from '@/hooks/useCategories'
 import { useSubmitContribution } from '@/hooks/useSubmitContribution'
+import { useLocale } from 'next-intl'
+import { ROUTES } from '@/constants/routes'
+
+declare global {
+  interface Window {
+    umami: {
+      track: (event: string, data: Record<string, string>) => void
+    }
+  }
+}
 
 const RichTextEditor = dynamic(() => import('./rich-text-editor'), {
   ssr: false,
@@ -106,6 +116,8 @@ export default function ContactForm() {
   })
   const dropdownRef = useRef<HTMLDivElement>(null)
 
+  const locale = useLocale()
+
   const {
     data: categories = [],
     isLoading: categoriesLoading,
@@ -173,21 +185,28 @@ export default function ContactForm() {
 
   const nameError =
     touched.name && name.trim().length < 2 ? 'Please enter at least 2 characters.' : ''
+
   const emailError =
     touched.email && !validateContact(email)
       ? 'Please enter a valid email address or Status App chat key (49 characters starting with zQ3sh).'
       : ''
+
   const messageError =
     touched.message && messageText.trim().length < 5 ? 'Please enter at least 5 characters.' : ''
 
   async function handleSubmit(e: { preventDefault: () => void }) {
     e.preventDefault()
 
+    window.umami.track('Proposals - Logos Contribute', {
+      source: `${locale}${ROUTES.proposals}/`,
+    })
+
     const nextTouched: TouchedState = { name: true, email: true, message: true }
     setTouched(nextTouched)
 
     const hasErrors =
       name.trim().length < 2 || !validateContact(email) || messageText.trim().length < 5
+
     if (hasErrors) {
       return
     }
