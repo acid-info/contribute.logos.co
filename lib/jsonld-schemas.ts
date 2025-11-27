@@ -51,7 +51,7 @@ export function generateOrganizationJsonLd() {
     '@type': 'Organization',
     name: 'Logos',
     url: 'https://logos.co',
-    logo: 'https://contribute.logos.co/brand/logo.svg',
+    logo: 'https://contribute.logos.co/brand/logos-black.svg',
     description: 'Decentralized autonomous organization focused on privacy and freedom',
     foundingDate: '2023',
     sameAs: ['https://github.com/logos-co', 'https://twitter.com/logosnetwork'],
