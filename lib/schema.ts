@@ -16,7 +16,7 @@ export function generateHomePageSchema({ locale, path = '' }: HomePageSchemaProp
     name: siteConfig.name,
     url: siteConfig.url,
     description: siteConfig.description,
-    logo: `${baseUrl}/brand/logo.svg`,
+    logo: `${baseUrl}/brand/logos-black.svg`,
     sameAs: [
       // Add social media URLs if available
     ],
@@ -34,7 +34,7 @@ export function generateHomePageSchema({ locale, path = '' }: HomePageSchemaProp
       '@type': 'Organization',
       name: siteConfig.name,
       url: siteConfig.url,
-      logo: `${baseUrl}/brand/logo.svg`,
+      logo: `${baseUrl}/brand/logos-black.svg`,
     },
     potentialAction: {
       '@type': 'SearchAction',
