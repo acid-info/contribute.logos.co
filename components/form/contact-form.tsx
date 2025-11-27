@@ -7,14 +7,6 @@ import { useSubmitContribution } from '@/hooks/useSubmitContribution'
 import { useLocale } from 'next-intl'
 import { ROUTES } from '@/constants/routes'
 
-declare global {
-  interface Window {
-    umami: {
-      track: (event: string, data: Record<string, string>) => void
-    }
-  }
-}
-
 const RichTextEditor = dynamic(() => import('./rich-text-editor'), {
   ssr: false,
   loading: () => (

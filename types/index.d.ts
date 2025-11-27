@@ -37,3 +37,11 @@ declare module '@tiptap/extension-placeholder' {
   const Placeholder: any
   export default Placeholder
 }
+
+declare global {
+  interface Window {
+    umami: {
+      track: (event: string, data: Record<string, string>) => void
+    }
+  }
+}
