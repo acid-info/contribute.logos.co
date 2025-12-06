@@ -25,6 +25,12 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             __html: themeInitScript,
           }}
         />
+        <Script
+          strategy="afterInteractive"
+          src="https://umami.bi.status.im/script.js"
+          data-website-id="92fb3459-5270-4ce8-a81b-70bee39fbdfe"
+          data-domains="contribute.logos.co"
+        />
 
         {/* Schema.org JSON-LD */}
         <Script
