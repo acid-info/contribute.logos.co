@@ -72,7 +72,7 @@
     "clearFilters": "Clear all",
     "by": "by {author}",
     "comments": "{count} comments",
-    "updated": "updated {date}",
+    "updated": "Updated {date}",
     "view": "View",
     "showing": "Showing {start}-{end} of {total} issues",
     "previous": "Previous",
