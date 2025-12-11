@@ -48,6 +48,15 @@
       "description": "Rejoignez notre communauté et aidez à construire l'avenir du développement open source.",
       "getStarted": "Commencer",
       "viewGuidelines": "Voir les directives"
+    },
+    "issues": {
+      "title": "Commencer à contribuer",
+      "viewAll": "Voir tous les problèmes"
+    },
+    "directory": {
+      "title": "Répertoire de la communauté",
+      "description": "Reconnaître nos meilleurs contributeurs et leur impact sur l'écosystème",
+      "viewAll": "Voir tous les contributeurs"
     }
   },
   "issues": {
@@ -93,6 +102,11 @@
       "previous": "Précédent",
       "next": "Suivant"
     }
+  },
+  "proposals": {
+    "title": "Propositions",
+    "description": "Soumettez votre proposition pour Logos.",
+    "howToContribute": "Comment contribuer"
   },
   "contributor": {
     "backToContributors": "← Retour aux contributeurs",

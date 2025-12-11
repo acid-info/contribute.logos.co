@@ -48,6 +48,15 @@
       "description": "우리 커뮤니티에 참여하여 오픈소스 개발의 미래를 함께 만들어보세요.",
       "getStarted": "시작하기",
       "viewGuidelines": "가이드라인 보기"
+    },
+    "issues": {
+      "title": "기여 시작하기",
+      "viewAll": "모든 이슈 보기"
+    },
+    "directory": {
+      "title": "커뮤니티 디렉토리",
+      "description": "우리의 최고 기여자들과 생태계에 미치는 영향을 인정합니다",
+      "viewAll": "모든 기여자 보기"
     }
   },
   "issues": {
@@ -93,6 +102,11 @@
       "previous": "이전",
       "next": "다음"
     }
+  },
+  "proposals": {
+    "title": "제안",
+    "description": "Logos에 대한 제안을 제출하세요.",
+    "howToContribute": "기여하는 방법"
   },
   "contributor": {
     "backToContributors": "← 기여자 목록으로 돌아가기",

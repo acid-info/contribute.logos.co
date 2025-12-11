@@ -13,7 +13,7 @@ export default function ProposalsSection({
   description,
   showHowToContributeLink = true,
 }: ProposalsSectionProps) {
-  const t = useTranslations('home')
+  const t = useTranslations('proposals')
 
   return (
     <div className="mx-auto flex w-full max-w-2xl flex-col items-center">
@@ -27,7 +27,7 @@ export default function ProposalsSection({
         {showHowToContributeLink && (
           <div className="mt-8">
             <Link href="/resources/how-to-contribute" className="underline">
-              How to contribute
+              {t('howToContribute')}
             </Link>
           </div>
         )}

@@ -8,6 +8,7 @@ import ContributorDirectory from '@/components/contributors/contributors-directo
 
 export default function DirectoryContainer() {
   const t = useTranslations('home')
+  const tc = useTranslations('common')
 
   const [searchTerm, setSearchTerm] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
@@ -33,7 +34,7 @@ export default function DirectoryContainer() {
     <div className="min-h-screen">
       <div className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 xl:px-0">
         <div className="mb-8 flex flex-col gap-3 text-center">
-          <h1 className="text-center">Directory</h1>
+          <h1 className="text-center">{tc('nav.directory')}</h1>
         </div>
 
         <div className="mb-12">

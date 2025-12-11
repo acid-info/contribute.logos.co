@@ -2,6 +2,7 @@ import { ROUTES } from '@/constants/routes'
 import { createDefaultMetadata } from '@/lib/metadata'
 import { routing } from '@/i18n/routing'
 import IssuesContainer from '@/containers/issues/issues-container'
+import { useTranslations } from 'next-intl'
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
@@ -15,9 +16,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 
 export default function Page() {
+  const t = useTranslations('issues')
+
   return (
     <div className="mx-auto flex min-h-[calc(100vh-60px)] max-w-5xl flex-col px-4 pt-10 pb-20 sm:px-6 lg:px-8">
-      <h1 className="pb-2 text-center">Issues</h1>
+      <h1 className="pb-2 text-center">{t('title')}</h1>
       <IssuesContainer />
     </div>
   )

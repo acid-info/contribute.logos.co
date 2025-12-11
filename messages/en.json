@@ -48,6 +48,15 @@
       "description": "Join our community and help build the future of open source development.",
       "getStarted": "Get Started",
       "viewGuidelines": "View Guidelines"
+    },
+    "issues": {
+      "title": "Start Contributing",
+      "viewAll": "View All Issues"
+    },
+    "directory": {
+      "title": "Community Directory",
+      "description": "Recognising our top contributors and their impact on the ecosystem",
+      "viewAll": "View All Contributors"
     }
   },
   "issues": {
@@ -93,6 +102,11 @@
       "previous": "Previous",
       "next": "Next"
     }
+  },
+  "proposals": {
+    "title": "Proposals",
+    "description": "Submit your proposal for Logos.",
+    "howToContribute": "How to contribute"
   },
   "contributor": {
     "backToContributors": "← Back to Contributors",
