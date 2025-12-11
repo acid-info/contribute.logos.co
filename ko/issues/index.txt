@@ -12,11 +12,11 @@ e:I[2780,[],"MetadataBoundary"]
 :HL["/_next/static/media/e53d8d957b668982-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/css/55cff78e19f6e552.css","style"]
 :HL["/_next/static/css/263aabd6132d2ec5.css","style"]
-0:{"P":null,"b":"YZmwt0f0ukryqMPA8gc3o","p":"","c":["","ko","issues",""],"i":false,"f":[[["",{"children":[["locale","ko","d"],{"children":["issues",{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/55cff78e19f6e552.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/263aabd6132d2ec5.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],"$L2"]}],{"children":[["locale","ko","d"],["$","$1","c",{"children":[null,"$L3"]}],{"children":["issues",["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":["$L6",null,["$","$L7",null,{"children":["$L8","$L9",["$","$La",null,{"promise":"$@b"}]]}]]}],{},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,["$","$1","H_77nWdRAPzcRmb-XP9PKv",{"children":[["$","$Lc",null,{"children":"$Ld"}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],["$","$Le",null,{"children":"$Lf"}]]}],false]],"m":"$undefined","G":["$10","$undefined"],"s":false,"S":true}
+0:{"P":null,"b":"TW6sGbD4ly0-2ic3rYyzC","p":"","c":["","ko","issues",""],"i":false,"f":[[["",{"children":[["locale","ko","d"],{"children":["issues",{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/55cff78e19f6e552.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/263aabd6132d2ec5.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],"$L2"]}],{"children":[["locale","ko","d"],["$","$1","c",{"children":[null,"$L3"]}],{"children":["issues",["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":["$L6",null,["$","$L7",null,{"children":["$L8","$L9",["$","$La",null,{"promise":"$@b"}]]}]]}],{},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,["$","$1","Ju-lTmLz0nKHdvwupr4mYv",{"children":[["$","$Lc",null,{"children":"$Ld"}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],["$","$Le",null,{"children":"$Lf"}]]}],false]],"m":"$undefined","G":["$10","$undefined"],"s":false,"S":true}
 12:I[9896,["177","static/chunks/app/layout-4f03e45376deafb3.js"],""]
 13:"$Sreact.suspense"
 14:I[8212,[],"AsyncMetadata"]
-11:T1696,:root, [data-theme="light"] {
+11:T168c,:root, [data-theme="light"] {
 
     --lsd-display1-fontSize: 5.5rem;
 --lsd-display1-fontWeight: normal;
@@ -75,7 +75,7 @@ e:I[2780,[],"MetadataBoundary"]
 --lsd-label2-fontSize: 0.75rem;
 --lsd-label2-fontWeight: normal;
 --lsd-label2-lineHeight: 1rem;
---lsd-typography-generic-font-family: sans-serif;
+--lsd-typography-generic-font-family: serif;
 --lsd-theme-primary: 0, 0, 0;
 --lsd-theme-secondary: 255, 255, 255;
 --lsd-surface-primary: 255, 255, 255;
@@ -195,7 +195,7 @@ e:I[2780,[],"MetadataBoundary"]
 --lsd-label2-fontSize: 0.75rem;
 --lsd-label2-fontWeight: normal;
 --lsd-label2-lineHeight: 1rem;
---lsd-typography-generic-font-family: sans-serif;
+--lsd-typography-generic-font-family: serif;
 --lsd-theme-primary: 255, 255, 255;
 --lsd-theme-secondary: 0, 0, 0;
 --lsd-surface-primary: 0, 0, 0;
