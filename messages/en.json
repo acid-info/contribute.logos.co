@@ -21,7 +21,7 @@
   },
   "home": {
     "title": "Logos Contribute",
-    "subtitle": "Celebrating open source contributors and helping new developers make their first contributions",
+    "subtitle": "Celebrating open source contributors and helping new developers make their first contributions.",
     "search": {
       "placeholder": "Search by username or repository..."
     },
@@ -55,13 +55,13 @@
     },
     "directory": {
       "title": "Community Directory",
-      "description": "Recognising our top contributors and their impact on the ecosystem",
+      "description": "Recognising our top contributors and their impact on the ecosystem.",
       "viewAll": "View All Contributors"
     }
   },
   "issues": {
     "title": "Issues",
-    "subtitle": "Open issues for contribute.logos.co. Pick your issue and suggest your solution",
+    "subtitle": "Open issues for contribute.logos.co. Pick your issue and suggest your solution.",
     "loading": "Loading issues...",
     "error": "Failed to load issues.",
     "empty": "No open issues found.",
@@ -80,7 +80,7 @@
   },
   "leaderboard": {
     "title": "Community Leaderboard",
-    "subtitle": "Recognising our top contributors and their impact on the ecosystem",
+    "subtitle": "Recognising our top contributors and their impact on the ecosystem.",
     "tabs": {
       "seasonal": "Seasonal Rankings",
       "historical": "All-Time Rankings"
@@ -105,7 +105,7 @@
   },
   "proposals": {
     "title": "Proposals",
-    "description": "Submit your proposal for Logos",
+    "description": "Submit your proposal for Logos.",
     "howToContribute": "How to contribute"
   },
   "contributor": {

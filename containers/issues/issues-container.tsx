@@ -67,7 +67,7 @@ export default function IssuesContainer({
   return (
     <>
       <div className="mb-8 flex flex-col gap-2">
-        <p className="text-secondary text-center text-lg">{t('subtitle')}</p>
+        <p className="text-secondary text-center text-base">{t('subtitle')}</p>
       </div>
       <div className="border-primary border">
         <IssuesHeader

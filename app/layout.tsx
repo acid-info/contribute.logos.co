@@ -4,6 +4,8 @@ import { LsdThemeStyles } from '@acid-info/lsd-react/theme'
 import { themeInitScript } from '@/lib/theme'
 import Script from 'next/script'
 import { generateOrganizationJsonLd, generateWebSiteJsonLd } from '@/lib/jsonld-schemas'
+import * as fonts from '@/app/fonts'
+import { cn } from '@/lib/utils'
 
 export const dynamic = 'force-static'
 
@@ -12,7 +14,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const websiteSchema = generateWebSiteJsonLd()
 
   return (
-    <html lang="en" className={`scroll-smooth`} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={cn('scroll-smooth', fonts.mainFont.variable, fonts.secondaryFont.variable)}
+      suppressHydrationWarning
+    >
       <head>
         <link rel="apple-touch-icon" sizes="76x76" href="/favicon.ico" />
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
@@ -48,7 +54,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           }}
         />
       </head>
-      <body>{children}</body>
+      <body className={fonts.mainFont.className}>{children}</body>
     </html>
   )
 }
