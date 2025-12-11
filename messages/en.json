@@ -61,7 +61,7 @@
   },
   "issues": {
     "title": "Issues",
-    "subtitle": "Open issues for contribute.logos.co. Pick your issue and suggest your solution.",
+    "subtitle": "Open issues for contribute.logos.co. Pick your issue and suggest your solution",
     "loading": "Loading issues...",
     "error": "Failed to load issues.",
     "empty": "No open issues found.",
@@ -105,7 +105,7 @@
   },
   "proposals": {
     "title": "Proposals",
-    "description": "Submit your proposal for Logos.",
+    "description": "Submit your proposal for Logos",
     "howToContribute": "How to contribute"
   },
   "contributor": {

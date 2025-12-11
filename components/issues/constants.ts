@@ -6,4 +6,10 @@ export const AVAILABLE_LABELS = [
   'Los Angeles',
   'Porto',
   'Benin',
+  'Translators',
+  'Designers',
+  'Developers',
+  'Event Organisers',
+  'Writers',
+  'Other',
 ] as const
