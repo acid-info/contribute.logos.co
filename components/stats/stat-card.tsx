@@ -14,7 +14,7 @@ interface StatCardProps {
 export default function StatCard({ value, label, isLoading, error, colSpan }: StatCardProps) {
   return (
     <div className={`border-primary border p-4 sm:p-6 ${colSpan || ''}`}>
-      <Typography variant="h2" className="text-2xl sm:text-3xl">
+      <Typography variant="h2" className="!text-2xl sm:!text-3xl">
         {isLoading || error ? (
           <div className="mb-2 h-6 w-6 animate-spin rounded-full border-2 border-gray-300 border-t-gray-900"></div>
         ) : (
