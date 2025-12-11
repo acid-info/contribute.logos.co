@@ -65,7 +65,7 @@ export function generateWebSiteJsonLd() {
     name: 'Logos Contribute',
     url: 'https://contribute.logos.co',
     description:
-      'Celebrating open source contributors and helping new developers make their first contributions',
+      'Celebrating open source contributors and helping new developers make their first contributions.',
     publisher: {
       '@type': 'Organization',
       name: 'Logos',

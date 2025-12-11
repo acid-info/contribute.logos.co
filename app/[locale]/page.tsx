@@ -10,7 +10,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const metadata = await createDefaultMetadata({
     title: 'Logos Contribute - Open Source Contribution Hub',
     description:
-      'Celebrating open source contributors and helping new developers make their first contributions',
+      'Celebrating open source contributors and helping new developers make their first contribution.',
     locale,
     path: ROUTES.home,
   })
