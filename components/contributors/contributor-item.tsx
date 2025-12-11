@@ -1,0 +1,68 @@
+'use client'
+
+import { useTranslations } from 'next-intl'
+import { Button } from '@acid-info/lsd-react'
+import { Link } from '@/i18n/navigation'
+import { ROUTES } from '@/constants/routes'
+import { Contributor } from '@/types'
+
+interface ContributorItemProps {
+  contributor: Contributor
+}
+
+const formatDate = (dateString: string) => {
+  return new Date(dateString).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  })
+}
+
+export default function ContributorItem({ contributor }: ContributorItemProps) {
+  const t = useTranslations('home')
+
+  return (
+    <div className="p-4 sm:p-6">
+      <div className="flex flex-col space-y-3 sm:flex-row sm:items-center sm:space-y-0 sm:space-x-4">
+        <img
+          src={contributor.avatarUrl}
+          alt={`${contributor.username} avatar`}
+          className="h-10 w-10 rounded-full sm:h-12 sm:w-12"
+        />
+        <div className="min-w-0 flex-1">
+          <div className="flex flex-col space-y-1 sm:flex-row sm:items-center sm:space-y-0 sm:space-x-3">
+            <a
+              href={contributor.profileUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-base font-medium hover:underline sm:text-lg"
+            >
+              {contributor.username}
+            </a>
+            <span className="inline-flex items-center text-xs font-medium">
+              {contributor.contributions} {t('contributors.contributions')}
+            </span>
+          </div>
+          <div className="mt-1 text-xs sm:text-sm">
+            {t('contributors.latest')}: {contributor.latestRepo} •{' '}
+            {formatDate(contributor.latestContribution)}
+          </div>
+        </div>
+        <div className="flex flex-col space-y-2 sm:flex-row sm:space-y-0 sm:space-x-2">
+          <a href={contributor.profileUrl} target="_blank" rel="noopener noreferrer">
+            <Button variant="outlined" size="small" className="w-full sm:w-auto">
+              {t('contributors.viewGithubProfile')}
+            </Button>
+          </a>
+          <Link
+            href={`${ROUTES.contributors}?username=${encodeURIComponent(contributor.username)}`}
+          >
+            <Button size="small" className="w-full sm:w-auto">
+              {t('contributors.viewDetails')}
+            </Button>
+          </Link>
+        </div>
+      </div>
+    </div>
+  )
+}
