@@ -29,8 +29,8 @@ export default function IssueItem({ issue }: IssueItemProps) {
             </Typography>
           </button>
           <div className="text-secondary mt-1 flex flex-wrap items-center gap-2 text-xs">
-            <span>{t('by', { author: issue.author })}</span>
-            <span>•</span>
+            {/* <span>{t('by', { author: issue.author })}</span>
+            <span>•</span> */}
             <span>{t('comments', { count: issue.comments })}</span>
             <span>•</span>
             <span>
