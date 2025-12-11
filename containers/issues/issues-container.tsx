@@ -10,13 +10,20 @@ import IssuesLoading from '@/components/issues/issues-loading'
 import IssuesError from '@/components/issues/issues-error'
 import IssuesEmpty from '@/components/issues/issues-empty'
 
-export default function IssuesContainer() {
+interface IssuesContainerProps {
+  showPagination?: boolean
+  itemsPerPage?: number
+}
+
+export default function IssuesContainer({
+  showPagination = true,
+  itemsPerPage = 10,
+}: IssuesContainerProps) {
   const t = useTranslations('issues')
   const { data, isLoading, error } = useIssues()
   const [page, setPage] = useState(1)
   const [selectedLabels, setSelectedLabels] = useState<string[]>([])
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
-  const perPage = 10
 
   const issues = data?.issues || []
 
@@ -29,12 +36,15 @@ export default function IssuesContainer() {
   }, [issues, selectedLabels])
 
   const total = filteredIssues.length
-  const totalPages = Math.max(1, Math.ceil(total / perPage))
+  const totalPages = Math.max(1, Math.ceil(total / itemsPerPage))
 
   const pagedIssues = useMemo(() => {
-    const start = (page - 1) * perPage
-    return filteredIssues.slice(start, start + perPage)
-  }, [filteredIssues, page])
+    if (!showPagination) {
+      return filteredIssues.slice(0, itemsPerPage)
+    }
+    const start = (page - 1) * itemsPerPage
+    return filteredIssues.slice(start, start + itemsPerPage)
+  }, [filteredIssues, page, showPagination, itemsPerPage])
 
   // Toggle label selection
   const handleLabelToggle = (label: string) => {
@@ -57,7 +67,7 @@ export default function IssuesContainer() {
   return (
     <>
       <div className="mb-8 flex flex-col gap-2">
-        <p className="text-secondary text-base">{t('subtitle')}</p>
+        <p className="text-secondary text-center text-lg">{t('subtitle')}</p>
       </div>
       <div className="border-primary border">
         <IssuesHeader
@@ -76,12 +86,12 @@ export default function IssuesContainer() {
         ) : (
           <IssuesEmpty selectedLabels={selectedLabels} />
         )}
-        {!isLoading && !error && totalPages > 1 && (
+        {showPagination && !isLoading && !error && totalPages > 1 && (
           <Pagination
             currentPage={page}
             totalPages={totalPages}
             totalItems={total}
-            itemsPerPage={perPage}
+            itemsPerPage={itemsPerPage}
             onPageChange={setPage}
             showingText={t('showing', {
               start: '{start}',
