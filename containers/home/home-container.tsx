@@ -18,9 +18,9 @@ export default function HomeContainer() {
 
   return (
     <div className="min-h-screen">
-      <div className="mx-auto flex max-w-7xl flex-col gap-20 px-4 py-20 sm:px-6 xl:px-0">
+      <div className="mx-auto flex max-w-7xl flex-col gap-16 px-4 py-10 sm:gap-20 sm:px-6 sm:py-20 xl:px-0">
         <section className="flex flex-col gap-3 text-center">
-          <h1 className="text-center">{t('title')}</h1>
+          <h1 className="text-center max-sm:!text-3xl">{t('title')}</h1>
           <Typography variant="subtitle1" className="text-base sm:text-lg">
             {t('subtitle')}
           </Typography>
@@ -31,7 +31,7 @@ export default function HomeContainer() {
         </section>
 
         <section className="">
-          <h2 className="pb-4 text-center">{t('issues.title')}</h2>
+          <h2 className="pb-4 text-center max-sm:!text-2xl">{t('issues.title')}</h2>
           <div className="mb-4">
             <IssuesContainer showPagination={false} itemsPerPage={5} />
           </div>
@@ -43,7 +43,7 @@ export default function HomeContainer() {
         </section>
 
         <section>
-          <h2 className="pb-2 text-center">{t('directory.title')}</h2>
+          <h2 className="pb-2 text-center max-sm:!text-2xl">{t('directory.title')}</h2>
           <p className="pb-12 text-center">{t('directory.description')}</p>
           <div className="mb-4">
             <ContributorDirectory
@@ -63,9 +63,7 @@ export default function HomeContainer() {
 
         <section className="text-center">
           <div className="border-primary flex flex-col gap-4 border p-4 sm:p-8">
-            <Typography variant="h3" className="mb-4 text-lg sm:text-xl">
-              {t('cta.title')}
-            </Typography>
+            <h3 className="mb-4 !text-lg sm:!text-xl">{t('cta.title')}</h3>
             <Typography variant="body1" className="mb-6 text-sm sm:text-base">
               {t('cta.description')}
             </Typography>
@@ -80,7 +78,7 @@ export default function HomeContainer() {
         </section>
 
         <section>
-          <h2 className="pb-2 text-center">{tp('title')}</h2>
+          <h2 className="pb-2 text-center max-sm:!text-2xl">{tp('title')}</h2>
           <ProposalsSection description={tp('description')} showHowToContributeLink={true} />
         </section>
       </div>
