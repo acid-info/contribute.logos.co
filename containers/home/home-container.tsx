@@ -12,6 +12,7 @@ import ProposalsSection from '@/components/proposals/proposals-section'
 
 export default function HomeContainer() {
   const t = useTranslations('home')
+  const tp = useTranslations('proposals')
 
   const { data: contributors = [], isLoading, error } = useContributors()
 
@@ -30,22 +31,20 @@ export default function HomeContainer() {
         </section>
 
         <section className="">
-          <h2 className="pb-4 text-center">Start Contributing</h2>
+          <h2 className="pb-4 text-center">{t('issues.title')}</h2>
           <div className="mb-4">
             <IssuesContainer showPagination={false} itemsPerPage={5} />
           </div>
           <Link href={ROUTES.issues}>
             <Button variant="outlined" size="small" className="w-full sm:w-auto">
-              View All Issues
+              {t('issues.viewAll')}
             </Button>
           </Link>
         </section>
 
         <section>
-          <h2 className="pb-2 text-center">Community Directory</h2>
-          <p className="pb-12 text-center">
-            Recognising our top contributors and their impact on the ecosystem
-          </p>
+          <h2 className="pb-2 text-center">{t('directory.title')}</h2>
+          <p className="pb-12 text-center">{t('directory.description')}</p>
           <div className="mb-4">
             <ContributorDirectory
               contributors={contributors}
@@ -57,7 +56,7 @@ export default function HomeContainer() {
           </div>
           <Link href={ROUTES.leaderboard}>
             <Button variant="outlined" size="small" className="w-full sm:w-auto">
-              View All Contributors
+              {t('directory.viewAll')}
             </Button>
           </Link>
         </section>
@@ -81,11 +80,8 @@ export default function HomeContainer() {
         </section>
 
         <section>
-          <h2 className="pb-2 text-center">Proposals</h2>
-          <ProposalsSection
-            description="Submit your proposal for Logos."
-            showHowToContributeLink={true}
-          />
+          <h2 className="pb-2 text-center">{tp('title')}</h2>
+          <ProposalsSection description={tp('description')} showHowToContributeLink={true} />
         </section>
       </div>
     </div>
