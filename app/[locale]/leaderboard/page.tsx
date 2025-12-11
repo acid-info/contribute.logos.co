@@ -1,4 +1,4 @@
-import { notFound } from 'next/navigation'
+import DirectoryContainer from '@/containers/directory/directory-container'
 import { routing } from '@/i18n/routing'
 // import { Metadata } from 'next'
 // import { createDefaultMetadata } from '@/lib/metadata'
@@ -21,12 +21,11 @@ import { routing } from '@/i18n/routing'
 // }
 
 export default function LeaderboardPage() {
-  notFound()
-  // return (
-  //   <div className="mx-auto flex min-h-[calc(100vh-60px)] max-w-7xl flex-col px-4 pt-10 pb-20 sm:px-6 lg:px-8">
-  //     <LeaderboardContainer />
-  //   </div>
-  // )
+  return (
+    <div className="mx-auto flex min-h-[calc(100vh-60px)] max-w-7xl flex-col px-4 pt-10 pb-20 sm:px-6 lg:px-8">
+      <DirectoryContainer />
+    </div>
+  )
 }
 
 export function generateStaticParams() {
