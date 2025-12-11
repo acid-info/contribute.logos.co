@@ -1,11 +1,37 @@
 import 'css/tailwind.css'
 import '@acid-info/lsd-react/css'
-import { LsdThemeStyles } from '@acid-info/lsd-react/theme'
+import { LsdThemeStyles, createTheme, defaultThemes } from '@acid-info/lsd-react/theme'
 import { themeInitScript } from '@/lib/theme'
 import Script from 'next/script'
 import { generateOrganizationJsonLd, generateWebSiteJsonLd } from '@/lib/jsonld-schemas'
 import * as fonts from '@/app/fonts'
 import { cn } from '@/lib/utils'
+
+const customLightTheme = createTheme(
+  {
+    breakpoints: defaultThemes.light.breakpoints,
+    typography: defaultThemes.light.typography,
+    typographyGlobal: {
+      genericFontFamily: 'serif',
+    },
+    palette: defaultThemes.light.palette,
+    spacing: defaultThemes.light.spacing,
+  },
+  defaultThemes.light
+)
+
+const customDarkTheme = createTheme(
+  {
+    breakpoints: defaultThemes.dark.breakpoints,
+    typography: defaultThemes.dark.typography,
+    typographyGlobal: {
+      genericFontFamily: 'serif',
+    },
+    palette: defaultThemes.dark.palette,
+    spacing: defaultThemes.dark.spacing,
+  },
+  defaultThemes.dark
+)
 
 export const dynamic = 'force-static'
 
@@ -25,7 +51,12 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <meta name="msapplication-TileColor" content="#000000" />
         <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff" />
         <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000" />
-        <LsdThemeStyles />
+        <LsdThemeStyles
+          customThemes={{
+            light: customLightTheme,
+            dark: customDarkTheme,
+          }}
+        />
         <script
           dangerouslySetInnerHTML={{
             __html: themeInitScript,
