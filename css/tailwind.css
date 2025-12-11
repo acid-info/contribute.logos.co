@@ -3,9 +3,7 @@
 /* Core theme configuration */
 @theme {
   /* Font families */
-  --font-sans:
-    var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
-    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-sans: 'Times New Roman', Times, serif;
 
   /* Colors */
   /* Copied from https://tailwindcss.com/docs/theme#default-theme-variable-reference */
@@ -102,6 +100,7 @@ html {
 }
 
 body {
+  font-family: var(--font-main), 'Times New Roman', Times, serif;
   background-color: rgb(var(--lsd-theme-secondary));
   padding: 0;
   padding-top: 4rem; /* Account for fixed header */

@@ -29,7 +29,7 @@ export function generateHomePageSchema({ locale, path = '' }: HomePageSchemaProp
     name: 'Logos Contribute',
     url: fullUrl,
     description:
-      'Open Source Contribution Hub - Celebrating open source contributors and helping new developers make their first contributions',
+      'Open Source Contribution Hub - Celebrating open source contributors and helping new developers make their first contributions.',
     publisher: {
       '@type': 'Organization',
       name: siteConfig.name,
