@@ -18,10 +18,10 @@ export default function HomeContainer() {
 
   return (
     <div className="min-h-screen">
-      <div className="mx-auto flex max-w-7xl flex-col gap-16 px-4 py-10 sm:gap-20 sm:px-6 sm:py-20 xl:px-0">
+      <div className="mx-auto flex max-w-7xl flex-col gap-16 px-4 pt-8 pb-10 sm:gap-20 sm:px-6 sm:py-20 xl:px-0">
         <section className="flex flex-col gap-3 text-center">
           <h1 className="text-center max-sm:!text-3xl">{t('title')}</h1>
-          <Typography variant="subtitle1" className="text-base sm:text-lg">
+          <Typography variant="subtitle1" className="!text-base">
             {t('subtitle')}
           </Typography>
         </section>
