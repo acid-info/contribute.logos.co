@@ -49,10 +49,10 @@ export function MobileNav({ items }: MobileNavProps) {
   const closeMenu = () => setIsOpen(false)
 
   const mainNavItems = [
-    { title: t('nav.directory'), href: ROUTES.home },
     { title: t('nav.resources'), href: ROUTES.resources },
     { title: t('nav.proposals'), href: ROUTES.proposals },
     { title: t('nav.issues'), href: ROUTES.issues },
+    { title: t('nav.leaderboard'), href: ROUTES.leaderboard },
   ]
 
   return (
