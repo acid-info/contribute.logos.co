@@ -55,7 +55,7 @@ export default function ContributorDetailsContainer() {
 
         <div className="mb-8 grid gap-8 lg:grid-cols-3">
           <div className="lg:col-span-2">
-            <div className="border-primary border p-8">
+            <div className="border-primary border p-4 sm:p-8">
               <div className="mb-6 flex items-center space-x-6">
                 <img
                   src={avatarUrl}
@@ -126,7 +126,7 @@ export default function ContributorDetailsContainer() {
           </div>
 
           {/* <div className="lg:col-span-1">
-            <div className="border-primary border p-6">
+            <div className="p-6 border border-primary">
               <Typography variant="h3" className="mb-4">
                 Quick Stats
               </Typography>
@@ -135,7 +135,7 @@ export default function ContributorDetailsContainer() {
                   <Typography variant="body2">Total Contributions</Typography>
                   <Typography variant="body2" className="font-medium">
                     {loading || error ? (
-                      <div className="h-4 w-4 animate-spin rounded-full border border-gray-300 border-t-gray-900"></div>
+                      <div className="w-4 h-4 rounded-full border border-gray-300 animate-spin border-t-gray-900"></div>
                     ) : (
                       total
                     )}
@@ -145,7 +145,7 @@ export default function ContributorDetailsContainer() {
                   <Typography variant="body2">Latest Repository</Typography>
                   <Typography variant="body2" className="font-medium">
                     {loading || error ? (
-                      <div className="h-4 w-4 animate-spin rounded-full border border-gray-300 border-t-gray-900"></div>
+                      <div className="w-4 h-4 rounded-full border border-gray-300 animate-spin border-t-gray-900"></div>
                     ) : (
                       latest?.repo || '-'
                     )}
@@ -155,7 +155,7 @@ export default function ContributorDetailsContainer() {
                   <Typography variant="body2">Last Contribution</Typography>
                   <Typography variant="body2" className="font-medium">
                     {loading || error ? (
-                      <div className="h-4 w-4 animate-spin rounded-full border border-gray-300 border-t-gray-900"></div>
+                      <div className="w-4 h-4 rounded-full border border-gray-300 animate-spin border-t-gray-900"></div>
                     ) : latest ? (
                       formatDate(latest.date)
                     ) : (
@@ -169,10 +169,10 @@ export default function ContributorDetailsContainer() {
         </div>
 
         <div className="border-primary border">
-          <div className="border-primary border-b px-8 py-6">
+          <div className="border-primary border-b px-4 py-2 sm:px-8 sm:py-6">
             <div className="flex items-center gap-3">
-              <Typography variant="h2">{t('contributionHistory')}</Typography>
-              <Badge className="!cursor-default !no-underline hover:!no-underline">
+              <h2 className="!text-lg sm:!text-2xl">{t('contributionHistory')}</h2>
+              <Badge className="!cursor-default whitespace-nowrap !no-underline hover:!no-underline">
                 {tc('contribute.timePeriod')}
               </Badge>
             </div>
@@ -205,9 +205,9 @@ export default function ContributorDetailsContainer() {
             {!loading &&
               !error &&
               items.map((it) => (
-                <div key={it.link} className="p-8">
+                <div key={it.link} className="p-4 sm:p-8">
                   <div className="flex items-start space-x-4">
-                    <div className="border-primary flex h-12 items-center justify-center border px-4">
+                    <div className="border-primary flex items-center justify-center border p-2 sm:px-4">
                       <Typography variant="body2" className="font-medium">
                         {getContributionLabel(it.type)}
                       </Typography>
