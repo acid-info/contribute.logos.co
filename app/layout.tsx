@@ -106,6 +106,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             light: customLightTheme,
             dark: customDarkTheme,
           }}
+          initialTheme="light"
         />
         <script
           dangerouslySetInnerHTML={{
