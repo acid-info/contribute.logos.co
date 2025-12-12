@@ -125,7 +125,7 @@ const resources = defineCollection({
     })
     return {
       ...document,
-      image: `${siteConfig.url}/opengraph-image`,
+      image: `${siteConfig.url}/og.png`,
       slug: `${ROUTES.resources}/${document._meta.path}`,
       slugAsParams: document._meta.path,
       body: {

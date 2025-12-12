@@ -46,7 +46,7 @@ export async function generateMetadata({ params }: any): Promise<Metadata> {
       description: doc.description,
       type: 'article',
       url: absoluteUrl(`/${_params.locale}${ROUTES.resources}/${doc.slugAsParams}`),
-      images: [`/opengraph-image`],
+      images: [`/og.png`],
     },
     twitter: {
       card: 'summary_large_image',
