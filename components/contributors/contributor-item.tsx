@@ -48,18 +48,16 @@ export default function ContributorItem({ contributor }: ContributorItemProps) {
             {formatDate(contributor.latestContribution)}
           </div>
         </div>
-        <div className="flex flex-col space-y-2 sm:flex-row sm:space-y-0 sm:space-x-2">
+        <div className="flex flex-row gap-2">
           <a href={contributor.profileUrl} target="_blank" rel="noopener noreferrer">
-            <Button variant="outlined" size="small" className="w-full sm:w-auto">
+            <Button variant="outlined" size="small">
               {t('contributors.viewGithubProfile')}
             </Button>
           </a>
           <Link
             href={`${ROUTES.contributors}?username=${encodeURIComponent(contributor.username)}`}
           >
-            <Button size="small" className="w-full sm:w-auto">
-              {t('contributors.viewDetails')}
-            </Button>
+            <Button size="small">{t('contributors.viewDetails')}</Button>
           </Link>
         </div>
       </div>
