@@ -8,12 +8,12 @@ type SiteConfig = {
 }
 
 const siteConfig: SiteConfig = {
-  name: 'Logos',
+  name: 'Logos Contribute Portal',
   title: 'Logos Contribute Portal',
   description:
     'Celebrating open source contributors and helping new developers make their first contributions.',
-  url: 'https://logos.co',
-  keywords: ['Logos', 'Web3'],
+  url: 'https://contribute.logos.co',
+  keywords: ['Logos', 'Web3', 'Contribute'],
   defaultLocale: 'en',
 }
 
