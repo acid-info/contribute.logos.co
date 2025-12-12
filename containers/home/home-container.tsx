@@ -31,7 +31,7 @@ export default function HomeContainer() {
         </section>
 
         <section className="">
-          <h2 className="pb-4 text-center max-sm:!text-2xl">{t('issues.title')}</h2>
+          <h2 className="pb-2 text-center max-sm:!text-2xl">{t('issues.title')}</h2>
           <div className="mb-4">
             <IssuesContainer showPagination={false} itemsPerPage={5} />
           </div>

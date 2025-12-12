@@ -13,7 +13,10 @@ export default function ContributorsHeader() {
         <Typography variant="h3" className="!text-lg sm:!text-xl">
           {t('contributors.title')}
         </Typography>
-        <Badge size="small" className="!cursor-default !no-underline hover:!no-underline">
+        <Badge
+          size="small"
+          className="!cursor-default whitespace-nowrap !no-underline hover:!no-underline"
+        >
           {tc('contribute.timePeriod')}
         </Badge>
       </div>
