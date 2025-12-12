@@ -6,6 +6,8 @@ import Script from 'next/script'
 import { generateOrganizationJsonLd, generateWebSiteJsonLd } from '@/lib/jsonld-schemas'
 import * as fonts from '@/app/fonts'
 import { cn } from '@/lib/utils'
+import { Metadata } from 'next'
+import siteConfig from '@/config/site'
 
 const customLightTheme = createTheme(
   {
@@ -34,6 +36,54 @@ const customDarkTheme = createTheme(
 )
 
 export const dynamic = 'force-static'
+
+export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default: siteConfig.title,
+    template: `%s | ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
+  keywords: siteConfig.keywords,
+  authors: [{ name: siteConfig.name }],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    title: siteConfig.title,
+    description: siteConfig.description,
+    images: [
+      {
+        url: `${siteConfig.url}/og.png`,
+        width: 1200,
+        height: 630,
+        alt: siteConfig.title,
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: siteConfig.title,
+    description: siteConfig.description,
+    images: [`${siteConfig.url}/og.png`],
+    creator: `@${siteConfig.name}`,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
+  icons: {
+    icon: '/favicon.ico',
+    apple: '/favicon.ico',
+  },
+}
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const organizationSchema = generateOrganizationJsonLd()
