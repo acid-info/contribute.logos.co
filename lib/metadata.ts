@@ -55,7 +55,7 @@ export async function createDefaultMetadata({
       siteName: siteConfig.name,
       images: [
         {
-          url: absoluteUrl('/og', locale),
+          url: absoluteUrl('/opengraph-image', locale),
           width: 1200,
           height: 630,
           alt: _title,
@@ -67,7 +67,7 @@ export async function createDefaultMetadata({
       card: 'summary_large_image',
       title: _title,
       description: _description,
-      images: [absoluteUrl('/og', locale)],
+      images: [absoluteUrl('/opengraph-image', locale)],
       creator: `@${siteConfig.name}`,
     },
     icons: '/favicon.ico',
