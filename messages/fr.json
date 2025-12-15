@@ -28,7 +28,8 @@
     "stats": {
       "activeContributors": "Contributeurs actifs",
       "totalContributions": "Contributions totales",
-      "repositories": "Repositories"
+      "repositories": "Repositories",
+      "activeCircles": "Cercles actifs"
     },
     "contributors": {
       "title": "Répertoire des contributeurs",
