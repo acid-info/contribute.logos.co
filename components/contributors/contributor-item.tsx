@@ -30,7 +30,7 @@ export default function ContributorItem({ contributor }: ContributorItemProps) {
           className="h-10 w-10 rounded-full sm:h-12 sm:w-12"
         />
         <div className="min-w-0 flex-1">
-          <div className="flex flex-col space-y-1 sm:flex-row sm:items-center sm:space-y-0 sm:space-x-3">
+          <div className="flex flex-row space-y-1 space-x-3 sm:items-center sm:space-y-0">
             <a
               href={contributor.profileUrl}
               target="_blank"
