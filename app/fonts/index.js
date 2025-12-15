@@ -5,24 +5,29 @@ export const mainFont = localFont({
   display: 'swap',
   src: [
     {
-      path: './times-new-roman/TimesNewRomanPSMT.woff2',
+      path: './fira-code/FiraCode-Light.woff2',
+      weight: '300',
+      style: 'normal',
+    },
+    {
+      path: './fira-code/FiraCode-Regular.woff2',
       weight: 'normal',
       style: 'normal',
     },
     {
-      path: './times-new-roman/TimesNewRomanPS-BoldMT.woff2',
-      weight: 'bold',
+      path: './fira-code/FiraCode-Medium.woff2',
+      weight: '500',
       style: 'normal',
     },
     {
-      path: './times-new-roman/TimesNewRomanPS-ItalicMT.woff2',
-      weight: 'normal',
-      style: 'italic',
+      path: './fira-code/FiraCode-SemiBold.woff2',
+      weight: '600',
+      style: 'normal',
     },
     {
-      path: './times-new-roman/TimesNewRomanPS-BoldItalicMT.woff2',
+      path: './fira-code/FiraCode-Bold.woff2',
       weight: 'bold',
-      style: 'italic',
+      style: 'normal',
     },
   ],
 })

@@ -14,7 +14,7 @@ const customLightTheme = createTheme(
     breakpoints: defaultThemes.light.breakpoints,
     typography: defaultThemes.light.typography,
     typographyGlobal: {
-      genericFontFamily: 'serif',
+      genericFontFamily: 'monospace',
     },
     palette: defaultThemes.light.palette,
     spacing: defaultThemes.light.spacing,
@@ -27,7 +27,7 @@ const customDarkTheme = createTheme(
     breakpoints: defaultThemes.dark.breakpoints,
     typography: defaultThemes.dark.typography,
     typographyGlobal: {
-      genericFontFamily: 'serif',
+      genericFontFamily: 'monospace',
     },
     palette: defaultThemes.dark.palette,
     spacing: defaultThemes.dark.spacing,
