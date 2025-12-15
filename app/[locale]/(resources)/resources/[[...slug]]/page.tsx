@@ -69,7 +69,9 @@ export default async function Page({ params }: any) {
       <main className="relative mb-24 lg:gap-10 xl:grid xl:grid-cols-[1fr_300px]">
         <div className="mx-auto w-full max-w-3xl min-w-0 py-6 lg:py-8">
           <div className="space-y-2">
-            <h1 className={cn('scroll-m-20 text-4xl font-medium tracking-tight')}>{doc.title}</h1>
+            <h1 className={cn('scroll-m-20 !text-3xl font-medium tracking-tight sm:text-4xl')}>
+              {doc.title}
+            </h1>
             {/* {doc.description && (
               <p className="text-lg text-muted-foreground text-balance">{doc.description}</p>
             )} */}

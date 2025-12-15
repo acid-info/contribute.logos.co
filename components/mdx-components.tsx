@@ -26,14 +26,14 @@ const components = {
   Image,
   h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h1
-      className={cn('font-heading mt-2 scroll-m-20 text-4xl font-medium', className)}
+      className={cn('font-heading mt-2 scroll-m-20 !text-3xl font-medium sm:text-4xl', className)}
       {...props}
     />
   ),
   h2: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h2
       className={cn(
-        'font-heading mt-12 !mb-4 scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0',
+        'font-heading mt-12 !mb-4 scroll-m-20 border-b pb-2 !text-xl font-semibold tracking-tight first:mt-0 sm:text-2xl',
         className
       )}
       {...props}
@@ -79,7 +79,7 @@ const components = {
     <ul className={cn('mb-4 ml-6 list-disc', className)} {...props} />
   ),
   ol: ({ className, ...props }: React.HTMLAttributes<HTMLOListElement>) => (
-    <ol className={cn('ml-6 list-decimal', className)} {...props} />
+    <ol className={cn('ml-6 list-decimal pl-2', className)} {...props} />
   ),
   li: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
     <li className={cn('mt-2 first:mt-0', className)} {...props} />
