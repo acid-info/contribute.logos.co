@@ -284,12 +284,12 @@ export default function ContactForm() {
             onBlur={() => setTouched((t) => ({ ...t, name: true }))}
             aria-invalid={!!nameError}
             aria-describedby={nameError ? 'name-error' : undefined}
-            className={`w-full rounded-none border bg-transparent px-3 py-2 text-base ring-0 transition-colors outline-none dark:bg-transparent ${
+            className={`w-full rounded-none border bg-transparent px-3 py-2 text-sm ring-0 transition-colors outline-none dark:bg-transparent ${
               nameError
                 ? 'border-red-500 focus:border-red-600'
                 : 'border-primary focus:border-primary'
             }`}
-            placeholder="Your name"
+            placeholder="Enter your name"
           />
           {nameError && (
             <p id="name-error" className="mt-1 text-xs text-red-600">
@@ -312,7 +312,7 @@ export default function ContactForm() {
             onBlur={() => setTouched((t) => ({ ...t, email: true }))}
             aria-invalid={!!emailError}
             aria-describedby={emailError ? 'email-error' : 'email-help'}
-            className={`w-full rounded-none border bg-transparent px-3 py-2 text-base ring-0 transition-colors outline-none dark:bg-transparent ${
+            className={`w-full rounded-none border bg-transparent px-3 py-2 text-sm ring-0 transition-colors outline-none dark:bg-transparent ${
               emailError
                 ? 'border-red-500 focus:border-red-600'
                 : 'border-primary focus:border-primary'
@@ -320,7 +320,7 @@ export default function ContactForm() {
             placeholder="Email or Status App chat key"
           />
           {emailError && (
-            <p id="email-error" className="pt-2 text-xs text-red-600">
+            <p id="email-error" className="mt-1 text-xs text-red-600">
               {emailError}
             </p>
           )}
@@ -339,7 +339,7 @@ export default function ContactForm() {
               tabIndex={0}
               onClick={() => !categoriesLoading && setIsDropdownOpen(!isDropdownOpen)}
               onKeyDown={handleDropdownKeyDown}
-              className={`border-primary focus:border-primary w-full rounded-none border bg-transparent px-3 py-2 pr-10 text-base text-black ring-0 transition-colors outline-none dark:bg-transparent dark:text-white ${
+              className={`border-primary focus:border-primary w-full rounded-none border bg-transparent px-3 py-2 pr-10 text-sm text-black ring-0 transition-colors outline-none dark:bg-transparent dark:text-white ${
                 categoriesLoading ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
               }`}
             >
