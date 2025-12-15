@@ -29,21 +29,25 @@ export function DocNavigation({ doc, locale }: DocsPagerProps) {
       {hasPrev && pager.prev && (
         <Link
           href={pager.prev.href}
-          className="border-primary flex w-[200px] items-center justify-center gap-2 border px-2 py-1 text-center"
+          className="border-primary flex min-w-0 flex-1 items-center justify-start gap-2 border px-2 py-1 sm:w-[220px] sm:flex-none"
           title={pager.prev.title}
         >
-          <span>{'←'}</span>
-          <span className="truncate text-sm">{pager.prev.title}</span>
+          <span className="shrink-0">{'←'}</span>
+          <span className="min-w-0 flex-1 truncate text-left text-xs sm:text-sm">
+            {pager.prev.title}
+          </span>
         </Link>
       )}
       {hasNext && pager.next && (
         <Link
           href={pager.next.href}
-          className="border-primary flex w-[200px] items-center justify-center gap-2 border px-2 py-1 text-center"
+          className="border-primary flex min-w-0 flex-1 items-center justify-start gap-2 border px-2 py-1 sm:w-[220px] sm:flex-none"
           title={pager.next.title}
         >
-          <span className="truncate text-sm">{pager.next.title}</span>
-          <span>{'→'}</span>
+          <span className="min-w-0 flex-1 truncate text-left text-xs sm:text-sm">
+            {pager.next.title}
+          </span>
+          <span className="shrink-0">{'→'}</span>
         </Link>
       )}
     </div>
