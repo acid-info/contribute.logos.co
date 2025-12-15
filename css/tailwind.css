@@ -224,10 +224,12 @@ input:focus-visible {
 /* Form input placeholder styles */
 [data-theme='dark'] .form input::placeholder {
   color: rgba(255, 255, 255, 0.6) !important;
+  font-size: 0.875rem; /* 14px */
 }
 
 [data-theme='light'] .form input::placeholder {
   color: rgba(0, 0, 0, 0.6) !important;
+  font-size: 0.875rem; /* 14px */
 }
 
 [data-theme='dark'] .rich-text-editor p.is-editor-empty::before {
