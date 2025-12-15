@@ -289,7 +289,7 @@ export default function ContactForm() {
                 ? 'border-red-500 focus:border-red-600'
                 : 'border-primary focus:border-primary'
             }`}
-            placeholder="Enter your name"
+            placeholder="Your name"
           />
           {nameError && (
             <p id="name-error" className="mt-1 text-xs text-red-600">
@@ -317,7 +317,7 @@ export default function ContactForm() {
                 ? 'border-red-500 focus:border-red-600'
                 : 'border-primary focus:border-primary'
             }`}
-            placeholder="Enter your email or Status App chat key"
+            placeholder="Email or Status App chat key"
           />
           {emailError && (
             <p id="email-error" className="pt-2 text-xs text-red-600">
