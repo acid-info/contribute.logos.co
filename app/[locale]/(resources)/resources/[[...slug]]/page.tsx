@@ -75,7 +75,7 @@ export default async function Page({ params }: any) {
             )} */}
           </div>
 
-          <div className="pt-8 pb-12">
+          <div className="pt-4 pb-12">
             <Mdx code={doc.body.code} />
           </div>
           <div className="pt-8 pb-12"></div>
