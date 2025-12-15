@@ -66,7 +66,7 @@ export default async function Page({ params }: any) {
 
   return (
     doc && (
-      <main className="relative mb-24 lg:gap-10 xl:grid xl:grid-cols-[1fr_300px]">
+      <main className="relative mb-24 xl:grid xl:grid-cols-[1fr_300px]">
         <div className="mx-auto w-full max-w-3xl min-w-0 py-6 lg:py-8">
           <div className="space-y-2">
             <h1 className={cn('scroll-m-20 !text-3xl font-medium tracking-tight sm:text-4xl')}>
