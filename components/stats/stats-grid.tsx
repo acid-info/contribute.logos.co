@@ -22,7 +22,7 @@ export default function StatsGrid({ contributors, isLoading, error }: StatsGridP
   const repositories = new Set(contributors.map((c) => c.latestRepo)).size
 
   return (
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
       <StatCard
         value={activeContributors}
         label={t('stats.activeContributors')}
@@ -38,6 +38,13 @@ export default function StatsGrid({ contributors, isLoading, error }: StatsGridP
       <StatCard
         value={repositories}
         label={t('stats.repositories')}
+        isLoading={isLoading}
+        error={error}
+        colSpan="sm:col-span-2 lg:col-span-1"
+      />
+      <StatCard
+        value={19}
+        label={t('stats.activeCircles')}
         isLoading={isLoading}
         error={error}
         colSpan="sm:col-span-2 lg:col-span-1"
