@@ -75,18 +75,8 @@ export async function createDefaultMetadata({
     publisher: siteConfig.name,
     keywords: siteConfig.keywords,
     robots: {
-      index: process.env.NEXT_PUBLIC_API_MODE === 'production',
+      index: true,
       follow: true,
-      googleBot: {
-        index: process.env.NEXT_PUBLIC_API_MODE === 'production',
-        follow: true,
-        'max-video-preview': -1,
-        'max-image-preview': 'large',
-        'max-snippet': -1,
-      },
-    },
-    verification: {
-      // google: 'your-google-verification-id',
     },
   }
 }
