@@ -6,7 +6,11 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function getContributeApiBase() {
-  return 'https://admin-acid.logos.co/api'
+  return process.env.NEXT_PUBLIC_API_MODE === 'development'
+    ? 'http://localhost:3000/api'
+    : process.env.NEXT_PUBLIC_API_MODE === 'staging'
+      ? 'https://dev-admin-acid.logos.co/api'
+      : 'https://admin-acid.logos.co/api'
 }
 
 export function formatNumber(num: number | undefined | null): string {
