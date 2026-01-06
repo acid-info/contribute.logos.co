@@ -60,7 +60,6 @@ export async function generateMetadata({ params }: any): Promise<Metadata> {
 
 export default async function Page({ params }: any) {
   const _params = await params
-  const locale = _params.locale || 'en'
 
   const doc = await getDocFromParams({ params: _params })
 
@@ -81,7 +80,7 @@ export default async function Page({ params }: any) {
             <Mdx code={doc.body.code} />
           </div>
           <div className="pt-8 pb-12"></div>
-          <DocNavigation doc={doc} locale={locale} />
+          <DocNavigation doc={doc} />
         </div>
       </main>
     )

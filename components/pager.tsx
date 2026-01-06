@@ -1,4 +1,7 @@
+'use client'
+
 import { Resource } from 'content-collections'
+import { useLocale } from 'next-intl'
 
 import { resourcesConfig } from '@/config/resources'
 import { cn } from '@/lib/utils'
@@ -6,10 +9,10 @@ import { Link } from '@/i18n/navigation'
 
 interface DocsPagerProps {
   doc: Resource
-  locale: string
 }
 
-export function DocNavigation({ doc, locale }: DocsPagerProps) {
+export function DocNavigation({ doc }: DocsPagerProps) {
+  const locale = useLocale()
   const pager = getPagerForDoc(doc, locale)
 
   if (!pager) {
