@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import { useCategories } from '@/hooks/useCategories'
 import { useSubmitContribution } from '@/hooks/useSubmitContribution'
-import { useLocale } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { ROUTES } from '@/constants/routes'
 
 const RichTextEditor = dynamic(() => import('./rich-text-editor'), {
@@ -109,6 +109,7 @@ export default function ContactForm() {
   const dropdownRef = useRef<HTMLDivElement>(null)
 
   const locale = useLocale()
+  const t = useTranslations('form')
 
   const {
     data: categories = [],
@@ -175,16 +176,11 @@ export default function ContactForm() {
     }
   }
 
-  const nameError =
-    touched.name && name.trim().length < 2 ? 'Please enter at least 2 characters.' : ''
+  const nameError = touched.name && name.trim().length < 2 ? t('nameError') : ''
 
-  const emailError =
-    touched.email && !validateContact(email)
-      ? 'Please enter a valid email address or Status App chat key (49 characters starting with zQ3sh).'
-      : ''
+  const emailError = touched.email && !validateContact(email) ? t('emailError') : ''
 
-  const messageError =
-    touched.message && messageText.trim().length < 5 ? 'Please enter at least 5 characters.' : ''
+  const messageError = touched.message && messageText.trim().length < 5 ? t('messageError') : ''
 
   async function handleSubmit(e: { preventDefault: () => void }) {
     e.preventDefault()
@@ -239,7 +235,7 @@ export default function ContactForm() {
           role="alert"
           className="mb-4 rounded-md bg-red-50 p-3 text-sm text-red-700 dark:bg-red-950/30 dark:text-red-300"
         >
-          Failed to load categories. Please refresh the page.
+          {t('categoriesError')}
         </div>
       </div>
     )
@@ -253,7 +249,7 @@ export default function ContactForm() {
           aria-live="polite"
           className="mb-4 rounded-md bg-green-50 p-3 text-sm text-green-700 dark:bg-green-950/30 dark:text-green-300"
         >
-          Thanks! Your message has been sent.
+          {t('success')}
         </div>
       )}
       {status === 'error' && (
@@ -261,7 +257,7 @@ export default function ContactForm() {
           role="alert"
           className="mb-4 rounded-md bg-red-50 p-3 text-sm text-red-700 dark:bg-red-950/30 dark:text-red-300"
         >
-          {error || 'There was an error sending your message.'}
+          {error || t('error')}
         </div>
       )}
 
@@ -272,7 +268,7 @@ export default function ContactForm() {
       >
         <div className="flex flex-col">
           <label htmlFor="name" className="mb-1 block text-sm font-medium">
-            Name
+            {t('name')}
           </label>
           <input
             id="name"
@@ -289,7 +285,7 @@ export default function ContactForm() {
                 ? 'border-red-500 focus:border-red-600'
                 : 'border-primary focus:border-primary'
             }`}
-            placeholder="Enter your name"
+            placeholder={t('namePlaceholder')}
           />
           {nameError && (
             <p id="name-error" className="mt-1 text-xs text-red-600">
@@ -300,7 +296,7 @@ export default function ContactForm() {
 
         <div className="flex flex-col">
           <label htmlFor="email" className="mb-1 block text-sm font-medium">
-            Email or Status App Chat Key
+            {t('email')}
           </label>
           <input
             id="email"
@@ -317,7 +313,7 @@ export default function ContactForm() {
                 ? 'border-red-500 focus:border-red-600'
                 : 'border-primary focus:border-primary'
             }`}
-            placeholder="Email or Status App chat key"
+            placeholder={t('emailPlaceholder')}
           />
           {emailError && (
             <p id="email-error" className="mt-1 text-xs text-red-600">
@@ -328,7 +324,7 @@ export default function ContactForm() {
 
         <div className="flex flex-col">
           <label htmlFor="category" className="mb-1 block text-sm font-medium">
-            Category
+            {t('category')}
           </label>
           <div className="relative" ref={dropdownRef}>
             <div
@@ -344,8 +340,9 @@ export default function ContactForm() {
               }`}
             >
               {categoriesLoading
-                ? 'Loading categories...'
-                : categories.find((cat) => cat.id === category)?.display_name || 'Select category'}
+                ? t('categoryLoading')
+                : categories.find((cat) => cat.id === category)?.display_name ||
+                  t('categorySelect')}
             </div>
             <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
               <svg
@@ -395,10 +392,10 @@ export default function ContactForm() {
 
         <div className="md:col-span-2">
           <label htmlFor="message" className="mb-1 block text-sm font-medium">
-            Message
+            {t('message')}
           </label>
           <div id="message" className="sr-only" aria-hidden="true">
-            Editor
+            {t('editor')}
           </div>
           <RichTextEditor
             initialValue={messageHtml}
@@ -410,7 +407,7 @@ export default function ContactForm() {
             onBlur={() => setTouched((t) => ({ ...t, message: true }))}
             invalid={!!messageError}
             ariaDescribedBy={messageError ? 'message-error' : undefined}
-            placeholder="Please describe your proposal here."
+            placeholder={t('messagePlaceholder')}
           />
           {messageError && (
             <p id="message-error" className="mt-1 text-xs text-red-600">
@@ -442,7 +439,7 @@ export default function ContactForm() {
                 ></path>
               </svg>
             )}
-            {isSubmitting ? 'Sending...' : 'Send'}
+            {isSubmitting ? t('sending') : t('send')}
           </button>
         </div>
       </form>

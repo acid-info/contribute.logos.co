@@ -144,6 +144,7 @@ interface MobileNavItemsProps {
 }
 
 function MobileNavItems({ items, pathname, onItemClick }: MobileNavItemsProps) {
+  const t = useTranslations()
   const getPathWithoutLocale = (path: string | null) => {
     if (!path) return ''
     const pathSegments = path.split('/')
@@ -171,7 +172,7 @@ function MobileNavItems({ items, pathname, onItemClick }: MobileNavItemsProps) {
             target={item.external ? '_blank' : ''}
             rel={item.external ? 'noreferrer' : ''}
           >
-            <span className="shrink-0">{item.title}</span>
+            <span className="shrink-0">{t(item.title)}</span>
             {item.label && (
               <span className={cn('ml-2 px-1.5 py-0.5 text-xs leading-none')}>{item.label}</span>
             )}
@@ -184,7 +185,7 @@ function MobileNavItems({ items, pathname, onItemClick }: MobileNavItemsProps) {
               item.disabled && 'cursor-not-allowed opacity-60'
             )}
           >
-            {item.title}
+            {t(item.title)}
             {item.label && (
               <span className="ml-2 px-1.5 py-0.5 text-xs leading-none">{item.label}</span>
             )}
