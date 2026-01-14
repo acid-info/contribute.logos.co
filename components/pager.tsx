@@ -1,4 +1,7 @@
+'use client'
+
 import { Resource } from 'content-collections'
+import { useLocale, useTranslations } from 'next-intl'
 
 import { resourcesConfig } from '@/config/resources'
 import { cn } from '@/lib/utils'
@@ -6,10 +9,11 @@ import { Link } from '@/i18n/navigation'
 
 interface DocsPagerProps {
   doc: Resource
-  locale: string
 }
 
-export function DocNavigation({ doc, locale }: DocsPagerProps) {
+export function DocNavigation({ doc }: DocsPagerProps) {
+  const locale = useLocale()
+  const t = useTranslations()
   const pager = getPagerForDoc(doc, locale)
 
   if (!pager) {
@@ -30,19 +34,19 @@ export function DocNavigation({ doc, locale }: DocsPagerProps) {
         <Link
           href={pager.prev.href}
           className="border-primary flex max-w-[50%] min-w-0 flex-1 items-center justify-start gap-2 border px-4 py-2 sm:w-[220px] sm:max-w-none sm:flex-none"
-          title={pager.prev.title}
+          title={t(pager.prev.title)}
         >
           <span className="shrink-0">{'←'}</span>
-          <span className="min-w-0 flex-1 truncate text-left text-sm">{pager.prev.title}</span>
+          <span className="min-w-0 flex-1 truncate text-left text-sm">{t(pager.prev.title)}</span>
         </Link>
       )}
       {hasNext && pager.next && (
         <Link
           href={pager.next.href}
           className="border-primary flex max-w-[50%] min-w-0 flex-1 items-center justify-start gap-2 border px-4 py-2 sm:w-[220px] sm:max-w-none sm:flex-none"
-          title={pager.next.title}
+          title={t(pager.next.title)}
         >
-          <span className="min-w-0 flex-1 truncate text-left text-sm">{pager.next.title}</span>
+          <span className="min-w-0 flex-1 truncate text-left text-sm">{t(pager.next.title)}</span>
           <span className="shrink-0">{'→'}</span>
         </Link>
       )}

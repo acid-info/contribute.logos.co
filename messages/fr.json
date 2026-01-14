@@ -125,5 +125,41 @@
     "contribution": "Contribution",
     "view": "Voir"
   },
+  "resources": {
+    "sidebar": {
+      "index": "À propos de Logos",
+      "howToContribute": "Comment contribuer",
+      "activists": "Contribuer localement",
+      "developers": "Développeurs",
+      "writers": "Rédacteurs",
+      "eventOrganisers": "Organisateurs d'événements",
+      "translators": "Traducteurs",
+      "designers": "Designers"
+    },
+    "navigation": {
+      "previous": "Précédent",
+      "next": "Suivant"
+    }
+  },
+  "form": {
+    "name": "Nom",
+    "namePlaceholder": "Entrez votre nom",
+    "nameError": "Veuillez entrer au moins 2 caractères.",
+    "email": "Adresse e-mail ou clé de chat Status App",
+    "emailPlaceholder": "Adresse e-mail ou clé de chat Status App",
+    "emailError": "Veuillez entrer une adresse e-mail valide ou une clé de chat Status App (49 caractères commençant par zQ3sh).",
+    "category": "Catégorie",
+    "categoryLoading": "Chargement des catégories...",
+    "categorySelect": "Sélectionner une catégorie",
+    "message": "Message",
+    "messagePlaceholder": "Veuillez décrire votre proposition ici.",
+    "messageError": "Veuillez entrer au moins 5 caractères.",
+    "editor": "Éditeur",
+    "send": "Envoyer",
+    "sending": "Envoi en cours...",
+    "success": "Merci ! Votre message a été envoyé.",
+    "error": "Une erreur s'est produite lors de l'envoi de votre message.",
+    "categoriesError": "Échec du chargement des catégories. Veuillez actualiser la page."
+  },
   "footer": {}
 }

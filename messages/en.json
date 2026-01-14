@@ -125,5 +125,41 @@
     "contribution": "Contribution",
     "view": "View"
   },
+  "resources": {
+    "sidebar": {
+      "index": "About Logos",
+      "howToContribute": "How to contribute",
+      "activists": "To contribute locally",
+      "developers": "For developers",
+      "writers": "For writers",
+      "eventOrganisers": "For event organisers",
+      "translators": "For translators",
+      "designers": "For designers"
+    },
+    "navigation": {
+      "previous": "Previous",
+      "next": "Next"
+    }
+  },
+  "form": {
+    "name": "Name",
+    "namePlaceholder": "Enter your name",
+    "nameError": "Please enter at least 2 characters.",
+    "email": "Email or Status App Chat Key",
+    "emailPlaceholder": "Email or Status App chat key",
+    "emailError": "Please enter a valid email address or Status App chat key (49 characters starting with zQ3sh).",
+    "category": "Category",
+    "categoryLoading": "Loading categories...",
+    "categorySelect": "Select category",
+    "message": "Message",
+    "messagePlaceholder": "Please describe your proposal here.",
+    "messageError": "Please enter at least 5 characters.",
+    "editor": "Editor",
+    "send": "Send",
+    "sending": "Sending...",
+    "success": "Thanks! Your message has been sent.",
+    "error": "There was an error sending your message.",
+    "categoriesError": "Failed to load categories. Please refresh the page."
+  },
   "footer": {}
 }

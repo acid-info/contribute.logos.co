@@ -2,7 +2,7 @@ import { ROUTES } from '@/constants/routes'
 import { createDefaultMetadata } from '@/lib/metadata'
 import { routing } from '@/i18n/routing'
 import ProposalsSection from '@/components/proposals/proposals-section'
-import { useTranslations } from 'next-intl'
+import { getServerTranslations } from '@/lib/server-translations'
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
@@ -17,8 +17,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return metadata
 }
 
-export default function Page() {
-  const t = useTranslations('proposals')
+export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getServerTranslations(locale, 'proposals')
 
   return (
     <div className="mx-auto flex min-h-[calc(100vh-60px)] flex-col items-center px-4 pt-10 pb-20 sm:px-6 lg:px-8">

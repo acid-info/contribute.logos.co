@@ -41,6 +41,7 @@ interface DocsSidebarNavItemsProps {
 }
 
 export function DocsSidebarNavItems({ items, pathname }: DocsSidebarNavItemsProps) {
+  const t = useTranslations()
   const getPathWithoutLocale = (path: string | null) => {
     if (!path) return ''
     const pathSegments = path.split('/')
@@ -71,7 +72,7 @@ export function DocsSidebarNavItems({ items, pathname }: DocsSidebarNavItemsProp
             target={item.external ? '_blank' : ''}
             rel={item.external ? 'noreferrer' : ''}
           >
-            <span className="shrink-0">{item.title}</span>
+            <span className="shrink-0">{t(item.title)}</span>
             {item.label && (
               <span
                 className={cn(
@@ -91,7 +92,7 @@ export function DocsSidebarNavItems({ items, pathname }: DocsSidebarNavItemsProp
               item.disabled && 'cursor-not-allowed opacity-60'
             )}
           >
-            {item.title}
+            {t(item.title)}
             {item.label && (
               <span className="bg-muted text-muted-foreground ml-2 px-1.5 py-0.5 text-xs leading-none no-underline group-hover:no-underline">
                 {item.label}
