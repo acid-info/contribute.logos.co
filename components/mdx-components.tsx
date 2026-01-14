@@ -1,23 +1,22 @@
 'use client'
 
 import Image from 'next/image'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+import rehypeRaw from 'rehype-raw'
+import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 
-import { useMDXComponent } from '@content-collections/mdx/react'
 import { cn } from '@/lib/utils'
 import { Link } from '@/i18n/navigation'
 
 const CustomLink = (props: any) => {
   const href = props.href
 
-  if (href.startsWith('/')) {
-    return (
-      <Link {...props} href={href}>
-        {props.children}
-      </Link>
-    )
+  if (href?.startsWith('/')) {
+    return <Link {...props} href={href} />
   }
 
-  if (href.startsWith('#')) {
+  if (href?.startsWith('#')) {
     return <a {...props} />
   }
 
@@ -172,19 +171,35 @@ const components = {
       {...props}
     />
   ),
+  br: () => <br />,
 }
 
 interface MDXProps {
-  code: string
+  content: string
   className?: string
 }
 
-export function Mdx({ code, className }: MDXProps) {
-  const Component = useMDXComponent(code)
-
+export function Mdx({ content, className }: MDXProps) {
   return (
     <article className={cn('markdown mx-auto max-w-[120ch]', className)}>
-      <Component components={components} />
+      <ReactMarkdown
+        remarkPlugins={[remarkGfm]}
+        rehypePlugins={[
+          rehypeRaw,
+          [
+            rehypeAutolinkHeadings,
+            {
+              properties: {
+                className: ['subheading-anchor'],
+                ariaLabel: 'Link to section',
+              },
+            },
+          ],
+        ]}
+        components={components}
+      >
+        {content}
+      </ReactMarkdown>
     </article>
   )
 }

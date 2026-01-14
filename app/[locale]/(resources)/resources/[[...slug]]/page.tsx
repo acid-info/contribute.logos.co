@@ -77,7 +77,7 @@ export default async function Page({ params }: any) {
           </div>
 
           <div className="pt-4 pb-12">
-            <Mdx code={doc.body.code} />
+            <Mdx content={doc.body.raw} />
           </div>
           <div className="pt-8 pb-12"></div>
           <DocNavigation doc={doc} />
