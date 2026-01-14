@@ -9,6 +9,16 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import { cn } from '@/lib/utils'
 import { Link } from '@/i18n/navigation'
 
+function normalizeMultilineHtml(content: string): string {
+  return content.replace(/<([a-zA-Z][a-zA-Z0-9]*)([\s\S]*?)>/g, (match, tag, attrs) => {
+    if (!attrs.trim()) {
+      return match
+    }
+    const normalizedAttrs = attrs.replace(/[\s\n\r]+/g, ' ').trim()
+    return normalizedAttrs ? `<${tag} ${normalizedAttrs}>` : `<${tag}>`
+  })
+}
+
 const CustomLink = (props: any) => {
   const href = props.href
 
@@ -180,6 +190,8 @@ interface MDXProps {
 }
 
 export function Mdx({ content, className }: MDXProps) {
+  const normalizedContent = normalizeMultilineHtml(content)
+
   return (
     <article className={cn('markdown mx-auto max-w-[120ch]', className)}>
       <ReactMarkdown
@@ -198,7 +210,7 @@ export function Mdx({ content, className }: MDXProps) {
         ]}
         components={components}
       >
-        {content}
+        {normalizedContent}
       </ReactMarkdown>
     </article>
   )
