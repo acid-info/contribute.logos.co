@@ -1,0 +1,275 @@
+1:"$Sreact.fragment"
+4:I[6508,[],""]
+5:I[3386,[],""]
+7:I[2780,[],"OutletBoundary"]
+a:I[8212,[],"AsyncMetadataOutlet"]
+c:I[2780,[],"ViewportBoundary"]
+e:I[2780,[],"MetadataBoundary"]
+10:I[5219,[],""]
+:HL["/_next/static/media/1bd7c7d85a2233c7-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/5770afde186d2c72-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/7d6315754e89be89-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/9a23cb92eaea8329-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/9e0e1a712cee3856-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/b53af016be999778-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/css/d1aa81d68789c307.css","style"]
+:HL["/_next/static/css/450cea95fc5116ad.css","style"]
+0:{"P":null,"b":"OkJAWQQLgJzm0en9EzPMM","p":"","c":["","ko","proposals",""],"i":false,"f":[[["",{"children":[["locale","ko","d"],{"children":["proposals",{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/d1aa81d68789c307.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/450cea95fc5116ad.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],"$L2"]}],{"children":[["locale","ko","d"],["$","$1","c",{"children":[null,"$L3"]}],{"children":["proposals",["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":["$L6",null,["$","$L7",null,{"children":["$L8","$L9",["$","$La",null,{"promise":"$@b"}]]}]]}],{},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,["$","$1","k60WJ-0OgQhfNNynC7bhOv",{"children":[["$","$Lc",null,{"children":"$Ld"}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],["$","$Le",null,{"children":"$Lf"}]]}],false]],"m":"$undefined","G":["$10","$undefined"],"s":false,"S":true}
+12:I[9896,["177","static/chunks/app/layout-4d48f363ac7dc919.js"],""]
+13:"$Sreact.suspense"
+14:I[8212,[],"AsyncMetadata"]
+11:T1694,:root, [data-theme="light"] {
+
+    --lsd-display1-fontSize: 5.5rem;
+--lsd-display1-fontWeight: normal;
+--lsd-display1-lineHeight: 6rem;
+--lsd-display2-fontSize: 4rem;
+--lsd-display2-fontWeight: normal;
+--lsd-display2-lineHeight: 4.5rem;
+--lsd-display3-fontSize: 3.5rem;
+--lsd-display3-fontWeight: normal;
+--lsd-display3-lineHeight: 4rem;
+--lsd-display4-fontSize: 3rem;
+--lsd-display4-fontWeight: normal;
+--lsd-display4-lineHeight: 3.5rem;
+--lsd-h1-fontSize: 2.5rem;
+--lsd-h1-fontWeight: normal;
+--lsd-h1-lineHeight: 3rem;
+--lsd-h2-fontSize: 2rem;
+--lsd-h2-fontWeight: normal;
+--lsd-h2-lineHeight: 2.5rem;
+--lsd-h3-fontSize: 1.75rem;
+--lsd-h3-fontWeight: normal;
+--lsd-h3-lineHeight: 2.25rem;
+--lsd-h4-fontSize: 1.5rem;
+--lsd-h4-fontWeight: normal;
+--lsd-h4-lineHeight: 2rem;
+--lsd-h5-fontSize: 1.25rem;
+--lsd-h5-fontWeight: normal;
+--lsd-h5-lineHeight: 1.75rem;
+--lsd-h6-fontSize: 1rem;
+--lsd-h6-fontWeight: normal;
+--lsd-h6-lineHeight: 1.5rem;
+--lsd-subtitle1-fontSize: 1.125rem;
+--lsd-subtitle1-fontWeight: normal;
+--lsd-subtitle1-lineHeight: 1.5rem;
+--lsd-subtitle2-fontSize: 1rem;
+--lsd-subtitle2-fontWeight: normal;
+--lsd-subtitle2-lineHeight: 1.5rem;
+--lsd-subtitle3-fontSize: 0.875rem;
+--lsd-subtitle3-fontWeight: normal;
+--lsd-subtitle3-lineHeight: 1.25rem;
+--lsd-subtitle4-fontSize: 0.75rem;
+--lsd-subtitle4-fontWeight: normal;
+--lsd-subtitle4-lineHeight: 1rem;
+--lsd-body1-fontSize: 1rem;
+--lsd-body1-fontWeight: normal;
+--lsd-body1-lineHeight: 1.5rem;
+--lsd-body2-fontSize: 0.875rem;
+--lsd-body2-fontWeight: normal;
+--lsd-body2-lineHeight: 1.25rem;
+--lsd-body3-fontSize: 0.75rem;
+--lsd-body3-fontWeight: normal;
+--lsd-body3-lineHeight: 1rem;
+--lsd-label1-fontSize: 0.875rem;
+--lsd-label1-fontWeight: normal;
+--lsd-label1-lineHeight: 1.25rem;
+--lsd-label2-fontSize: 0.75rem;
+--lsd-label2-fontWeight: normal;
+--lsd-label2-lineHeight: 1rem;
+--lsd-typography-generic-font-family: monospace;
+--lsd-theme-primary: 0, 0, 0;
+--lsd-theme-secondary: 255, 255, 255;
+--lsd-surface-primary: 255, 255, 255;
+--lsd-surface-secondary: 0, 0, 0;
+--lsd-border-primary: 0, 0, 0;
+--lsd-border-secondary: 255, 255, 255;
+--lsd-icon-primary: 0, 0, 0;
+--lsd-icon-secondary: 255, 255, 255;
+--lsd-text-primary: 0, 0, 0;
+--lsd-text-secondary: 255, 255, 255;
+--lsd-text-tertiary: 0, 0, 0, 0.34;
+--lsd-spacing-4: 4px;
+--lsd-spacing-8: 8px;
+--lsd-spacing-16: 16px;
+--lsd-spacing-24: 24px;
+--lsd-spacing-32: 32px;
+--lsd-spacing-40: 40px;
+--lsd-spacing-64: 64px;
+--lsd-spacing-80: 80px;
+--lsd-spacing-96: 96px;
+--lsd-spacing-120: 120px; 
+
+    @media (min-width: 0px) {
+      :root {
+        
+      }
+
+      
+    }
+@media (min-width: 400px) {
+      :root {
+        
+      }
+
+      
+    }
+@media (min-width: 768px) {
+      :root {
+        
+      }
+
+      
+    }
+@media (min-width: 1024px) {
+      :root {
+        
+      }
+
+      
+    }
+@media (min-width: 1205px) {
+      :root {
+        
+      }
+
+      
+    }
+  
+}
+
+[data-theme="dark"] {
+
+    --lsd-display1-fontSize: 5.5rem;
+--lsd-display1-fontWeight: normal;
+--lsd-display1-lineHeight: 6rem;
+--lsd-display2-fontSize: 4rem;
+--lsd-display2-fontWeight: normal;
+--lsd-display2-lineHeight: 4.5rem;
+--lsd-display3-fontSize: 3.5rem;
+--lsd-display3-fontWeight: normal;
+--lsd-display3-lineHeight: 4rem;
+--lsd-display4-fontSize: 3rem;
+--lsd-display4-fontWeight: normal;
+--lsd-display4-lineHeight: 3.5rem;
+--lsd-h1-fontSize: 2.5rem;
+--lsd-h1-fontWeight: normal;
+--lsd-h1-lineHeight: 3rem;
+--lsd-h2-fontSize: 2rem;
+--lsd-h2-fontWeight: normal;
+--lsd-h2-lineHeight: 2.5rem;
+--lsd-h3-fontSize: 1.75rem;
+--lsd-h3-fontWeight: normal;
+--lsd-h3-lineHeight: 2.25rem;
+--lsd-h4-fontSize: 1.5rem;
+--lsd-h4-fontWeight: normal;
+--lsd-h4-lineHeight: 2rem;
+--lsd-h5-fontSize: 1.25rem;
+--lsd-h5-fontWeight: normal;
+--lsd-h5-lineHeight: 1.75rem;
+--lsd-h6-fontSize: 1rem;
+--lsd-h6-fontWeight: normal;
+--lsd-h6-lineHeight: 1.5rem;
+--lsd-subtitle1-fontSize: 1.125rem;
+--lsd-subtitle1-fontWeight: normal;
+--lsd-subtitle1-lineHeight: 1.5rem;
+--lsd-subtitle2-fontSize: 1rem;
+--lsd-subtitle2-fontWeight: normal;
+--lsd-subtitle2-lineHeight: 1.5rem;
+--lsd-subtitle3-fontSize: 0.875rem;
+--lsd-subtitle3-fontWeight: normal;
+--lsd-subtitle3-lineHeight: 1.25rem;
+--lsd-subtitle4-fontSize: 0.75rem;
+--lsd-subtitle4-fontWeight: normal;
+--lsd-subtitle4-lineHeight: 1rem;
+--lsd-body1-fontSize: 1rem;
+--lsd-body1-fontWeight: normal;
+--lsd-body1-lineHeight: 1.5rem;
+--lsd-body2-fontSize: 0.875rem;
+--lsd-body2-fontWeight: normal;
+--lsd-body2-lineHeight: 1.25rem;
+--lsd-body3-fontSize: 0.75rem;
+--lsd-body3-fontWeight: normal;
+--lsd-body3-lineHeight: 1rem;
+--lsd-label1-fontSize: 0.875rem;
+--lsd-label1-fontWeight: normal;
+--lsd-label1-lineHeight: 1.25rem;
+--lsd-label2-fontSize: 0.75rem;
+--lsd-label2-fontWeight: normal;
+--lsd-label2-lineHeight: 1rem;
+--lsd-typography-generic-font-family: monospace;
+--lsd-theme-primary: 255, 255, 255;
+--lsd-theme-secondary: 0, 0, 0;
+--lsd-surface-primary: 0, 0, 0;
+--lsd-surface-secondary: 255, 255, 255;
+--lsd-border-primary: 255, 255, 255;
+--lsd-border-secondary: 0, 0, 0;
+--lsd-icon-primary: 255, 255, 255;
+--lsd-icon-secondary: 0, 0, 0;
+--lsd-text-primary: 255, 255, 255;
+--lsd-text-secondary: 0, 0, 0;
+--lsd-text-tertiary: 255, 255, 255, 0.34;
+--lsd-spacing-4: 4px;
+--lsd-spacing-8: 8px;
+--lsd-spacing-16: 16px;
+--lsd-spacing-24: 24px;
+--lsd-spacing-32: 32px;
+--lsd-spacing-40: 40px;
+--lsd-spacing-64: 64px;
+--lsd-spacing-80: 80px;
+--lsd-spacing-96: 96px;
+--lsd-spacing-120: 120px; 
+
+    @media (min-width: 0px) {
+      :root {
+        
+      }
+
+      
+    }
+@media (min-width: 400px) {
+      :root {
+        
+      }
+
+      
+    }
+@media (min-width: 768px) {
+      :root {
+        
+      }
+
+      
+    }
+@media (min-width: 1024px) {
+      :root {
+        
+      }
+
+      
+    }
+@media (min-width: 1205px) {
+      :root {
+        
+      }
+
+      
+    }
+  
+}
+
+2:["$","html",null,{"lang":"en","className":"scroll-smooth __variable_cd96b5 __variable_bbac41","suppressHydrationWarning":true,"children":[["$","head",null,{"children":[["$","link",null,{"rel":"apple-touch-icon","sizes":"76x76","href":"/favicon.ico"}],["$","link",null,{"rel":"icon","href":"/favicon.ico","type":"image/x-icon"}],["$","meta",null,{"name":"msapplication-TileColor","content":"#000000"}],["$","meta",null,{"name":"theme-color","media":"(prefers-color-scheme: light)","content":"#fff"}],["$","meta",null,{"name":"theme-color","media":"(prefers-color-scheme: dark)","content":"#000"}],["$","style",null,{"id":"lsd-theme-styles","dangerouslySetInnerHTML":{"__html":"$11"}}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"\n  (function() {\n    try {\n      var theme = localStorage.getItem('theme');\n      var initialTheme = theme || 'light';\n      document.documentElement.setAttribute('data-theme', initialTheme);\n    } catch (e) {}\n  })();\n"}}],["$","$L12",null,{"strategy":"afterInteractive","src":"https://umami.bi.status.im/script.js","data-website-id":"92fb3459-5270-4ce8-a81b-70bee39fbdfe","data-domains":"contribute.logos.co"}],["$","$L12",null,{"id":"organization-jsonld","type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"name\":\"Logos\",\"url\":\"https://logos.co\",\"logo\":\"https://contribute.logos.co/brand/logos-black.svg\",\"description\":\"Decentralized autonomous organization focused on privacy and freedom\",\"foundingDate\":\"2023\",\"sameAs\":[\"https://github.com/logos-co\",\"https://twitter.com/logosnetwork\"]}"}}],["$","$L12",null,{"id":"website-jsonld","type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@type\":\"WebSite\",\"name\":\"Logos Contribute\",\"url\":\"https://contribute.logos.co\",\"description\":\"Celebrating open source contributors and helping new developers make their first contributions.\",\"publisher\":{\"@type\":\"Organization\",\"name\":\"Logos\",\"url\":\"https://logos.co\"},\"potentialAction\":{\"@type\":\"SearchAction\",\"target\":\"https://contribute.logos.co/search?q={search_term_string}\",\"query-input\":\"required name=search_term_string\"}}"}}]]}],["$","body",null,{"className":"__className_cd96b5","children":["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]]}]
+f:["$","div",null,{"hidden":true,"children":["$","$13",null,{"fallback":null,"children":["$","$L14",null,{"promise":"$@15"}]}]}]
+9:null
+16:I[7742,["55","static/chunks/55-2ecb2bdc21ccd3ac.js","700","static/chunks/700-f4284facc3b69b22.js","460","static/chunks/460-1da2ad5d62fbec46.js","196","static/chunks/196-4af4270de6ad0363.js","222","static/chunks/222-6a56f87bcb478f6d.js","450","static/chunks/app/%5Blocale%5D/layout-03de5130b95e0613.js"],"default"]
+3:["$","$L16",null,{"children":"$L17"}]
+18:I[5153,["55","static/chunks/55-2ecb2bdc21ccd3ac.js","700","static/chunks/700-f4284facc3b69b22.js","460","static/chunks/460-1da2ad5d62fbec46.js","941","static/chunks/941-4d499fee38648333.js","509","static/chunks/509-60c79e990171d7a5.js","153","static/chunks/153-7af82295aca80feb.js","273","static/chunks/app/%5Blocale%5D/proposals/page-c24a15238aab40cc.js"],"default"]
+6:["$","div",null,{"className":"mx-auto flex min-h-[calc(100vh-60px)] flex-col items-center px-4 pt-10 pb-20 sm:px-6 lg:px-8","children":[["$","h1",null,{"className":"pb-2 text-center","children":"제안"}],["$","$L18",null,{"description":"Logos에 대한 제안을 제출하세요.","showHowToContributeLink":true}]]}]
+19:I[4891,["55","static/chunks/55-2ecb2bdc21ccd3ac.js","700","static/chunks/700-f4284facc3b69b22.js","460","static/chunks/460-1da2ad5d62fbec46.js","196","static/chunks/196-4af4270de6ad0363.js","222","static/chunks/222-6a56f87bcb478f6d.js","450","static/chunks/app/%5Blocale%5D/layout-03de5130b95e0613.js"],"default"]
+1a:I[3927,["55","static/chunks/55-2ecb2bdc21ccd3ac.js","700","static/chunks/700-f4284facc3b69b22.js","460","static/chunks/460-1da2ad5d62fbec46.js","196","static/chunks/196-4af4270de6ad0363.js","222","static/chunks/222-6a56f87bcb478f6d.js","450","static/chunks/app/%5Blocale%5D/layout-03de5130b95e0613.js"],"default"]
+1b:I[3732,["55","static/chunks/55-2ecb2bdc21ccd3ac.js","700","static/chunks/700-f4284facc3b69b22.js","460","static/chunks/460-1da2ad5d62fbec46.js","196","static/chunks/196-4af4270de6ad0363.js","222","static/chunks/222-6a56f87bcb478f6d.js","450","static/chunks/app/%5Blocale%5D/layout-03de5130b95e0613.js"],"default"]
+17:["$","$L19",null,{"formats":"$undefined","locale":"ko","messages":{"locale":{"language":"언어","en":"English","fr":"Français","ko":"한국어"},"common":{"nav":{"directory":"디렉토리","resources":"리소스","contributors":"기여자","milestones":"마일스톤","proposals":"제안","issues":"이슈","leaderboard":"리더보드"},"contribute":{"timePeriod":"최근 12개월"}},"home":{"title":"Logos Contribute","subtitle":"오픈소스 기여자를 축하하고 새로운 개발자들이 첫 기여를 할 수 있도록 돕습니다","search":{"placeholder":"사용자명 또는 저장소로 검색..."},"stats":{"activeContributors":"활성 기여자","totalContributions":"총 기여 수","repositories":"저장소","activeCircles":"활성 서클"},"contributors":{"title":"기여자 디렉토리","contributions":"기여","latest":"최근","viewGithubProfile":"GitHub 프로필 보기","viewDetails":"상세 보기","noResults":"검색과 일치하는 기여자를 찾을 수 없습니다.","pagination":{"showing":"{total}명의 기여자 중 {start}-{end}명 표시","previous":"이전","next":"다음"}},"cta":{"title":"첫 기여를 준비하셨나요?","description":"우리 커뮤니티에 참여하여 오픈소스 개발의 미래를 함께 만들어보세요.","getStarted":"시작하기","viewGuidelines":"가이드라인 보기"},"issues":{"title":"기여 시작하기","viewAll":"모든 이슈 보기"},"directory":{"title":"커뮤니티 디렉토리","description":"우리의 최고 기여자들과 생태계에 미치는 영향을 인정합니다","viewAll":"모든 기여자 보기"}},"issues":{"title":"이슈","subtitle":"contribute.logos.co의 열린 이슈. 이슈를 선택하고 솔루션을 제안하세요.","loading":"이슈를 불러오는 중...","error":"이슈를 불러오지 못했습니다.","empty":"열린 이슈가 없습니다.","emptyFiltered":"\"{label}\" 라벨이 있는 이슈가 없습니다.","emptyFilteredMultiple":"다음 라벨이 있는 이슈가 없습니다: {labels}.","filterLabels":"라벨로 필터","filterLabelsSelected":"{count}개 선택됨","clearFilters":"모두 해제","by":"작성자 {author}","comments":"댓글 {count}개","updated":"업데이트 {date}","view":"보기","showing":"{total}개 이슈 중 {start}-{end} 표시","previous":"이전","next":"다음"},"leaderboard":{"title":"커뮤니티 리더보드","subtitle":"Logos 오픈소스 커뮤니티 기여자들에게 감사를 전합니다.","tabs":{"seasonal":"시즌별 순위","historical":"전체 기간 순위"},"description":{"seasonal":"순위는 분기별로 초기화","historical":"2025년 이후 누적 기여"},"table":{"rank":"순위","contributor":"기여자","tier":"등급","score":"점수","contributions":"기여","repositories":"저장소"},"pagination":{"showing":"{total}명의 기여자 중 {start}-{end}명 표시","previous":"이전","next":"다음"}},"proposals":{"title":"제안","description":"Logos에 대한 제안을 제출하세요.","howToContribute":"기여하는 방법"},"contributor":{"backToContributors":"← 기여자 목록으로 돌아가기","contributionsToEcosystem":"Logos 생태계에 대한 기여","totalContributions":"총 기여 수","latestRepository":"최근 저장소","latestContribution":"최근 기여","viewGithubProfile":"GitHub 프로필 보기","contributionHistory":"기여 기록","commit":"커밋","issue":"이슈","pullRequest":"풀 리퀘스트","review":"리뷰","translation":"번역","contribution":"기여","view":"보기"},"resources":{"sidebar":{"index":"Logos 소개","howToContribute":"기여하는 방법","activists":"지역 커뮤니티 기여","developers":"개발자","writers":"작가","eventOrganisers":"이벤트 주최자","translators":"번역가","designers":"디자이너"},"navigation":{"previous":"이전","next":"다음"}},"form":{"name":"이름","namePlaceholder":"이름을 입력하세요","nameError":"최소 2자 이상 입력해주세요.","email":"이메일 또는 Status App 채팅 키","emailPlaceholder":"이메일 또는 Status App 채팅 키","emailError":"유효한 이메일 주소 또는 Status App 채팅 키(zQ3sh로 시작하는 49자)를 입력해주세요.","category":"카테고리","categoryLoading":"카테고리 불러오는 중...","categorySelect":"카테고리 선택","message":"메시지","messagePlaceholder":"여기에 제안을 설명해주세요.","messageError":"최소 5자 이상 입력해주세요.","editor":"에디터","send":"보내기","sending":"전송 중...","success":"감사합니다! 메시지가 전송되었습니다.","error":"메시지를 보내는 중 오류가 발생했습니다.","categoriesError":"카테고리를 불러오지 못했습니다. 페이지를 새로고침해주세요."},"footer":{}},"now":"$undefined","timeZone":"UTC","children":[["$","$L1a",null,{}],["$","main",null,{"children":["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"flex items-center justify-center py-20","children":["$","h1",null,{"className":"text-4xl font-light text-gray-500","children":"404 | Not Found"}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],["$","$L1b",null,{}]]}]
+d:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+8:null
+b:{"metadata":[["$","title","0",{"children":"Contact Form - Logos Contribute | Logos Contribute Portal"}],["$","meta","1",{"name":"description","content":"Send us a message to contribute or get in touch."}],["$","meta","2",{"name":"author","content":"Logos Contribute Portal"}],["$","meta","3",{"name":"keywords","content":"Logos,Web3,Contribute"}],["$","meta","4",{"name":"creator","content":"Logos Contribute Portal"}],["$","meta","5",{"name":"publisher","content":"Logos Contribute Portal"}],["$","meta","6",{"name":"robots","content":"index, follow"}],["$","link","7",{"rel":"canonical","href":"https://contribute.logos.co/ko/form/"}],["$","link","8",{"rel":"alternate","hrefLang":"en","href":"https://contribute.logos.co/form/"}],["$","link","9",{"rel":"alternate","hrefLang":"fr","href":"https://contribute.logos.co/fr/form/"}],["$","link","10",{"rel":"alternate","hrefLang":"ko","href":"https://contribute.logos.co/ko/form/"}],["$","link","11",{"rel":"alternate","hrefLang":"x-default","href":"https://contribute.logos.co/form/"}],["$","meta","12",{"property":"og:title","content":"Contact Form - Logos Contribute"}],["$","meta","13",{"property":"og:description","content":"Send us a message to contribute or get in touch."}],["$","meta","14",{"property":"og:url","content":"https://contribute.logos.co/ko/form/"}],["$","meta","15",{"property":"og:site_name","content":"Logos Contribute Portal"}],["$","meta","16",{"property":"og:locale","content":"ko"}],["$","meta","17",{"property":"og:image","content":"https://contribute.logos.co/ko/og.png"}],["$","meta","18",{"property":"og:image:width","content":"1200"}],["$","meta","19",{"property":"og:image:height","content":"630"}],["$","meta","20",{"property":"og:image:alt","content":"Contact Form - Logos Contribute"}],["$","meta","21",{"property":"og:image:type","content":"image/png"}],["$","meta","22",{"property":"og:type","content":"website"}],["$","meta","23",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","24",{"name":"twitter:creator","content":"@Logos Contribute Portal"}],["$","meta","25",{"name":"twitter:title","content":"Contact Form - Logos Contribute"}],["$","meta","26",{"name":"twitter:description","content":"Send us a message to contribute or get in touch."}],["$","meta","27",{"name":"twitter:image","content":"https://contribute.logos.co/ko/og.png"}],["$","link","28",{"rel":"icon","href":"/favicon.ico"}]],"error":null,"digest":"$undefined"}
+15:{"metadata":"$b:metadata","error":null,"digest":"$undefined"}
