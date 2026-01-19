@@ -8,6 +8,7 @@ import * as fonts from '@/app/fonts'
 import { cn } from '@/lib/utils'
 import { Metadata } from 'next'
 import siteConfig from '@/config/site'
+import UmamiInit from '@/components/umami-init'
 
 const customLightTheme = createTheme(
   {
@@ -136,7 +137,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           }}
         />
       </head>
-      <body className={fonts.mainFont.className}>{children}</body>
+      <body className={fonts.mainFont.className}>
+        <UmamiInit />
+        {children}
+      </body>
     </html>
   )
 }
