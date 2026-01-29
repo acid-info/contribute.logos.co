@@ -30,6 +30,13 @@ export interface Contributor {
   avatarUrl: string
 }
 
+export interface SocialProofData {
+  activeContributorsCount: number
+  totalContributionsCount: number
+  totalRepositoriesCount: number
+  activeCirclesCount: number
+}
+
 export type ContactCategory = (typeof CONTACT_CATEGORIES)[number]['value']
 
 // TipTap placeholder module declaration (for IDE/TS until types are resolved)

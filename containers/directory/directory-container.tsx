@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useTranslations } from 'next-intl'
 import { useContributors } from '@/hooks/useContributors'
+import { useSocialProofData } from '@/hooks/useSocialProofData'
 import StatsGrid from '@/components/stats/stats-grid'
 import ContributorDirectory from '@/components/contributors/contributors-directory'
 
@@ -15,6 +16,16 @@ export default function DirectoryContainer() {
   const itemsPerPage = 10
 
   const { data: contributors = [], isLoading, error } = useContributors()
+  const {
+    data: socialProof = {
+      activeContributorsCount: 0,
+      totalContributionsCount: 0,
+      totalRepositoriesCount: 0,
+      activeCirclesCount: 0,
+    },
+    isLoading: statsLoading,
+    error: statsError,
+  } = useSocialProofData()
 
   const filteredContributors = contributors.filter(
     (contributor) =>
@@ -67,7 +78,7 @@ export default function DirectoryContainer() {
         </div>
 
         <section className="mb-12">
-          <StatsGrid contributors={contributors} isLoading={isLoading} error={!!error} />
+          <StatsGrid data={socialProof} isLoading={statsLoading} error={!!statsError} />
         </section>
 
         <ContributorDirectory
