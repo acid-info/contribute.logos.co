@@ -5,6 +5,12 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
+export function getTodayISODateDaysAgo(days: number): string {
+  const date = new Date()
+  date.setDate(date.getDate() - days)
+  return date.toISOString().split('T')[0]
+}
+
 export function getContributeApiBase() {
   return process.env.NEXT_PUBLIC_API_MODE === 'development'
     ? 'http://localhost:3000/api'
