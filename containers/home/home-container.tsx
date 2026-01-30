@@ -5,6 +5,7 @@ import { Button, Typography } from '@acid-info/lsd-react'
 import { Link } from '@/i18n/navigation'
 import { ROUTES } from '@/constants/routes'
 import { useContributors } from '@/hooks/useContributors'
+import { useSocialProofData } from '@/hooks/useSocialProofData'
 import StatsGrid from '@/components/stats/stats-grid'
 import IssuesContainer from '../issues/issues-container'
 import ContributorDirectory from '@/components/contributors/contributors-directory'
@@ -15,6 +16,16 @@ export default function HomeContainer() {
   const tp = useTranslations('proposals')
 
   const { data: contributors = [], isLoading, error } = useContributors()
+  const {
+    data: socialProof = {
+      activeContributorsCount: 0,
+      totalContributionsCount: 0,
+      totalRepositoriesCount: 0,
+      activeCirclesCount: 0,
+    },
+    isLoading: statsLoading,
+    error: statsError,
+  } = useSocialProofData()
 
   return (
     <div className="min-h-screen">
@@ -27,7 +38,7 @@ export default function HomeContainer() {
         </section>
 
         <section>
-          <StatsGrid contributors={contributors} isLoading={isLoading} error={!!error} />
+          <StatsGrid data={socialProof} isLoading={statsLoading} error={!!statsError} />
         </section>
 
         <section className="">
