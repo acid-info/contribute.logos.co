@@ -15,14 +15,14 @@ export default function StatsGrid({ data, isLoading, error }: StatsGridProps) {
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
       <StatCard
-        value={data.activeContributorsCount}
-        label={t('stats.activeContributors')}
+        value={data.totalContributionsCount}
+        label={t('stats.totalContributions')}
         isLoading={isLoading}
         error={error}
       />
       <StatCard
-        value={data.totalContributionsCount}
-        label={t('stats.totalContributions')}
+        value={data.activeContributorsCount}
+        label={t('stats.activeContributors')}
         isLoading={isLoading}
         error={error}
       />
