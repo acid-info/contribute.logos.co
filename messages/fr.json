@@ -13,7 +13,8 @@
       "milestones": "Jalons",
       "proposals": "Propositions",
       "issues": "Problèmes",
-      "leaderboard": "Classement"
+      "leaderboard": "Classement",
+      "projects": "Projets"
     },
     "contribute": {
       "timePeriod": "12 derniers mois"
@@ -160,6 +161,19 @@
     "success": "Merci ! Votre message a été envoyé.",
     "error": "Une erreur s'est produite lors de l'envoi de votre message.",
     "categoriesError": "Échec du chargement des catégories. Veuillez actualiser la page."
+  },
+  "repository": {
+    "backToProjects": "Retour aux projets",
+    "loading": "Chargement du repository...",
+    "loadingPullRequests": "Chargement des pull requests...",
+    "errorLoadingPullRequests": "Erreur lors du chargement des pull requests : {error}",
+    "noPullRequests": "Aucune pull request trouvée pour ce repository.",
+    "pullRequestTimeline": "Chronologie des pull requests"
+  },
+  "projects": {
+    "title": "Projets",
+    "subtitle": "Explorez les projets open source et leurs pull requests",
+    "loading": "Chargement des projets..."
   },
   "footer": {}
 }
