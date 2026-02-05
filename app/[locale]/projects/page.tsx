@@ -17,7 +17,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 
 export default function Page() {
-  return <ProjectsContainer />
+  return (
+    <div className="mx-auto flex min-h-[calc(100vh-60px)] max-w-7xl flex-col px-4 pt-10 pb-20 sm:px-6 lg:px-8">
+      <ProjectsContainer />
+    </div>
+  )
 }
 
 export function generateStaticParams() {

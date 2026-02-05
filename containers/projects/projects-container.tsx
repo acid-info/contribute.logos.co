@@ -19,12 +19,25 @@ export default function ProjectsContainer() {
   const { data: repos = [], isLoading: reposLoading, error: reposError } = useOrgProjects(activeOrg)
   const { data: orgs = [], isLoading: orgsLoading, error: orgsError } = useOrgs()
 
-  const totalPages = useMemo(() => Math.ceil(repos.length / itemsPerPage), [repos])
+  const sortedRepos = useMemo(
+    () =>
+      [...repos].sort((a, b) => {
+        // First sort by stars (descending)
+        if (b.stargazers_count !== a.stargazers_count) {
+          return b.stargazers_count - a.stargazers_count
+        }
+        // Then sort by last updated date (descending)
+        return new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
+      }),
+    [repos]
+  )
+
+  const totalPages = useMemo(() => Math.ceil(sortedRepos.length / itemsPerPage), [sortedRepos])
   const startIndex = (currentPage - 1) * itemsPerPage
   const endIndex = startIndex + itemsPerPage
   const currentRepositories = useMemo(
-    () => repos.slice(startIndex, endIndex),
-    [repos, startIndex, endIndex]
+    () => sortedRepos.slice(startIndex, endIndex),
+    [sortedRepos, startIndex, endIndex]
   )
 
   const handlePageChange = (page: number) => {
@@ -49,31 +62,30 @@ export default function ProjectsContainer() {
 
   return (
     <div className="min-h-screen">
-      <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-20 text-center sm:px-6 xl:px-0">
-        <Typography variant="h1" className="mb-12 !text-3xl lg:!text-4xl">
-          {t('title')}
-        </Typography>
-        <Typography variant="subtitle1" className="mb-6 text-base sm:text-lg">
-          {t('subtitle')}
-        </Typography>
+      <div className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 xl:px-0">
+        <div className="mb-8 flex flex-col gap-3 text-center">
+          <h1 className="text-center">{t('title')}</h1>
+        </div>
 
-        <div className="mx-auto max-w-4xl">
-          <Tabs activeTab={activeOrg} onChange={(value) => setActiveOrg(value)}>
-            {orgs.map((org) => (
-              <TabItem key={org} name={org} value={org}>
-                {org}
-              </TabItem>
-            ))}
-          </Tabs>
+        <div className="mb-12">
+          <div className="mx-auto w-fit">
+            <Tabs activeTab={activeOrg} onChange={(value) => setActiveOrg(value)}>
+              {orgs.map((org) => (
+                <TabItem key={org} name={org} value={org}>
+                  {org}
+                </TabItem>
+              ))}
+            </Tabs>
+          </div>
         </div>
 
         {activeOrg && (
           <div className="border-primary border">
             <Typography
               variant="h3"
-              className="border-primary border-b px-4 py-4 !text-lg sm:px-6 sm:!text-xl"
+              className="border-primary border-b px-4 py-4 !text-lg capitalize sm:px-6 sm:!text-xl"
             >
-              {activeOrg} Projects
+              {activeOrg} repositories
             </Typography>
             <div className="p-4 sm:p-6">
               {reposLoading ? (
@@ -86,27 +98,31 @@ export default function ProjectsContainer() {
                     <Button
                       key={repo.id}
                       variant="outlined"
-                      className="h-auto p-4 text-left"
+                      className="h-38 !p-4 text-left sm:!p-6"
                       onClick={() =>
                         router.push(`/${locale}${ROUTES.projects}/${activeOrg}/${repo.name}`)
                       }
                     >
-                      <div className="flex flex-col space-y-2">
-                        <Typography variant="h4" className="!text-base font-medium">
-                          {repo.name}
-                        </Typography>
-                        {repo.description && (
-                          <Typography
-                            variant="body2"
-                            className="line-clamp-2 text-sm text-gray-600"
-                          >
-                            {repo.description}
+                      <div className="flex h-full flex-col justify-between">
+                        <div>
+                          <Typography variant="h4" className="mb-2 !text-base !font-bold">
+                            {repo.name}
                           </Typography>
-                        )}
-                        <div className="flex items-center space-x-4 text-xs text-gray-500">
+                          {repo.description && (
+                            <Typography
+                              variant="body2"
+                              className="line-clamp-2 text-sm text-gray-600"
+                            >
+                              {repo.description}
+                            </Typography>
+                          )}
+                        </div>
+
+                        <div className="flex items-center space-x-4 text-xs">
                           {repo.language && <span>{repo.language}</span>}
-                          <span>⭐ {repo.stargazers_count}</span>
-                          <span>🍴 {repo.forks_count}</span>
+                          <div className="flex flex-auto justify-end">
+                            Stars: {repo.stargazers_count} • Forks: {repo.forks_count}
+                          </div>
                         </div>
                       </div>
                     </Button>
@@ -121,8 +137,8 @@ export default function ProjectsContainer() {
               {totalPages > 1 && (
                 <div className="flex flex-col items-center gap-3 space-y-4 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0 sm:px-6">
                   <Typography variant="body2" className="text-center sm:text-left">
-                    Showing {startIndex + 1}-{Math.min(endIndex, repos.length)} of {repos.length}{' '}
-                    repositories
+                    Showing {startIndex + 1}-{Math.min(endIndex, sortedRepos.length)} of{' '}
+                    {sortedRepos.length} repositories
                   </Typography>
                   <div className="flex flex-row space-y-2 space-x-2 sm:space-y-0">
                     <Button
