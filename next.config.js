@@ -58,7 +58,7 @@ module.exports = () => {
         dirs: ['app', 'components', 'layouts', 'scripts'],
       },
       images: {
-        unoptimized,
+        unoptimized: true,
       },
       async headers() {
         return [
