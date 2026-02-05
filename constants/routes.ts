@@ -6,4 +6,5 @@ export const ROUTES = {
   proposals: '/proposals',
   issues: '/issues',
   leaderboard: '/leaderboard',
+  projects: '/projects',
 } as const

@@ -37,6 +37,36 @@ export interface SocialProofData {
   activeCirclesCount: number
 }
 
+export interface Repository {
+  id: number
+  name: string
+  full_name: string
+  html_url: string
+  description: string | null
+  language: string | null
+  stargazers_count: number
+  forks_count: number
+  open_issues_count: number
+  updated_at: string
+}
+
+export interface PullRequestContributor {
+  login: string
+  __typename: 'User' | 'Bot'
+}
+
+export interface PullRequest {
+  number: number
+  title: string
+  createdAt: string
+  mergedAt: string
+  closedAt: string | null
+  url: string | null
+  author: number
+  repository: number
+  contributors: PullRequestContributor[]
+}
+
 export type ContactCategory = (typeof CONTACT_CATEGORIES)[number]['value']
 
 // TipTap placeholder module declaration (for IDE/TS until types are resolved)

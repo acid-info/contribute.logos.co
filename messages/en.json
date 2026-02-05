@@ -13,7 +13,8 @@
       "miilestones": "Milestones",
       "proposals": "Proposals",
       "issues": "Issues",
-      "leaderboard": "Leaderboard"
+      "leaderboard": "Leaderboard",
+      "projects": "Projects"
     },
     "contribute": {
       "timePeriod": "Last 12 months"
@@ -160,6 +161,19 @@
     "success": "Thanks! Your message has been sent.",
     "error": "There was an error sending your message.",
     "categoriesError": "Failed to load categories. Please refresh the page."
+  },
+  "repository": {
+    "backToProjects": "Back to Projects",
+    "loading": "Loading repository...",
+    "loadingPullRequests": "Loading pull requests...",
+    "errorLoadingPullRequests": "Error loading pull requests: {error}",
+    "noPullRequests": "No pull requests found for this repository.",
+    "pullRequestTimeline": "Pull Request Timeline"
+  },
+  "projects": {
+    "title": "Projects",
+    "subtitle": "Explore open source projects and their pull requests",
+    "loading": "Loading projects..."
   },
   "footer": {}
 }
