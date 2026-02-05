@@ -1,6 +1,6 @@
 import { ROUTES } from '@/constants/routes'
-import { createDefaultMetadata } from '@/lib/metadata'
 import ProjectsContainer from '@/containers/projects/projects-container'
+import { createDefaultMetadata } from '@/lib/metadata'
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
