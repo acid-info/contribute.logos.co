@@ -2,7 +2,7 @@
 
 import { Button, TabItem, Tabs, Typography } from '@acid-info/lsd-react'
 import { useRouter } from 'next/navigation'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { useEffect, useMemo, useState } from 'react'
 import { ROUTES } from '@/constants/routes'
 import { useOrgProjects } from '@/hooks/useOrgProjects'
@@ -10,6 +10,7 @@ import { useOrgs } from '@/hooks/useOrgs'
 
 export default function ProjectsContainer() {
   const t = useTranslations('projects')
+  const locale = useLocale()
   const router = useRouter()
   const [activeOrg, setActiveOrg] = useState<string | null>(null)
   const [currentPage, setCurrentPage] = useState(1)
@@ -86,7 +87,9 @@ export default function ProjectsContainer() {
                       key={repo.id}
                       variant="outlined"
                       className="h-auto p-4 text-left"
-                      onClick={() => router.push(`${ROUTES.projects}/${activeOrg}/${repo.name}`)}
+                      onClick={() =>
+                        router.push(`/${locale}${ROUTES.projects}/${activeOrg}/${repo.name}`)
+                      }
                     >
                       <div className="flex flex-col space-y-2">
                         <Typography variant="h4" className="!text-base font-medium">
