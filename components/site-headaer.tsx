@@ -28,6 +28,14 @@ const Header = () => {
             </Link>
 
             <nav className="hidden items-center space-x-6 md:flex">
+              <Link href={ROUTES.projects}>
+                <Typography
+                  variant="body1"
+                  className={`underline-offset-5 hover:underline ${currentPath === ROUTES.projects ? 'underline' : ''}`}
+                >
+                  {t('nav.projects')}
+                </Typography>
+              </Link>
               <Link href={ROUTES.resources}>
                 <Typography
                   variant="body1"
