@@ -12,11 +12,14 @@ export function getTodayISODateDaysAgo(days: number): string {
 }
 
 export function getContributeApiBase() {
-  return process.env.NEXT_PUBLIC_API_MODE === 'development'
-    ? 'http://localhost:3000/api'
-    : process.env.NEXT_PUBLIC_API_MODE === 'staging'
-      ? 'https://dev-admin-acid.logos.co/api'
-      : 'https://admin-acid.logos.co/api'
+  // return process.env.NEXT_PUBLIC_API_MODE === 'development'
+  //   ? 'http://localhost:3000/api'
+  //   : process.env.NEXT_PUBLIC_API_MODE === 'staging'
+  //     ? 'https://dev-admin-acid.logos.co/api'
+  //     : 'https://admin-acid.logos.co/api'
+
+  // Temporary base url for testing. Need to remove this and uncomment above later.
+  return 'https://logos-admin-git-leaderboard-backend-acidinfo.vercel.app/api'
 }
 
 export function formatNumber(num: number | undefined | null): string {
