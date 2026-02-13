@@ -11,7 +11,10 @@ interface ContributorItemProps {
 }
 
 const formatDate = (dateString: string) => {
-  return new Date(dateString).toLocaleDateString('en-US', {
+  if (!dateString) return null
+  const date = new Date(dateString)
+  if (isNaN(date.getTime())) return null
+  return date.toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'short',
     day: 'numeric',
@@ -43,10 +46,14 @@ export default function ContributorItem({ contributor }: ContributorItemProps) {
               {contributor.contributions} {t('contributors.contributions')}
             </span>
           </div>
-          <div className="mt-1 text-xs sm:text-sm">
-            {t('contributors.latest')}: {contributor.latestRepo} •{' '}
-            {formatDate(contributor.latestContribution)}
-          </div>
+          {formatDate(contributor.latestContribution) && (
+            <div className="mt-1 text-xs sm:text-sm">
+              {t('contributors.latest')}:{' '}
+              {[contributor.latestRepo, formatDate(contributor.latestContribution)]
+                .filter(Boolean)
+                .join(' • ')}
+            </div>
+          )}
         </div>
         <div className="flex flex-row gap-2">
           <a href={contributor.profileUrl} target="_blank" rel="noopener noreferrer">

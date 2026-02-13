@@ -18,18 +18,18 @@ export default function LeaderboardTabs({
   return (
     <div className="border-primary flex space-x-1 border p-1">
       <Button
-        variant={activeTab === 'seasonal' ? 'filled' : 'outlined'}
-        onClick={() => onTabChange('seasonal')}
-        className="flex-1 !border-0"
-      >
-        {seasonalLabel}
-      </Button>
-      <Button
         variant={activeTab === 'historical' ? 'filled' : 'outlined'}
         onClick={() => onTabChange('historical')}
         className="flex-1 !border-0"
       >
         {historicalLabel}
+      </Button>
+      <Button
+        variant={activeTab === 'seasonal' ? 'filled' : 'outlined'}
+        onClick={() => onTabChange('seasonal')}
+        className="flex-1 !border-0"
+      >
+        {seasonalLabel}
       </Button>
     </div>
   )

@@ -13,7 +13,7 @@ export function getTodayISODateDaysAgo(days: number): string {
 
 export function getContributeApiBase() {
   return process.env.NEXT_PUBLIC_API_MODE === 'development'
-    ? 'http://localhost:3001/api'
+    ? 'http://localhost:3000/api'
     : process.env.NEXT_PUBLIC_API_MODE === 'staging'
       ? 'https://dev-admin-acid.logos.co/api'
       : 'https://admin-acid.logos.co/api'

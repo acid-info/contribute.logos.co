@@ -1,129 +1,92 @@
 'use client'
 
-import { useState, useMemo } from 'react'
-import { useTranslations, useLocale } from 'next-intl'
+import { useState, useEffect } from 'react'
+import { useTranslations } from 'next-intl'
 import { Typography } from '@acid-info/lsd-react'
-import Script from 'next/script'
+import SortDropdown from '@/components/ui/sort-dropdown'
 import LeaderboardTabs from '@/components/leaderboard/leaderboard-tabs'
-import LeaderboardTable from '@/components/leaderboard/leaderboard-table'
-import Pagination from '@/components/pagination'
+import ContributorDirectory from '@/components/contributors/contributors-directory'
 import TierSystemContainer from './tier-system-container'
 import ScoringSystemContainer from './scoring-system-container'
-import { generateMockData } from '@/lib/leaderboard-utils'
-import { generateLeaderboardJsonLd } from '@/lib/jsonld-schemas'
+import { useContributors } from '@/hooks/useContributors'
+import { useSeasonalLeaderboard } from '@/hooks/useSeasonalLeaderboard'
+
+type SortOption = 'points' | 'newest'
 
 export default function LeaderboardContainer() {
   const t = useTranslations('leaderboard')
-  const tc = useTranslations('common')
-  const locale = useLocale()
-  const [activeTab, setActiveTab] = useState<'seasonal' | 'historical'>('seasonal')
+  const [activeTab, setActiveTab] = useState<'seasonal' | 'historical'>('historical')
+  const [sortBy, setSortBy] = useState<SortOption>('points')
   const [currentPage, setCurrentPage] = useState(1)
   const itemsPerPage = 10
 
-  const seasonalData = useMemo(() => generateMockData('seasonal'), [])
-  const historicalData = useMemo(() => generateMockData('historical'), [])
+  const {
+    data: seasonalData,
+    isLoading: seasonalLoading,
+    error: seasonalError,
+  } = useSeasonalLeaderboard({ sort: sortBy })
 
-  const currentData = activeTab === 'seasonal' ? seasonalData : historicalData
-  const totalPages = Math.ceil(currentData.length / itemsPerPage)
-  const startIndex = (currentPage - 1) * itemsPerPage
-  const currentEntries = currentData.slice(startIndex, startIndex + itemsPerPage)
+  const {
+    data: allTimeData = [],
+    isLoading: allTimeLoading,
+    error: allTimeError,
+  } = useContributors({ sort: sortBy })
 
-  const handleTabChange = (tab: 'seasonal' | 'historical') => {
-    setActiveTab(tab)
+  const contributors = activeTab === 'seasonal' ? (seasonalData?.contributors ?? []) : allTimeData
+  const isLoading = activeTab === 'seasonal' ? seasonalLoading : allTimeLoading
+  const error = activeTab === 'seasonal' ? seasonalError : allTimeError
+
+  useEffect(() => {
     setCurrentPage(1)
-  }
-
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page)
-  }
-
-  // Generate JSON-LD schema
-  const leaderboardJsonLd = useMemo(() => {
-    return generateLeaderboardJsonLd({
-      title: t('title'),
-      description: t('subtitle'),
-      url: `https://contribute.logos.co/${locale}/leaderboard`,
-      entries: currentData,
-      type: activeTab,
-      locale,
-    })
-  }, [t, locale, currentData, activeTab])
+  }, [activeTab, sortBy])
 
   return (
-    <>
-      {/* JSON-LD Structured Data */}
-      <Script
-        id="leaderboard-jsonld"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(leaderboardJsonLd),
-        }}
-      />
-
-      <div className="min-h-screen">
-        <div className="mx-auto max-w-7xl py-20">
-          <div className="mb-12 text-center">
-            <Typography variant="h1" className="pb-4 !text-3xl lg:!text-4xl">
-              {t('title')}
-            </Typography>
-            <Typography variant="subtitle1" className="mb-6 text-base sm:text-lg">
-              {t('subtitle')}
-            </Typography>
-          </div>
-
-          <div className="mb-8">
-            <LeaderboardTabs
-              activeTab={activeTab}
-              onTabChange={handleTabChange}
-              seasonalLabel={t('tabs.seasonal')}
-              historicalLabel={t('tabs.historical')}
-            />
-          </div>
-
-          <div className="mb-8">
-            <div className="mb-4 flex items-center justify-between">
-              <Typography variant="h2" className="!text-xl">
-                {activeTab === 'seasonal' ? t('tabs.seasonal') : t('tabs.historical')}
-              </Typography>
-              <Typography variant="body2">
-                {activeTab === 'seasonal' ? t('description.seasonal') : t('description.historical')}
-              </Typography>
-            </div>
-
-            <LeaderboardTable
-              entries={currentEntries}
-              rankLabel={t('table.rank')}
-              contributorLabel={t('table.contributor')}
-              tierLabel={t('table.tier')}
-              scoreLabel={t('table.score')}
-              contributionsLabel={t('table.contributions')}
-              repositoriesLabel={t('table.repositories')}
-              showTier={activeTab === 'historical'}
-            />
-          </div>
-
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            totalItems={currentData.length}
-            itemsPerPage={itemsPerPage}
-            onPageChange={handlePageChange}
-            showingText={t('pagination.showing', {
-              start: '{start}',
-              end: '{end}',
-              total: '{total}',
-            })}
-            previousText={t('pagination.previous')}
-            nextText={t('pagination.next')}
-          />
-
-          {/* Tier System Information */}
-          <TierSystemContainer />
-
-          {/* Scoring System Information */}
-          <ScoringSystemContainer />
+    <div className="min-h-screen">
+      <div className="mx-auto max-w-7xl py-10 sm:py-20">
+        <div className="mb-12 text-center">
+          <Typography variant="h1" className="pb-4 !text-3xl lg:!text-4xl">
+            {t('title')}
+          </Typography>
+          <Typography variant="subtitle1" className="text-base sm:text-lg">
+            {t('subtitle')}
+          </Typography>
         </div>
+
+        <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <LeaderboardTabs
+            activeTab={activeTab}
+            onTabChange={(tab) => {
+              setActiveTab(tab)
+            }}
+            seasonalLabel={t('tabs.seasonal')}
+            historicalLabel={t('tabs.historical')}
+          />
+          <SortDropdown
+            value={sortBy}
+            onChange={(value) => setSortBy(value as SortOption)}
+            options={[
+              { value: 'points', label: t('table.score') },
+              { value: 'newest', label: 'Newest' },
+            ]}
+          />
+        </div>
+
+        <Typography variant="body2" className="mb-6">
+          {activeTab === 'seasonal' ? t('description.seasonal') : t('description.historical')}
+        </Typography>
+
+        <ContributorDirectory
+          contributors={contributors}
+          isLoading={isLoading}
+          error={!!error}
+          currentPage={currentPage}
+          itemsPerPage={itemsPerPage}
+          onPageChange={setCurrentPage}
+        />
+
+        <TierSystemContainer />
+        <ScoringSystemContainer />
       </div>
-    </>
+    </div>
   )
 }
