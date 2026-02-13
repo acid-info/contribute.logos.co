@@ -8,6 +8,7 @@ import { Contributor } from '@/types'
 
 interface ContributorItemProps {
   contributor: Contributor
+  showTier?: boolean
 }
 
 const formatDate = (dateString: string) => {
@@ -21,8 +22,9 @@ const formatDate = (dateString: string) => {
   })
 }
 
-export default function ContributorItem({ contributor }: ContributorItemProps) {
+export default function ContributorItem({ contributor, showTier = false }: ContributorItemProps) {
   const t = useTranslations('home')
+  const tl = useTranslations('leaderboard')
 
   return (
     <div className="p-4 sm:p-6">
@@ -33,7 +35,7 @@ export default function ContributorItem({ contributor }: ContributorItemProps) {
           className="h-10 w-10 rounded-full sm:h-12 sm:w-12"
         />
         <div className="min-w-0 flex-1">
-          <div className="flex flex-row space-y-1 space-x-3 sm:items-center sm:space-y-0">
+          <div className="flex flex-row flex-wrap items-center gap-x-3 gap-y-1">
             <a
               href={contributor.profileUrl}
               target="_blank"
@@ -45,6 +47,11 @@ export default function ContributorItem({ contributor }: ContributorItemProps) {
             <span className="inline-flex items-center text-xs font-medium">
               {contributor.contributions} {t('contributors.contributions')}
             </span>
+            {showTier && (
+              <span className="border-primary inline-flex items-center rounded-full border px-2 py-1 text-xs font-medium">
+                {tl('table.tier')}: {contributor.tier || '-'}
+              </span>
+            )}
           </div>
           {formatDate(contributor.latestContribution) && (
             <div className="mt-1 text-xs sm:text-sm">

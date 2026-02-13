@@ -25,6 +25,7 @@ export interface Contributor {
   username: string
   profileUrl: string
   contributions: number
+  tier?: string | null
   latestContribution: string
   latestRepo: string
   avatarUrl: string

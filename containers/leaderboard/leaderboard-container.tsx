@@ -79,6 +79,7 @@ export default function LeaderboardContainer() {
           contributors={contributors}
           isLoading={isLoading}
           error={!!error}
+          showTier={activeTab === 'historical'}
           currentPage={currentPage}
           itemsPerPage={itemsPerPage}
           onPageChange={setCurrentPage}

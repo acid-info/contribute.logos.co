@@ -21,6 +21,13 @@ interface UseContributorsOptions {
   limit?: number
 }
 
+const getTierName = (rankName: string | null, totalPoints: number): string | null => {
+  if (rankName && rankName.trim().length > 0) return rankName
+  if (totalPoints >= 30) return 'Builder'
+  if (totalPoints > 0) return 'Explorer'
+  return null
+}
+
 const fetchContributors = async ({ sort, limit }: UseContributorsOptions = {}): Promise<
   Contributor[]
 > => {
@@ -44,6 +51,7 @@ const fetchContributors = async ({ sort, limit }: UseContributorsOptions = {}): 
       ? `https://github.com/${contributor.github_username}`
       : '',
     contributions: contributor.contribution_count,
+    tier: getTierName(contributor.rank_name, contributor.total_points),
     latestContribution: contributor.latest_contribution_at || '',
     latestRepo: contributor.latest_repo || '',
     avatarUrl: contributor.github_username
