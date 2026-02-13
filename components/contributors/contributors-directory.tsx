@@ -11,6 +11,7 @@ interface ContributorsSectionProps {
   contributors: Contributor[]
   isLoading: boolean
   error: boolean
+  showTier?: boolean
   currentPage?: number
   totalPages?: number
   totalItems?: number
@@ -28,6 +29,7 @@ export default function ContributorDirectory({
   totalItems: externalTotalItems,
   itemsPerPage = 10,
   onPageChange,
+  showTier = false,
   showPagination = true,
 }: ContributorsSectionProps) {
   const t = useTranslations('home')
@@ -51,6 +53,7 @@ export default function ContributorDirectory({
           contributors={displayedContributors}
           isLoading={isLoading}
           error={error}
+          showTier={showTier}
         />
       </div>
       {showPagination && !isLoading && !error && totalPages > 1 && onPageChange && (

@@ -10,12 +10,14 @@ interface ContributorsListProps {
   contributors: Contributor[]
   isLoading: boolean
   error: boolean
+  showTier?: boolean
 }
 
 export default function ContributorsList({
   contributors,
   isLoading,
   error,
+  showTier = false,
 }: ContributorsListProps) {
   if (isLoading) {
     return <ContributorsLoading />
@@ -32,7 +34,7 @@ export default function ContributorsList({
   return (
     <>
       {contributors.map((contributor) => (
-        <ContributorItem key={contributor.id} contributor={contributor} />
+        <ContributorItem key={contributor.id} contributor={contributor} showTier={showTier} />
       ))}
     </>
   )
