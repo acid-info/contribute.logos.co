@@ -2,7 +2,7 @@ import { Typography } from '@acid-info/lsd-react'
 
 export default function TierSystemContainer() {
   return (
-    <div className="mt-12 space-y-6">
+    <div className="mt-24 space-y-6">
       <div className="mb-8 text-center">
         <Typography variant="h2" className="mb-2 !text-2xl">
           Contributor Tier System

@@ -32,7 +32,7 @@ export default function ScoringSystemContainer() {
       </div>
 
       <div className="border-primary border p-6">
-        <div className="prose prose-sm max-w-none">
+        <div className="prose-sm prose max-w-none">
           <ReactMarkdown
             components={{
               h3: ({ children }) => (

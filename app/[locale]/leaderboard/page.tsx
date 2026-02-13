@@ -1,4 +1,4 @@
-import DirectoryContainer from '@/containers/directory/directory-container'
+import LeaderboardContainer from '@/containers/leaderboard/leaderboard-container'
 import { routing } from '@/i18n/routing'
 import { Metadata } from 'next'
 import { createDefaultMetadata } from '@/lib/metadata'
@@ -22,7 +22,7 @@ export async function generateMetadata({
 export default function LeaderboardPage() {
   return (
     <div className="mx-auto flex min-h-[calc(100vh-60px)] max-w-7xl flex-col px-4 pt-10 pb-20 sm:px-6 lg:px-8">
-      <DirectoryContainer />
+      <LeaderboardContainer />
     </div>
   )
 }
