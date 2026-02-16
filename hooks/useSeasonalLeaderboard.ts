@@ -49,6 +49,7 @@ const fetchSeasonalLeaderboard = async ({ sort }: UseSeasonalLeaderboardOptions 
     id: entry.contributor_id,
     username: entry.github_username || entry.alias,
     profileUrl: entry.github_username ? `https://github.com/${entry.github_username}` : '',
+    points: entry.season_points,
     contributions: entry.contribution_count,
     latestContribution: entry.latest_contribution_at || '',
     latestRepo: entry.latest_repo || '',

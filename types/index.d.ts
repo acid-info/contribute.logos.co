@@ -24,6 +24,7 @@ export interface Contributor {
   id: number
   username: string
   profileUrl: string
+  points?: number
   contributions: number
   tier?: string | null
   latestContribution: string

@@ -50,6 +50,7 @@ const fetchContributors = async ({ sort, limit }: UseContributorsOptions = {}): 
     profileUrl: contributor.github_username
       ? `https://github.com/${contributor.github_username}`
       : '',
+    points: contributor.total_points,
     contributions: contributor.contribution_count,
     tier: getTierName(contributor.rank_name, contributor.total_points),
     latestContribution: contributor.latest_contribution_at || '',
