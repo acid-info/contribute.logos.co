@@ -45,7 +45,7 @@ export default function ContributorItem({ contributor, showTier = false }: Contr
               {contributor.username}
             </a>
             <span className="inline-flex items-center text-xs font-medium">
-              {tl('table.score')}: {contributor.points ?? 0}
+              {tl('table.point')}: {contributor.points ?? 0}
             </span>
             <span className="inline-flex items-center text-xs font-medium">
               {contributor.contributions} {t('contributors.contributions')}
