@@ -4,21 +4,32 @@ import { useTranslations } from 'next-intl'
 import { Button, Typography } from '@acid-info/lsd-react'
 import { Link } from '@/i18n/navigation'
 import { ROUTES } from '@/constants/routes'
-import { useMemo } from 'react'
+import { useMemo, useState, useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
-import { useContributorDetails, type ApiItemType } from '@/hooks/useContributorDetails'
+import { useContributorDetails } from '@/hooks/useContributorDetails'
 import { formatNumber } from '@/lib/utils'
+import ContributionHistorySection from '@/components/contributor/contribution-history-section'
 
 export default function ContributorDetailsContainer() {
   const t = useTranslations('contributor')
-  const tc = useTranslations('common')
   const searchParams = useSearchParams()
   const username = searchParams.get('username') || ''
+  const [historyPage, setHistoryPage] = useState(1)
+  const historyItemsPerPage = 20
 
-  const { data, isLoading: loading, error } = useContributorDetails(username)
+  const {
+    data,
+    isLoading: loading,
+    error,
+  } = useContributorDetails(username, historyPage, historyItemsPerPage)
+
+  useEffect(() => {
+    setHistoryPage(1)
+  }, [username])
 
   const items = data?.items || []
   const total = data?.total || 0
+  const totalPages = data?.totalPages || 1
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
@@ -28,21 +39,12 @@ export default function ContributorDetailsContainer() {
     })
   }
 
-  const getContributionLabel = (type: ApiItemType) =>
-    type === 'COMMIT'
-      ? 'Commit'
-      : type === 'PR'
-        ? 'Pull Request'
-        : type === 'REVIEW'
-          ? 'Review'
-          : 'Contribution'
-
   const avatarUrl = useMemo(
     () => (username ? `https://github.com/${username}.png` : ''),
     [username]
   )
   const profileUrl = useMemo(() => (username ? `https://github.com/${username}` : '#'), [username])
-  const latest = items[0]
+  const latest = data?.latest || items[0]
 
   return (
     <div className="min-h-screen">
@@ -53,7 +55,7 @@ export default function ContributorDetailsContainer() {
           </Link>
         </div>
 
-        <div className="mb-8 grid gap-8 lg:grid-cols-3">
+        <div className="mb-8">
           <div className="lg:col-span-2">
             <div className="border-primary border p-4 sm:p-8">
               <div className="mb-6 flex items-center space-x-6">
@@ -168,70 +170,17 @@ export default function ContributorDetailsContainer() {
           </div> */}
         </div>
 
-        <div className="border-primary border">
-          <div className="border-primary border-b px-4 py-2 sm:px-8 sm:py-6">
-            <div className="flex items-center gap-3">
-              <h2 className="!text-lg sm:!text-2xl">{t('contributionHistory')}</h2>
-            </div>
-          </div>
-          <div className="divide-primary divide-y">
-            {loading && (
-              <div className="flex justify-center p-8 sm:p-12">
-                <div className="flex flex-col items-center space-y-4">
-                  <div className="h-8 w-8 animate-spin rounded-full border-2 border-gray-300 border-t-gray-900"></div>
-                  <Typography variant="body2" className="text-gray-600">
-                    Loading contributions...
-                  </Typography>
-                </div>
-              </div>
-            )}
-            {!loading && error && (
-              <div className="flex justify-center p-8 sm:p-12">
-                <div className="flex flex-col items-center space-y-4">
-                  <Typography variant="body2" className="text-red-600">
-                    {error instanceof Error ? error.message : 'Failed to load contributions'}
-                  </Typography>
-                </div>
-              </div>
-            )}
-            {!loading && !error && items.length === 0 && (
-              <div className="p-8">
-                <Typography variant="body2">No contributions in the last year.</Typography>
-              </div>
-            )}
-            {!loading &&
-              !error &&
-              items.map((it) => (
-                <div key={it.link} className="p-4 sm:p-8">
-                  <div className="flex items-start space-x-4">
-                    <div className="border-primary flex items-center justify-center border p-2 sm:px-4">
-                      <Typography variant="body2" className="font-medium">
-                        {getContributionLabel(it.type)}
-                      </Typography>
-                    </div>
-                    <div className="flex-1">
-                      <Typography variant="body1" className="mb-2 font-medium">
-                        {it.repo}
-                      </Typography>
-                      <div className="flex flex-wrap items-center gap-4">
-                        <Typography variant="body2" className="text-gray-600">
-                          {it.repo}
-                        </Typography>
-                        <Typography variant="body2" className="text-gray-600">
-                          {formatDate(it.date)}
-                        </Typography>
-                      </div>
-                    </div>
-                    <a href={it.link} target="_blank" rel="noopener noreferrer">
-                      <Button variant="outlined" size="small">
-                        {t('view')}
-                      </Button>
-                    </a>
-                  </div>
-                </div>
-              ))}
-          </div>
-        </div>
+        <ContributionHistorySection
+          items={items}
+          isLoading={loading}
+          error={!!error}
+          errorMessage={error instanceof Error ? error.message : undefined}
+          currentPage={historyPage}
+          totalPages={totalPages}
+          totalItems={total}
+          itemsPerPage={historyItemsPerPage}
+          onPageChange={setHistoryPage}
+        />
       </div>
     </div>
   )
