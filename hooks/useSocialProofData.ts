@@ -6,10 +6,30 @@ const STALE_TIME_MS = 24 * 60 * 60 * 1000 // 24 hours
 const GC_TIME_MS = STALE_TIME_MS
 
 interface StatsApiResponse {
-  totalContributions: number
-  activeContributors: number
-  totalRepositories: number
-  activeCircles: number
+  totalContributions?: number
+  activeContributors?: number
+  totalRepositories?: number
+  activeCircles?: number
+  totalContributionsCount?: number
+  activeContributorsCount?: number
+  totalRepositoriesCount?: number
+  activeCirclesCount?: number
+}
+
+interface WrappedStatsApiResponse {
+  success?: boolean
+  data?: {
+    socialProof?: StatsApiResponse
+  }
+}
+
+function toNumber(value: unknown): number {
+  if (typeof value === 'number') return Number.isFinite(value) ? value : 0
+  if (typeof value === 'string') {
+    const parsed = Number(value)
+    return Number.isFinite(parsed) ? parsed : 0
+  }
+  return 0
 }
 
 async function fetchSocialProofData(): Promise<SocialProofData> {
@@ -20,13 +40,15 @@ async function fetchSocialProofData(): Promise<SocialProofData> {
     throw new Error(`Failed to fetch stats: ${res.status}`)
   }
 
-  const data = (await res.json()) as StatsApiResponse
+  const raw = (await res.json()) as StatsApiResponse | WrappedStatsApiResponse
+  const data =
+    'data' in raw ? ((raw.data?.socialProof ?? {}) as StatsApiResponse) : (raw as StatsApiResponse)
 
   return {
-    totalContributionsCount: data.totalContributions,
-    activeContributorsCount: data.activeContributors,
-    totalRepositoriesCount: data.totalRepositories,
-    activeCirclesCount: data.activeCircles,
+    totalContributionsCount: toNumber(data.totalContributionsCount ?? data.totalContributions),
+    activeContributorsCount: toNumber(data.activeContributorsCount ?? data.activeContributors),
+    totalRepositoriesCount: toNumber(data.totalRepositoriesCount ?? data.totalRepositories),
+    activeCirclesCount: toNumber(data.activeCirclesCount ?? data.activeCircles),
   }
 }
 
