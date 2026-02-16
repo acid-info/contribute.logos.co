@@ -3,15 +3,15 @@ import { getContributeApiBase } from '@/lib/utils'
 import { Contributor } from '@/types'
 
 interface ContributorApiResponse {
-  contributor_id: number
-  total_points: number
-  rank: number
+  contributor_id: number | string
+  total_points: number | string
+  rank: number | string
   github_username: string | null
   alias: string
   rank_id: number | null
   rank_name: string | null
   rank_power: number | null
-  contribution_count: number
+  contribution_count: number | string
   latest_contribution_at: string | null
   latest_repo: string | null
 }
@@ -26,6 +26,11 @@ const getTierName = (rankName: string | null, totalPoints: number): string | nul
   if (totalPoints >= 30) return 'Builder'
   if (totalPoints > 0) return 'Explorer'
   return null
+}
+
+const toNumber = (value: number | string): number => {
+  const parsed = typeof value === 'string' ? Number(value) : value
+  return Number.isFinite(parsed) ? parsed : 0
 }
 
 const fetchContributors = async ({ sort, limit }: UseContributorsOptions = {}): Promise<
@@ -44,21 +49,25 @@ const fetchContributors = async ({ sort, limit }: UseContributorsOptions = {}): 
 
   const data = (await res.json()) as ContributorApiResponse[]
 
-  return data.map((contributor) => ({
-    id: contributor.contributor_id,
-    username: contributor.github_username || contributor.alias,
-    profileUrl: contributor.github_username
-      ? `https://github.com/${contributor.github_username}`
-      : '',
-    points: contributor.total_points,
-    contributions: contributor.contribution_count,
-    tier: getTierName(contributor.rank_name, contributor.total_points),
-    latestContribution: contributor.latest_contribution_at || '',
-    latestRepo: contributor.latest_repo || '',
-    avatarUrl: contributor.github_username
-      ? `https://github.com/${contributor.github_username}.png`
-      : '',
-  }))
+  return data.map((contributor) => {
+    const points = toNumber(contributor.total_points)
+
+    return {
+      id: toNumber(contributor.contributor_id),
+      username: contributor.github_username || contributor.alias,
+      profileUrl: contributor.github_username
+        ? `https://github.com/${contributor.github_username}`
+        : '',
+      points,
+      contributions: toNumber(contributor.contribution_count),
+      tier: getTierName(contributor.rank_name, points),
+      latestContribution: contributor.latest_contribution_at || '',
+      latestRepo: contributor.latest_repo || '',
+      avatarUrl: contributor.github_username
+        ? `https://github.com/${contributor.github_username}.png`
+        : '',
+    }
+  })
 }
 
 export const useContributors = (options: UseContributorsOptions = {}) => {

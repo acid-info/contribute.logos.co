@@ -25,6 +25,7 @@ const formatDate = (dateString: string) => {
 export default function ContributorItem({ contributor, showTier = false }: ContributorItemProps) {
   const t = useTranslations('home')
   const tl = useTranslations('leaderboard')
+  const points = contributor.points ?? 0
 
   return (
     <div className="p-4 sm:p-6">
@@ -45,10 +46,7 @@ export default function ContributorItem({ contributor, showTier = false }: Contr
               {contributor.username}
             </a>
             <span className="inline-flex items-center text-xs font-medium">
-              {tl('table.point')}: {contributor.points ?? 0}
-            </span>
-            <span className="inline-flex items-center text-xs font-medium">
-              {contributor.contributions} {t('contributors.contributions')}
+              {points} {tl('table.point')}
             </span>
             {showTier && (
               <span className="border-primary inline-flex items-center rounded-full border px-2 py-1 text-xs font-medium">
