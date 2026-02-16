@@ -34,7 +34,7 @@ export default function SortDropdown({ value, options, onChange }: SortDropdownP
       <button
         type="button"
         onClick={() => setOpen((prev) => !prev)}
-        className="border-primary flex items-center gap-2 border bg-transparent px-3 py-2 text-sm"
+        className="border-primary text-primary flex items-center gap-2 border bg-transparent px-3 py-2 text-sm"
       >
         {selectedLabel}
         <svg
@@ -48,7 +48,7 @@ export default function SortDropdown({ value, options, onChange }: SortDropdownP
         </svg>
       </button>
       {open && (
-        <div className="border-primary absolute right-0 z-50 mt-1 min-w-full border bg-white shadow-sm">
+        <div className="dropdown-menu absolute right-0 z-50 mt-1 min-w-full border shadow-sm">
           {options.map((option) => (
             <button
               key={option.value}
@@ -57,7 +57,7 @@ export default function SortDropdown({ value, options, onChange }: SortDropdownP
                 onChange(option.value)
                 setOpen(false)
               }}
-              className={`block w-full px-3 py-2 text-left text-sm hover:bg-gray-100 ${
+              className={`dropdown-option block w-full px-3 py-2 text-left text-sm ${
                 option.value === value ? 'font-semibold' : ''
               }`}
             >
