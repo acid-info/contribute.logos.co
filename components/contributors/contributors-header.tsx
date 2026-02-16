@@ -5,7 +5,6 @@ import { Typography } from '@acid-info/lsd-react'
 
 export default function ContributorsHeader() {
   const t = useTranslations('home')
-  const tc = useTranslations('common')
 
   return (
     <div className="border-primary border-b px-4 py-4 sm:px-6">

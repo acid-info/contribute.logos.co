@@ -6,6 +6,7 @@ import { Contributor } from '@/types'
 import Pagination from '@/components/pagination'
 import ContributorsHeader from './contributors-header'
 import ContributorsList from './contributors-list'
+import ContributorsTable from './contributors-table'
 
 interface ContributorsSectionProps {
   contributors: Contributor[]
@@ -18,6 +19,8 @@ interface ContributorsSectionProps {
   itemsPerPage?: number
   onPageChange?: (page: number) => void
   showPagination?: boolean
+  variant?: 'list' | 'table'
+  showHeader?: boolean
 }
 
 export default function ContributorDirectory({
@@ -31,11 +34,15 @@ export default function ContributorDirectory({
   onPageChange,
   showTier = false,
   showPagination = true,
+  variant = 'list',
+  showHeader = variant === 'list',
 }: ContributorsSectionProps) {
   const t = useTranslations('home')
+  const tl = useTranslations('leaderboard')
 
   const totalItems = externalTotalItems ?? contributors.length
   const totalPages = externalTotalPages ?? Math.max(1, Math.ceil(totalItems / itemsPerPage))
+  const rankOffset = showPagination ? (currentPage - 1) * itemsPerPage : 0
 
   const displayedContributors = useMemo(() => {
     if (!showPagination) {
@@ -47,15 +54,24 @@ export default function ContributorDirectory({
 
   return (
     <div className="border-primary border">
-      <ContributorsHeader />
-      <div className="divide-primary divide-y">
-        <ContributorsList
+      {showHeader && <ContributorsHeader />}
+      {variant === 'table' ? (
+        <ContributorsTable
           contributors={displayedContributors}
           isLoading={isLoading}
           error={error}
-          showTier={showTier}
+          rankOffset={rankOffset}
         />
-      </div>
+      ) : (
+        <div className="divide-primary divide-y">
+          <ContributorsList
+            contributors={displayedContributors}
+            isLoading={isLoading}
+            error={error}
+            showTier={showTier}
+          />
+        </div>
+      )}
       {showPagination && !isLoading && !error && totalPages > 1 && onPageChange && (
         <Pagination
           currentPage={currentPage}
@@ -63,13 +79,23 @@ export default function ContributorDirectory({
           totalItems={totalItems}
           itemsPerPage={itemsPerPage}
           onPageChange={onPageChange}
-          showingText={t('contributors.pagination.showing', {
-            start: '{start}',
-            end: '{end}',
-            total: '{total}',
-          })}
-          previousText={t('contributors.pagination.previous')}
-          nextText={t('contributors.pagination.next')}
+          showingText={
+            variant === 'table'
+              ? tl('pagination.showing', {
+                  start: '{start}',
+                  end: '{end}',
+                  total: '{total}',
+                })
+              : t('contributors.pagination.showing', {
+                  start: '{start}',
+                  end: '{end}',
+                  total: '{total}',
+                })
+          }
+          previousText={
+            variant === 'table' ? tl('pagination.previous') : t('contributors.pagination.previous')
+          }
+          nextText={variant === 'table' ? tl('pagination.next') : t('contributors.pagination.next')}
         />
       )}
     </div>

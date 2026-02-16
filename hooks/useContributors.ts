@@ -12,6 +12,8 @@ interface ContributorApiResponse {
   rank_name: string | null
   rank_power: number | null
   contribution_count: number | string
+  repository_count?: number | string | null
+  repositories_count?: number | string | null
   latest_contribution_at: string | null
   latest_repo: string | null
 }
@@ -31,6 +33,11 @@ const getTierName = (rankName: string | null, totalPoints: number): string | nul
 const toNumber = (value: number | string): number => {
   const parsed = typeof value === 'string' ? Number(value) : value
   return Number.isFinite(parsed) ? parsed : 0
+}
+
+const toOptionalNumber = (value?: number | string | null): number | undefined => {
+  if (value == null) return undefined
+  return toNumber(value)
 }
 
 const fetchContributors = async ({ sort, limit }: UseContributorsOptions = {}): Promise<
@@ -58,8 +65,12 @@ const fetchContributors = async ({ sort, limit }: UseContributorsOptions = {}): 
       profileUrl: contributor.github_username
         ? `https://github.com/${contributor.github_username}`
         : '',
+      rank: toNumber(contributor.rank),
       points,
       contributions: toNumber(contributor.contribution_count),
+      repositories: toOptionalNumber(
+        contributor.repository_count ?? contributor.repositories_count
+      ),
       tier: getTierName(contributor.rank_name, points),
       latestContribution: contributor.latest_contribution_at || '',
       latestRepo: contributor.latest_repo || '',

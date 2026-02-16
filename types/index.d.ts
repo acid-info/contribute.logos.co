@@ -24,8 +24,10 @@ export interface Contributor {
   id: number
   username: string
   profileUrl: string
+  rank?: number
   points?: number
   contributions: number
+  repositories?: number
   tier?: string | null
   latestContribution: string
   latestRepo: string

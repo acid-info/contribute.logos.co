@@ -14,6 +14,8 @@ interface SeasonApiResponse {
     rank_name: string | null
     rank_power: number | null
     contribution_count: number | string
+    repository_count?: number | string | null
+    repositories_count?: number | string | null
     latest_contribution_at: string | null
     latest_repo: string | null
   }>
@@ -32,6 +34,11 @@ interface UseSeasonalLeaderboardOptions {
 const toNumber = (value: number | string): number => {
   const parsed = typeof value === 'string' ? Number(value) : value
   return Number.isFinite(parsed) ? parsed : 0
+}
+
+const toOptionalNumber = (value?: number | string | null): number | undefined => {
+  if (value == null) return undefined
+  return toNumber(value)
 }
 
 const fetchSeasonalLeaderboard = async ({ sort }: UseSeasonalLeaderboardOptions = {}): Promise<{
@@ -54,8 +61,10 @@ const fetchSeasonalLeaderboard = async ({ sort }: UseSeasonalLeaderboardOptions 
     id: toNumber(entry.contributor_id),
     username: entry.github_username || entry.alias,
     profileUrl: entry.github_username ? `https://github.com/${entry.github_username}` : '',
+    rank: toNumber(entry.rank),
     points: toNumber(entry.season_points),
     contributions: toNumber(entry.contribution_count),
+    repositories: toOptionalNumber(entry.repository_count ?? entry.repositories_count),
     latestContribution: entry.latest_contribution_at || '',
     latestRepo: entry.latest_repo || '',
     avatarUrl: entry.github_username ? `https://github.com/${entry.github_username}.png` : '',
