@@ -61,6 +61,8 @@ export default function HomeContainer() {
               contributors={contributors}
               isLoading={isLoading}
               error={!!error}
+              variant="table"
+              showHeader={false}
               showPagination={false}
               itemsPerPage={5}
             />
