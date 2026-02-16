@@ -94,7 +94,7 @@
       "rank": "순위",
       "contributor": "기여자",
       "tier": "등급",
-      "score": "점수",
+      "point": "점수",
       "contributions": "기여",
       "repositories": "저장소"
     },

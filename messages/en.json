@@ -94,7 +94,7 @@
       "rank": "Rank",
       "contributor": "Contributor",
       "tier": "Tier",
-      "score": "Point",
+      "point": "Point",
       "contributions": "Contributions",
       "repositories": "Repositories"
     },
