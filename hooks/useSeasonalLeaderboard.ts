@@ -68,6 +68,7 @@ const fetchSeasonalLeaderboard = async ({ sort }: UseSeasonalLeaderboardOptions 
     latestContribution: entry.latest_contribution_at || '',
     latestRepo: entry.latest_repo || '',
     avatarUrl: entry.github_username ? `https://github.com/${entry.github_username}.png` : '',
+    tier: undefined,
   }))
 
   return { contributors, season: json.season }
