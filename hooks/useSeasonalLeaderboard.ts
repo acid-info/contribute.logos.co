@@ -4,16 +4,16 @@ import { Contributor } from '@/types'
 
 interface SeasonApiResponse {
   data: Array<{
-    season_id: number
-    contributor_id: number
-    season_points: number
-    rank: number
+    season_id: number | string
+    contributor_id: number | string
+    season_points: number | string
+    rank: number | string
     github_username: string | null
     alias: string
     rank_id: number | null
     rank_name: string | null
     rank_power: number | null
-    contribution_count: number
+    contribution_count: number | string
     latest_contribution_at: string | null
     latest_repo: string | null
   }>
@@ -27,6 +27,11 @@ interface SeasonApiResponse {
 
 interface UseSeasonalLeaderboardOptions {
   sort?: 'points' | 'newest'
+}
+
+const toNumber = (value: number | string): number => {
+  const parsed = typeof value === 'string' ? Number(value) : value
+  return Number.isFinite(parsed) ? parsed : 0
 }
 
 const fetchSeasonalLeaderboard = async ({ sort }: UseSeasonalLeaderboardOptions = {}): Promise<{
@@ -46,11 +51,11 @@ const fetchSeasonalLeaderboard = async ({ sort }: UseSeasonalLeaderboardOptions 
   const json = (await res.json()) as SeasonApiResponse
 
   const contributors = json.data.map((entry) => ({
-    id: entry.contributor_id,
+    id: toNumber(entry.contributor_id),
     username: entry.github_username || entry.alias,
     profileUrl: entry.github_username ? `https://github.com/${entry.github_username}` : '',
-    points: entry.season_points,
-    contributions: entry.contribution_count,
+    points: toNumber(entry.season_points),
+    contributions: toNumber(entry.contribution_count),
     latestContribution: entry.latest_contribution_at || '',
     latestRepo: entry.latest_repo || '',
     avatarUrl: entry.github_username ? `https://github.com/${entry.github_username}.png` : '',
