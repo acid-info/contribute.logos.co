@@ -1,7 +1,7 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-import { Button, Typography, Badge } from '@acid-info/lsd-react'
+import { Button, Typography } from '@acid-info/lsd-react'
 import { Link } from '@/i18n/navigation'
 import { ROUTES } from '@/constants/routes'
 import { useMemo } from 'react'
@@ -135,7 +135,7 @@ export default function ContributorDetailsContainer() {
                   <Typography variant="body2">Total Contributions</Typography>
                   <Typography variant="body2" className="font-medium">
                     {loading || error ? (
-                      <div className="w-4 h-4 rounded-full border border-gray-300 animate-spin border-t-gray-900"></div>
+                      <div className="w-4 h-4 border border-gray-300 rounded-full animate-spin border-t-gray-900"></div>
                     ) : (
                       total
                     )}
@@ -145,7 +145,7 @@ export default function ContributorDetailsContainer() {
                   <Typography variant="body2">Latest Repository</Typography>
                   <Typography variant="body2" className="font-medium">
                     {loading || error ? (
-                      <div className="w-4 h-4 rounded-full border border-gray-300 animate-spin border-t-gray-900"></div>
+                      <div className="w-4 h-4 border border-gray-300 rounded-full animate-spin border-t-gray-900"></div>
                     ) : (
                       latest?.repo || '-'
                     )}
@@ -155,7 +155,7 @@ export default function ContributorDetailsContainer() {
                   <Typography variant="body2">Last Contribution</Typography>
                   <Typography variant="body2" className="font-medium">
                     {loading || error ? (
-                      <div className="w-4 h-4 rounded-full border border-gray-300 animate-spin border-t-gray-900"></div>
+                      <div className="w-4 h-4 border border-gray-300 rounded-full animate-spin border-t-gray-900"></div>
                     ) : latest ? (
                       formatDate(latest.date)
                     ) : (
@@ -172,9 +172,6 @@ export default function ContributorDetailsContainer() {
           <div className="border-primary border-b px-4 py-2 sm:px-8 sm:py-6">
             <div className="flex items-center gap-3">
               <h2 className="!text-lg sm:!text-2xl">{t('contributionHistory')}</h2>
-              <Badge className="!cursor-default whitespace-nowrap !no-underline hover:!no-underline">
-                {tc('contribute.timePeriod')}
-              </Badge>
             </div>
           </div>
           <div className="divide-primary divide-y">
