@@ -120,7 +120,7 @@ export default function LeaderboardContainer() {
           contributors={filteredContributors}
           isLoading={isLoading}
           error={!!error}
-          variant="table"
+          variant="list"
           showHeader={false}
           currentPage={currentPage}
           itemsPerPage={itemsPerPage}
