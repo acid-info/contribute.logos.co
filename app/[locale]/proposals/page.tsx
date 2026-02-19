@@ -1,9 +1,8 @@
 import { redirect } from 'next/navigation'
 import { routing } from '@/i18n/routing'
-import { ROUTES } from '@/constants/routes'
 
 export default function ProposalsPage() {
-  redirect(ROUTES.home)
+  redirect('https://forum.logos.co/c/proposals/9')
 }
 
 export function generateStaticParams() {
