@@ -36,14 +36,6 @@ const Header = () => {
                   {t('nav.resources')}
                 </Typography>
               </Link>
-              <Link href={ROUTES.proposals}>
-                <Typography
-                  variant="body1"
-                  className={`underline-offset-5 hover:underline ${currentPath === ROUTES.proposals ? 'underline' : ''}`}
-                >
-                  {t('nav.proposals')}
-                </Typography>
-              </Link>
               <Link href={ROUTES.issues}>
                 <Typography
                   variant="body1"
