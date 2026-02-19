@@ -95,6 +95,7 @@
       "contributor": "Contributor",
       "tier": "Tier",
       "point": "Point",
+      "newest": "Newest",
       "contributions": "Contributions",
       "repositories": "Repositories"
     },
