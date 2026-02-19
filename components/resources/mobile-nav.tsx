@@ -50,7 +50,6 @@ export function MobileNav({ items }: MobileNavProps) {
 
   const mainNavItems = [
     { title: t('nav.resources'), href: ROUTES.resources },
-    { title: t('nav.proposals'), href: ROUTES.proposals },
     { title: t('nav.issues'), href: ROUTES.issues },
     { title: t('nav.leaderboard'), href: ROUTES.leaderboard },
   ]

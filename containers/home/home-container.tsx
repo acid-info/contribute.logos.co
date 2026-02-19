@@ -9,11 +9,9 @@ import { useSocialProofData } from '@/hooks/useSocialProofData'
 import StatsGrid from '@/components/stats/stats-grid'
 import IssuesContainer from '../issues/issues-container'
 import ContributorDirectory from '@/components/contributors/contributors-directory'
-import ProposalsSection from '@/components/proposals/proposals-section'
 
 export default function HomeContainer() {
   const t = useTranslations('home')
-  const tp = useTranslations('proposals')
 
   const { data: contributors = [], isLoading, error } = useContributors()
   const {
@@ -88,11 +86,6 @@ export default function HomeContainer() {
               </Link>
             </div>
           </div>
-        </section>
-
-        <section>
-          <h2 className="pb-2 text-center max-sm:!text-2xl">{tp('title')}</h2>
-          <ProposalsSection description={tp('description')} showHowToContributeLink={true} />
         </section>
       </div>
     </div>
