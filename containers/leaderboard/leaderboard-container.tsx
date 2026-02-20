@@ -106,7 +106,7 @@ export default function LeaderboardContainer() {
             value={sortBy}
             onChange={(value) => setSortBy(value as SortOption)}
             options={[
-              { value: 'points', label: t('table.point') },
+              { value: 'points', label: t('table.points') },
               { value: 'newest', label: t('table.newest') },
             ]}
           />

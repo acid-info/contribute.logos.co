@@ -43,7 +43,7 @@ export default function ContributorsTable({
           <tr>
             <th className="px-6 py-4 font-medium">{t('table.rank')}</th>
             <th className="px-6 py-4 font-medium">{t('table.contributor')}</th>
-            <th className="px-6 py-4 font-medium">{t('table.point')}</th>
+            <th className="px-6 py-4 font-medium">{t('table.points')}</th>
             <th className="px-6 py-4 font-medium">{t('table.contributions')}</th>
             <th className="px-6 py-4 font-medium">{t('table.repositories')}</th>
           </tr>

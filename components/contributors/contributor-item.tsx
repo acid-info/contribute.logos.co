@@ -46,7 +46,7 @@ export default function ContributorItem({ contributor, showTier = false }: Contr
               {contributor.username}
             </a>
             <span className="inline-flex items-center text-xs font-medium">
-              {points} {tl('table.point')}
+              {points} {tl('table.points')}
             </span>
             {showTier && (
               <span className="border-primary inline-flex items-center rounded-full border px-2 py-1 text-xs font-medium">
