@@ -13,6 +13,8 @@ interface SortDropdownProps {
   onChange: (value: string) => void
 }
 
+const capitalizeFirst = (text: string) => text.charAt(0).toUpperCase() + text.slice(1)
+
 export default function SortDropdown({ value, options, onChange }: SortDropdownProps) {
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
@@ -36,7 +38,7 @@ export default function SortDropdown({ value, options, onChange }: SortDropdownP
         onClick={() => setOpen((prev) => !prev)}
         className="border-primary text-primary flex items-center gap-2 border bg-transparent px-3 py-2 text-sm"
       >
-        {selectedLabel}
+        {capitalizeFirst(selectedLabel)}
         <svg
           width="12"
           height="12"
@@ -61,7 +63,7 @@ export default function SortDropdown({ value, options, onChange }: SortDropdownP
                 option.value === value ? 'font-semibold' : ''
               }`}
             >
-              {option.label}
+              {capitalizeFirst(option.label)}
             </button>
           ))}
         </div>
